@@ -1,0 +1,670 @@
+{
+ "_doc": "Landmarks anatómicos del jaguar en pose neutra (de pie). Metros, Z arriba, el animal mira a -Y, +X = lado izquierdo, origen en el suelo entre las zarpas. Mismo marco que export/jaguar_base_*.glb antes de la conversión Y-arriba de glTF. 'parent' propone la jerarquía para el rig.",
+ "units": "m",
+ "up": "Z",
+ "forward": "-Y",
+ "landmarks": {
+  "C1": {
+   "pos": [
+    0.0,
+    -0.64,
+    0.598
+   ],
+   "parent": "C2",
+   "desc": "Atlas (C1)"
+  },
+  "C2": {
+   "pos": [
+    0.0,
+    -0.615,
+    0.592
+   ],
+   "parent": "C3",
+   "desc": "Axis (C2)"
+  },
+  "C3": {
+   "pos": [
+    0.0,
+    -0.585,
+    0.58
+   ],
+   "parent": "C4",
+   "desc": "C3"
+  },
+  "C4": {
+   "pos": [
+    0.0,
+    -0.55,
+    0.565
+   ],
+   "parent": "C5",
+   "desc": "C4"
+  },
+  "C5": {
+   "pos": [
+    0.0,
+    -0.515,
+    0.548
+   ],
+   "parent": "C6",
+   "desc": "C5"
+  },
+  "C6": {
+   "pos": [
+    0.0,
+    -0.48,
+    0.53
+   ],
+   "parent": "C7",
+   "desc": "C6"
+  },
+  "C7": {
+   "pos": [
+    0.0,
+    -0.445,
+    0.515
+   ],
+   "parent": "T1",
+   "desc": "C7"
+  },
+  "L4": {
+   "pos": [
+    0.0,
+    0.24,
+    0.618
+   ],
+   "parent": "T13",
+   "desc": "Lomo (L4)"
+  },
+  "L7": {
+   "pos": [
+    0.0,
+    0.4,
+    0.615
+   ],
+   "parent": "L4",
+   "desc": "L7"
+  },
+  "T1": {
+   "pos": [
+    0.0,
+    -0.41,
+    0.505
+   ],
+   "parent": null,
+   "desc": "Primera torácica"
+  },
+  "T10": {
+   "pos": [
+    0.0,
+    -0.12,
+    0.612
+   ],
+   "parent": "T5",
+   "desc": "T10"
+  },
+  "T13": {
+   "pos": [
+    0.0,
+    0.04,
+    0.615
+   ],
+   "parent": "T10",
+   "desc": "T13 (última torácica)"
+  },
+  "T5": {
+   "pos": [
+    0.0,
+    -0.29,
+    0.595
+   ],
+   "parent": "T1",
+   "desc": "T5 (bajo la cruz)"
+  },
+  "calcaneus_L": {
+   "pos": [
+    0.1,
+    0.512,
+    0.178
+   ],
+   "parent": "hock_L",
+   "desc": "Calcáneo (punta del corvejón)"
+  },
+  "calcaneus_R": {
+   "pos": [
+    -0.1,
+    0.512,
+    0.178
+   ],
+   "parent": "hock_R",
+   "desc": "Calcáneo (punta del corvejón)"
+  },
+  "carpus_L": {
+   "pos": [
+    0.1,
+    -0.355,
+    0.11
+   ],
+   "parent": "elbow_L",
+   "desc": "Muñeca (carpo)"
+  },
+  "carpus_R": {
+   "pos": [
+    -0.1,
+    -0.355,
+    0.11
+   ],
+   "parent": "elbow_R",
+   "desc": "Muñeca (carpo)"
+  },
+  "chin": {
+   "pos": [
+    0.0,
+    -0.86018,
+    0.42716
+   ],
+   "parent": "jaw_hinge_L",
+   "desc": "Barbilla (sínfisis mandibular)"
+  },
+  "condyle": {
+   "pos": [
+    0.0,
+    -0.65,
+    0.6
+   ],
+   "parent": "C1",
+   "desc": "Cóndilos occipitales (pivote de la cabeza)"
+  },
+  "ear_base_L": {
+   "pos": [
+    0.078,
+    -0.7274,
+    0.65584
+   ],
+   "parent": "condyle",
+   "desc": "Base de la oreja"
+  },
+  "ear_base_R": {
+   "pos": [
+    -0.078,
+    -0.7274,
+    0.65584
+   ],
+   "parent": "condyle",
+   "desc": "Base de la oreja"
+  },
+  "elbow_L": {
+   "pos": [
+    0.11,
+    -0.335,
+    0.32
+   ],
+   "parent": "shoulder_L",
+   "desc": "Codo (articulación húmero-cúbito)"
+  },
+  "elbow_R": {
+   "pos": [
+    -0.11,
+    -0.335,
+    0.32
+   ],
+   "parent": "shoulder_R",
+   "desc": "Codo (articulación húmero-cúbito)"
+  },
+  "ftoe_L": {
+   "pos": [
+    0.1,
+    -0.455,
+    0.012
+   ],
+   "parent": "mcp_L",
+   "desc": "Punta de los dedos delanteros"
+  },
+  "ftoe_R": {
+   "pos": [
+    -0.1,
+    -0.455,
+    0.012
+   ],
+   "parent": "mcp_R",
+   "desc": "Punta de los dedos delanteros"
+  },
+  "hip_L": {
+   "pos": [
+    0.09,
+    0.465,
+    0.54
+   ],
+   "parent": "sacrum",
+   "desc": "Cadera (acetábulo)"
+  },
+  "hip_R": {
+   "pos": [
+    -0.09,
+    0.465,
+    0.54
+   ],
+   "parent": "sacrum",
+   "desc": "Cadera (acetábulo)"
+  },
+  "hock_L": {
+   "pos": [
+    0.1,
+    0.47,
+    0.16
+   ],
+   "parent": "knee_L",
+   "desc": "Corvejón (articulación tarsal)"
+  },
+  "hock_R": {
+   "pos": [
+    -0.1,
+    0.47,
+    0.16
+   ],
+   "parent": "knee_R",
+   "desc": "Corvejón (articulación tarsal)"
+  },
+  "htoe_L": {
+   "pos": [
+    0.1,
+    0.385,
+    0.012
+   ],
+   "parent": "mtp_L",
+   "desc": "Punta de los dedos traseros"
+  },
+  "htoe_R": {
+   "pos": [
+    -0.1,
+    0.385,
+    0.012
+   ],
+   "parent": "mtp_R",
+   "desc": "Punta de los dedos traseros"
+  },
+  "iliac_crest_L": {
+   "pos": [
+    0.075,
+    0.365,
+    0.665
+   ],
+   "parent": "sacrum",
+   "desc": "Cresta ilíaca (tuber coxae)"
+  },
+  "iliac_crest_R": {
+   "pos": [
+    -0.075,
+    0.365,
+    0.665
+   ],
+   "parent": "sacrum",
+   "desc": "Cresta ilíaca (tuber coxae)"
+  },
+  "ischium_L": {
+   "pos": [
+    0.06,
+    0.565,
+    0.525
+   ],
+   "parent": "hip_L",
+   "desc": "Tuberosidad isquiática (punta de la nalga)"
+  },
+  "ischium_R": {
+   "pos": [
+    -0.06,
+    0.565,
+    0.525
+   ],
+   "parent": "hip_R",
+   "desc": "Tuberosidad isquiática (punta de la nalga)"
+  },
+  "jaw_hinge_L": {
+   "pos": [
+    0.068,
+    -0.70952,
+    0.54249
+   ],
+   "parent": "condyle",
+   "desc": "Bisagra de la mandíbula (ATM)"
+  },
+  "jaw_hinge_R": {
+   "pos": [
+    -0.068,
+    -0.70952,
+    0.54249
+   ],
+   "parent": "condyle",
+   "desc": "Bisagra de la mandíbula (ATM)"
+  },
+  "knee_L": {
+   "pos": [
+    0.12,
+    0.322,
+    0.335
+   ],
+   "parent": "hip_L",
+   "desc": "Rodilla (babilla)"
+  },
+  "knee_R": {
+   "pos": [
+    -0.12,
+    0.322,
+    0.335
+   ],
+   "parent": "hip_R",
+   "desc": "Rodilla (babilla)"
+  },
+  "mcp_L": {
+   "pos": [
+    0.1,
+    -0.395,
+    0.035
+   ],
+   "parent": "carpus_L",
+   "desc": "Metacarpo-falángica"
+  },
+  "mcp_R": {
+   "pos": [
+    -0.1,
+    -0.395,
+    0.035
+   ],
+   "parent": "carpus_R",
+   "desc": "Metacarpo-falángica"
+  },
+  "mtp_L": {
+   "pos": [
+    0.1,
+    0.445,
+    0.035
+   ],
+   "parent": "hock_L",
+   "desc": "Metatarso-falángica"
+  },
+  "mtp_R": {
+   "pos": [
+    -0.1,
+    0.445,
+    0.035
+   ],
+   "parent": "hock_R",
+   "desc": "Metatarso-falángica"
+  },
+  "nose_tip": {
+   "pos": [
+    0.0,
+    -0.92893,
+    0.50396
+   ],
+   "parent": "condyle",
+   "desc": "Punta nasal (rinario)"
+  },
+  "occiput": {
+   "pos": [
+    0.0,
+    -0.67295,
+    0.682
+   ],
+   "parent": "condyle",
+   "desc": "Occipucio (cresta occipital)"
+  },
+  "olecranon_L": {
+   "pos": [
+    0.105,
+    -0.3,
+    0.34
+   ],
+   "parent": "elbow_L",
+   "desc": "Olécranon (punta del codo)"
+  },
+  "olecranon_R": {
+   "pos": [
+    -0.105,
+    -0.3,
+    0.34
+   ],
+   "parent": "elbow_R",
+   "desc": "Olécranon (punta del codo)"
+  },
+  "orbit_L": {
+   "pos": [
+    0.042,
+    -0.82066,
+    0.58883
+   ],
+   "parent": "condyle",
+   "desc": "Centro de la órbita"
+  },
+  "orbit_R": {
+   "pos": [
+    -0.042,
+    -0.82066,
+    0.58883
+   ],
+   "parent": "condyle",
+   "desc": "Centro de la órbita"
+  },
+  "patella_L": {
+   "pos": [
+    0.12,
+    0.292,
+    0.35
+   ],
+   "parent": "knee_L",
+   "desc": "Rótula"
+  },
+  "patella_R": {
+   "pos": [
+    -0.12,
+    0.292,
+    0.35
+   ],
+   "parent": "knee_R",
+   "desc": "Rótula"
+  },
+  "sacrum": {
+   "pos": [
+    0.0,
+    0.46,
+    0.606
+   ],
+   "parent": "L7",
+   "desc": "Sacro"
+  },
+  "scap_low_L": {
+   "pos": [
+    0.105,
+    -0.445,
+    0.545
+   ],
+   "parent": "scap_top_L",
+   "desc": "Escápula, borde inferior (cuello de la escápula)"
+  },
+  "scap_low_R": {
+   "pos": [
+    -0.105,
+    -0.445,
+    0.545
+   ],
+   "parent": "scap_top_R",
+   "desc": "Escápula, borde inferior (cuello de la escápula)"
+  },
+  "scap_top_L": {
+   "pos": [
+    0.065,
+    -0.355,
+    0.715
+   ],
+   "parent": "T5",
+   "desc": "Escápula, borde dorsal (cruz)"
+  },
+  "scap_top_R": {
+   "pos": [
+    -0.065,
+    -0.355,
+    0.715
+   ],
+   "parent": "T5",
+   "desc": "Escápula, borde dorsal (cruz)"
+  },
+  "shoulder_L": {
+   "pos": [
+    0.12,
+    -0.465,
+    0.505
+   ],
+   "parent": "scap_top_L",
+   "desc": "Articulación del hombro (glenohumeral)"
+  },
+  "shoulder_R": {
+   "pos": [
+    -0.12,
+    -0.465,
+    0.505
+   ],
+   "parent": "scap_top_R",
+   "desc": "Articulación del hombro (glenohumeral)"
+  },
+  "tail_base": {
+   "pos": [
+    0.0,
+    0.515,
+    0.595
+   ],
+   "parent": "sacrum",
+   "desc": "Base de la cola (Ca1)"
+  },
+  "tail_tip": {
+   "pos": [
+    0.0,
+    0.6627,
+    0.09562
+   ],
+   "parent": "tail_base",
+   "desc": "Punta de la cola"
+  },
+  "withers": {
+   "pos": [
+    0.0,
+    -0.355,
+    0.75
+   ],
+   "parent": "T5",
+   "desc": "Cruz (piel sobre las escápulas)"
+  },
+  "zygoma_L": {
+   "pos": [
+    0.105,
+    -0.75563,
+    0.56892
+   ],
+   "parent": "condyle",
+   "desc": "Arco cigomático (máximo ancho)"
+  },
+  "zygoma_R": {
+   "pos": [
+    -0.105,
+    -0.75563,
+    0.56892
+   ],
+   "parent": "condyle",
+   "desc": "Arco cigomático (máximo ancho)"
+  }
+ },
+ "bones": {
+  "front": [
+   "scapula",
+   "humerus",
+   "radius",
+   "metacarpus",
+   "fdigits"
+  ],
+  "hind": [
+   "femur",
+   "tibia",
+   "metatarsus",
+   "hdigits"
+  ],
+  "neck": [
+   "neck1",
+   "neck2"
+  ],
+  "tail_segments": 6
+ },
+ "tail_chain": [
+  [
+   0.0,
+   0.515,
+   0.595
+  ],
+  [
+   0.0,
+   0.58522,
+   0.53608
+  ],
+  [
+   0.0,
+   0.62396,
+   0.453
+  ],
+  [
+   0.0,
+   0.63195,
+   0.36168
+  ],
+  [
+   0.0,
+   0.62396,
+   0.27036
+  ],
+  [
+   0.0,
+   0.62396,
+   0.1787
+  ],
+  [
+   0.0,
+   0.6627,
+   0.09562
+  ]
+ ],
+ "photo_poses_deg": {
+  "side_photo": {
+   "scap_top_L": -8,
+   "shoulder_L": -22,
+   "elbow_L": -5,
+   "carpus_L": -30,
+   "mcp_L": 0,
+   "scap_top_R": 4,
+   "shoulder_R": 2,
+   "elbow_R": 0,
+   "carpus_R": 0,
+   "hip_L": -14,
+   "knee_L": -8,
+   "hock_L": 10,
+   "mtp_L": 0,
+   "hip_R": 16,
+   "knee_R": 6,
+   "hock_R": -6,
+   "neck1": 6,
+   "neck2": 0,
+   "head": -4,
+   "tail0": 10,
+   "tail1": -5,
+   "tail2": -30,
+   "tail3": -50,
+   "tail4": -45,
+   "tail5": -25
+  },
+  "front_photo": {
+   "shoulder_R": -12,
+   "carpus_R": -6,
+   "shoulder_L": 6,
+   "neck1": 8,
+   "head": -6,
+   "hip_L": -8,
+   "hip_R": 6
+  }
+ }
+}

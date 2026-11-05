@@ -367,3 +367,42 @@ con un cabeza-cuerpo recto ≈ 1.40–1.43 m (−5…−7 %) y una cruz ≈ 0.76
 (+5…+8 %). El optimizador trabajará en ese margen. No cambio los objetivos: si
 el resultado queda en el límite, lo anoto como evidencia de que la foto muestra un
 animal más compacto que el promedio publicado.
+
+## Paso 2 — esqueleto de referencia (landmarks)
+
+- `params.json["skeleton"]`:
+  - Landmarks 3D de la pose neutra: columna C1–C7, T1, T5, T10, T13, L4, L7,
+    sacro y base de la cola; escápula (borde dorsal e inferior), hombro, codo,
+    olécranon, carpo, metacarpo y dedos; cresta ilíaca, cadera, isquion, rodilla,
+    rótula, corvejón, calcáneo, metatarso y dedos.
+  - Cráneo en marco local con inclinación: cóndilos/pivote, occipucio, órbita,
+    punta nasal, bisagra de la mandíbula, barbilla, arco cigomático y base de la
+    oreja.
+  - Cola: cadena de 6 segmentos con ángulos.
+- `src/skeleton.py`:
+  - Simetría L→R y cinemática directa en el plano sagital, con ángulos por
+    articulación. La usan las «poses de foto»: la del lateral, en zancada, y la
+    del frontal, mano derecha adelantada.
+  - Escalas globales ajustables (altura respecto al suelo, largo del tronco,
+    cuello, cabeza) que conservan el apoyo de las cuatro zarpas.
+- Osteología de *Panthera* escalada a un macho de ~0.75 m de cruz:
+  - Largos resultantes: escápula 0.24 m, húmero 0.23, radio 0.21, metacarpo
+    0.085, fémur 0.25, tibia 0.23, metatarso 0.13 y cuello (T1–C1) 0.25.
+  - Columna, en proporción del cabeza-cuerpo recto: torácicas + lumbares ≈ 60 %,
+    cuello ≈ 23 % y cabeza ≈ 18 %, igual que en la foto lateral (60/22/18 %).
+    En la v06 eran 65/18/19: tronco largo y cuello corto, justo el defecto
+    diagnosticado.
+- Criterios verificados en los landmarks:
+  - *Escápula oblicua:* 25° respecto a la vertical. El borde dorsal queda a
+    0.715 m, justo bajo la piel de la cruz (0.75 m); asoma al ajustar la pose de
+    paso.
+  - *Codo pegado al tronco:* a 0.32 m, la altura del fondo del pecho; x = 0.11 m,
+    junto a la caja torácica. El húmero va atrás y abajo.
+  - *Digitígrado:* carpo a 0.11 m, corvejón a 0.16 m y metatarso trasero a 79°
+    de la horizontal.
+  - *Rodilla:* delante, a 0.335 m, la altura del vientre.
+  - *Cuello y cabeza:* la coronilla queda a la altura del lomo o algo por
+    debajo; la nariz, a 0.50 m.
+- `export/landmarks.json`: posiciones, jerarquía propuesta (`parent`) para el
+  rig, descripción y cadena de la cola. Se regenera en cada build con el mismo
+  desplazamiento que la malla.

@@ -1021,5 +1021,279 @@
   ],
   "back_cap_dome": 0.01,
   "chin_cap_dome": 0.005
+ },
+ "skeleton": {
+  "_doc": "Landmarks de la pose neutra (de pie), lado IZQUIERDO (+X) y linea media; el derecho es espejo. Columna: centros de los cuerpos vertebrales. Medidas oseas de Panthera escaladas: escapula ~0.23 m, humero ~0.23, radio ~0.21, metacarpo ~0.085, femur ~0.25, tibia ~0.23, metatarso ~0.13, cervicales ~0.25, toracicas+lumbares ~0.82. 'scales' las ajusta el optimizador dentro de +-12 %.",
+  "scales": {
+   "height": 1.0,
+   "torso_length": 1.0,
+   "neck_length": 1.0,
+   "head": 1.0,
+   "head_pitch": 0.0
+  },
+  "points": {
+   "withers": [
+    0.0,
+    -0.355,
+    0.75
+   ],
+   "T1": [
+    0.0,
+    -0.41,
+    0.505
+   ],
+   "C7": [
+    0.0,
+    -0.445,
+    0.515
+   ],
+   "C6": [
+    0.0,
+    -0.48,
+    0.53
+   ],
+   "C5": [
+    0.0,
+    -0.515,
+    0.548
+   ],
+   "C4": [
+    0.0,
+    -0.55,
+    0.565
+   ],
+   "C3": [
+    0.0,
+    -0.585,
+    0.58
+   ],
+   "C2": [
+    0.0,
+    -0.615,
+    0.592
+   ],
+   "C1": [
+    0.0,
+    -0.64,
+    0.598
+   ],
+   "T5": [
+    0.0,
+    -0.29,
+    0.595
+   ],
+   "T10": [
+    0.0,
+    -0.12,
+    0.612
+   ],
+   "T13": [
+    0.0,
+    0.04,
+    0.615
+   ],
+   "L4": [
+    0.0,
+    0.24,
+    0.618
+   ],
+   "L7": [
+    0.0,
+    0.4,
+    0.615
+   ],
+   "sacrum": [
+    0.0,
+    0.46,
+    0.606
+   ],
+   "tail_base": [
+    0.0,
+    0.515,
+    0.595
+   ],
+   "scap_top_L": [
+    0.065,
+    -0.355,
+    0.715
+   ],
+   "scap_low_L": [
+    0.105,
+    -0.445,
+    0.545
+   ],
+   "shoulder_L": [
+    0.12,
+    -0.465,
+    0.505
+   ],
+   "elbow_L": [
+    0.11,
+    -0.335,
+    0.32
+   ],
+   "olecranon_L": [
+    0.105,
+    -0.3,
+    0.34
+   ],
+   "carpus_L": [
+    0.1,
+    -0.355,
+    0.11
+   ],
+   "mcp_L": [
+    0.1,
+    -0.395,
+    0.035
+   ],
+   "ftoe_L": [
+    0.1,
+    -0.455,
+    0.012
+   ],
+   "iliac_crest_L": [
+    0.075,
+    0.365,
+    0.665
+   ],
+   "hip_L": [
+    0.09,
+    0.465,
+    0.54
+   ],
+   "ischium_L": [
+    0.06,
+    0.565,
+    0.525
+   ],
+   "knee_L": [
+    0.12,
+    0.322,
+    0.335
+   ],
+   "patella_L": [
+    0.12,
+    0.292,
+    0.35
+   ],
+   "hock_L": [
+    0.1,
+    0.47,
+    0.16
+   ],
+   "calcaneus_L": [
+    0.1,
+    0.512,
+    0.178
+   ],
+   "mtp_L": [
+    0.1,
+    0.445,
+    0.035
+   ],
+   "htoe_L": [
+    0.1,
+    0.385,
+    0.012
+   ]
+  },
+  "head": {
+   "_doc": "Cabeza: origen en los condilos occipitales, coords locales (mismos ejes que el mundo, -Y = hacia la nariz) giradas pitch_deg (nariz abajo).",
+   "condyle": [
+    0.0,
+    -0.65,
+    0.6
+   ],
+   "pitch_deg": 19.0,
+   "local": {
+    "occiput": [
+     0.0,
+     0.005,
+     0.085
+    ],
+    "orbit_L": [
+     0.042,
+     -0.165,
+     0.045
+    ],
+    "nose_tip": [
+     0.0,
+     -0.295,
+     0.0
+    ],
+    "jaw_hinge_L": [
+     0.068,
+     -0.075,
+     -0.035
+    ],
+    "chin": [
+     0.0,
+     -0.255,
+     -0.095
+    ],
+    "zygoma_L": [
+     0.105,
+     -0.11,
+     0.005
+    ],
+    "ear_base_L": [
+     0.078,
+     -0.055,
+     0.078
+    ]
+   }
+  },
+  "tail": {
+   "_doc": "6 segmentos iguales desde Ca1; cada angulo dobla el segmento siguiente (>0 hacia abajo) respecto al anterior; el primero respecto a la horizontal hacia atras.",
+   "length": 0.55,
+   "angles_neutral": [
+    40,
+    25,
+    20,
+    10,
+    -5,
+    -25
+   ]
+  }
+ },
+ "poses": {
+  "_doc": "Poses de las fotos (grados, ver convencion en src/skeleton.py). Las ajusta el optimizador; la pose neutra es {}.",
+  "side_photo": {
+   "scap_top_L": -8,
+   "shoulder_L": -22,
+   "elbow_L": -5,
+   "carpus_L": -30,
+   "mcp_L": 0,
+   "scap_top_R": 4,
+   "shoulder_R": 2,
+   "elbow_R": 0,
+   "carpus_R": 0,
+   "hip_L": -14,
+   "knee_L": -8,
+   "hock_L": 10,
+   "mtp_L": 0,
+   "hip_R": 16,
+   "knee_R": 6,
+   "hock_R": -6,
+   "neck1": 6,
+   "neck2": 0,
+   "head": -4,
+   "tail0": 10,
+   "tail1": -5,
+   "tail2": -30,
+   "tail3": -50,
+   "tail4": -45,
+   "tail5": -25
+  },
+  "front_photo": {
+   "shoulder_R": -12,
+   "carpus_R": -6,
+   "shoulder_L": 6,
+   "neck1": 8,
+   "head": -6,
+   "hip_L": -8,
+   "hip_R": 6
+  }
  }
 }
