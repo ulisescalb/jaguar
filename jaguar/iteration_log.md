@@ -316,3 +316,54 @@ renders). Dio medidas idénticas a las de Blender 4.5.15 (diferencia máxima
 5. *Masa estimada* 126 kg (el solape cabeza-cuello suma algunos kg): animal
    pesado. Si se quiere un macho medio de 90 kg, reducir ≈ 5 % el semiancho del
    tronco.
+
+---
+
+# Etapa 2 — forma guiada por referencias (v07+)
+
+Diagnóstico de partida (tuyo, y lo comparto): la v06 cumple las medidas pero no la
+forma. A partir de aquí manda la **comparación de siluetas** contra fotos reales, y
+el juicio visual pesa más que las tablas.
+
+## Paso 1 — referencias y métrica de silueta
+
+- Fotos copiadas a `reference/`:
+  - Útiles: `photo_side_walk.jpg` y `photo_front_walk.jpg`.
+  - Inservibles: `photo_skeleton_side_ai.jpg` y `photo_threequarter_fog_ai.jpg`.
+  - Detalle y lista de lo que falta en `reference/PENDIENTE_fotos.md`.
+- **Máscaras** (`src/extract_masks.py`):
+  - Semilla por color (pelaje saturado u oscuro = primer plano; blanco puro =
+    fondo) + GrabCut para separar el pelaje blanco de las patas de la sombra
+    gris del suelo.
+  - Después: componente mayor, relleno de huecos y cierre de 15 px. El cierre
+    tapa una muesca en la pata trasera lejana.
+  - Revisadas a ojo: `reference/masks/*_check.jpg`, contorno magenta.
+- **Puntos de alineación** medidos sobre la foto lateral (px originales):
+  - Punta de la nariz (1835, 505).
+  - Base dorsal de la cola (490, 350), ±15 px ≈ ±1.5 cm. La curva grupa→cola es
+    continua y el punto exacto es ambiguo.
+  - Suelo en y = 1000: zarpas de apoyo en 998 y 1005.
+- **`src/silhouette.py`**:
+  - Rasteriza los triángulos con OpenCV, sin Cycles, a media resolución de la
+    foto. Lateral ortográfica, escalada por nariz–base de la cola y apoyada en
+    el suelo. Frontal en perspectiva, con cámara estenopeica ajustada por CMA-ES
+    dentro de límites físicos; el mismo procedimiento para todas las versiones.
+  - Superposición: gris = coincide, rojo = sobra, azul = falta.
+  - *Fallo corregido:* `fillPoly` con muchos triángulos usa la regla par-impar y
+    los solapes se anulaban (salía un IoU de 0.28). Ahora rellena triángulo a
+    triángulo.
+
+**Línea base v06** (`renders/v06/iou/`): **IoU lateral 0.533**, **frontal 0.747**.
+
+Lectura de la superposición lateral:
+- Con la escala fijada por el largo nariz–base de la cola, el jaguar de la foto es
+  ≈ 11 % más alto (cruz ≈ 0.80 m si el cabeza-cuerpo fuera 1.46 m).
+- Tiene el vientre más bajo (pecho de ≈ 0.45 m de fondo), cuello y cabeza
+  adelantados y bajos, la cola levantada en «S» y las patas en zancada.
+- La v06 sobra sobre todo en las patas (rectas) y en la cola colgante.
+
+**Consecuencia:** con ±8 % sobre `medidas.md`, una silueta tan compacta solo cabe
+con un cabeza-cuerpo recto ≈ 1.40–1.43 m (−5…−7 %) y una cruz ≈ 0.76–0.78 m
+(+5…+8 %). El optimizador trabajará en ese margen. No cambio los objetivos: si
+el resultado queda en el límite, lo anoto como evidencia de que la foto muestra un
+animal más compacto que el promedio publicado.
