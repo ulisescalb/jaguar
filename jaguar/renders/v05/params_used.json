@@ -1,0 +1,1006 @@
+{
+ "_doc": "Parametros del jaguar base. Unidades: metros. Z arriba, el animal mira a -Y; +X es su lado IZQUIERDO. Las coordenadas se dan en un marco de diseno; al final el modelo se recentra para que el origen quede en el suelo, centrado entre las cuatro zarpas. Las patas y ojos/orejas derechos se generan por simetria.",
+ "version_note": "v05: tronco \u2014 barril costal, cintura y caderas en planta; escapulas, punta del hombro y gluteos; nuca continua con el occipucio; cola mas gruesa",
+ "subdivision_levels": 1,
+ "targets": {
+  "_doc": "Objetivos (ver reference/medidas.md). Se comparan contra medidas calculadas de la malla final.",
+  "head_body_length": 1.5,
+  "withers_height": 0.72,
+  "croup_height": 0.7,
+  "tail_length": 0.55,
+  "head_length": 0.29,
+  "head_width": 0.22,
+  "chest_depth": 0.39,
+  "chest_clearance": 0.33,
+  "belly_clearance": 0.37,
+  "torso_width": 0.32,
+  "front_paw_width": 0.11,
+  "hind_paw_width": 0.095,
+  "forearm_depth": 0.095,
+  "tail_base_diameter": 0.075
+ },
+ "body": {
+  "_doc": "Secciones transversales del tronco+cuello, de delante (dentro de la cabeza) hacia atras. y: posicion; zt/zb: cota dorsal/ventral en la linea media; w: semiancho maximo; wz: altura relativa (0=abajo,1=arriba) del ancho maximo; pt/pb: exponente superelipse arriba/abajo (2=elipse, <2 en punta, >2 cuadrada); tilt: giro de la seccion (grados).",
+  "ring_verts": 24,
+  "stations": [
+   {
+    "y": -0.69,
+    "zt": 0.668,
+    "zb": 0.505,
+    "w": 0.082,
+    "wz": 0.5,
+    "pt": 2.0,
+    "pb": 2.0
+   },
+   {
+    "y": -0.635,
+    "zt": 0.69,
+    "zb": 0.488,
+    "w": 0.106,
+    "wz": 0.5,
+    "pt": 2.0,
+    "pb": 2.0
+   },
+   {
+    "y": -0.575,
+    "zt": 0.704,
+    "zb": 0.475,
+    "w": 0.118,
+    "wz": 0.5,
+    "pt": 2.0,
+    "pb": 2.0
+   },
+   {
+    "y": -0.515,
+    "zt": 0.714,
+    "zb": 0.448,
+    "w": 0.128,
+    "wz": 0.46,
+    "pt": 2.0,
+    "pb": 2.0
+   },
+   {
+    "y": -0.46,
+    "zt": 0.716,
+    "zb": 0.42,
+    "w": 0.134,
+    "wz": 0.42,
+    "pt": 1.9,
+    "pb": 2.0
+   },
+   {
+    "y": -0.41,
+    "zt": 0.722,
+    "zb": 0.385,
+    "w": 0.148,
+    "wz": 0.42,
+    "pt": 1.7,
+    "pb": 2.0
+   },
+   {
+    "y": -0.36,
+    "zt": 0.724,
+    "zb": 0.355,
+    "w": 0.156,
+    "wz": 0.42,
+    "pt": 1.7,
+    "pb": 1.9
+   },
+   {
+    "y": -0.31,
+    "zt": 0.716,
+    "zb": 0.338,
+    "w": 0.162,
+    "wz": 0.42,
+    "pt": 1.8,
+    "pb": 1.9
+   },
+   {
+    "y": -0.26,
+    "zt": 0.705,
+    "zb": 0.33,
+    "w": 0.166,
+    "wz": 0.45,
+    "pt": 1.9,
+    "pb": 1.9
+   },
+   {
+    "y": -0.185,
+    "zt": 0.697,
+    "zb": 0.33,
+    "w": 0.167,
+    "wz": 0.48,
+    "pt": 2.0,
+    "pb": 2.0
+   },
+   {
+    "y": -0.11,
+    "zt": 0.692,
+    "zb": 0.336,
+    "w": 0.164,
+    "wz": 0.5,
+    "pt": 2.1,
+    "pb": 2.0
+   },
+   {
+    "y": -0.035,
+    "zt": 0.69,
+    "zb": 0.352,
+    "w": 0.156,
+    "wz": 0.52,
+    "pt": 2.2,
+    "pb": 2.0
+   },
+   {
+    "y": 0.04,
+    "zt": 0.692,
+    "zb": 0.366,
+    "w": 0.144,
+    "wz": 0.54,
+    "pt": 2.2,
+    "pb": 2.0
+   },
+   {
+    "y": 0.11,
+    "zt": 0.695,
+    "zb": 0.38,
+    "w": 0.135,
+    "wz": 0.55,
+    "pt": 2.3,
+    "pb": 2.0
+   },
+   {
+    "y": 0.17,
+    "zt": 0.698,
+    "zb": 0.393,
+    "w": 0.133,
+    "wz": 0.56,
+    "pt": 2.3,
+    "pb": 2.0
+   },
+   {
+    "y": 0.22,
+    "zt": 0.7,
+    "zb": 0.402,
+    "w": 0.137,
+    "wz": 0.56,
+    "pt": 2.4,
+    "pb": 2.0
+   },
+   {
+    "y": 0.29,
+    "zt": 0.702,
+    "zb": 0.412,
+    "w": 0.146,
+    "wz": 0.57,
+    "pt": 2.6,
+    "pb": 2.0
+   },
+   {
+    "y": 0.36,
+    "zt": 0.7,
+    "zb": 0.424,
+    "w": 0.152,
+    "wz": 0.58,
+    "pt": 2.6,
+    "pb": 2.0
+   },
+   {
+    "y": 0.43,
+    "zt": 0.692,
+    "zb": 0.44,
+    "w": 0.15,
+    "wz": 0.6,
+    "pt": 2.4,
+    "pb": 2.0
+   },
+   {
+    "y": 0.5,
+    "zt": 0.675,
+    "zb": 0.455,
+    "w": 0.137,
+    "wz": 0.62,
+    "pt": 2.2,
+    "pb": 2.0
+   },
+   {
+    "y": 0.55,
+    "zt": 0.65,
+    "zb": 0.47,
+    "w": 0.11,
+    "wz": 0.62,
+    "pt": 2.0,
+    "pb": 2.0
+   }
+  ],
+  "neck_cap_dome": 0.03,
+  "rump_cap_dome": 0.05,
+  "tail_hole": {
+   "_doc": "celdas de la rejilla 6x6 de la tapa trasera (i: lateral, j: desde arriba)",
+   "i0": 2,
+   "ha": 2,
+   "j0": 1,
+   "hb": 2
+  },
+  "bumps": [
+   {
+    "_doc": "escapula (borde dorsal)",
+    "c": [
+     0.065,
+     -0.385,
+     0.69
+    ],
+    "r": [
+     0.035,
+     0.07,
+     0.04
+    ],
+    "a": 0.01,
+    "dir": [
+     0.5,
+     0.0,
+     1.0
+    ]
+   },
+   {
+    "_doc": "punta del hombro / deltoides",
+    "c": [
+     0.12,
+     -0.47,
+     0.48
+    ],
+    "r": [
+     0.04,
+     0.04,
+     0.05
+    ],
+    "a": 0.01,
+    "dir": [
+     0.6,
+     -0.8,
+     0.0
+    ]
+   },
+   {
+    "_doc": "masa del triceps sobre el codo",
+    "c": [
+     0.15,
+     -0.3,
+     0.42
+    ],
+    "r": [
+     0.03,
+     0.06,
+     0.05
+    ],
+    "a": 0.008,
+    "dir": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "_doc": "punta de la cadera (tuber coxae)",
+    "c": [
+     0.085,
+     0.25,
+     0.665
+    ],
+    "r": [
+     0.035,
+     0.05,
+     0.035
+    ],
+    "a": 0.006,
+    "dir": [
+     0.6,
+     0.0,
+     0.8
+    ]
+   },
+   {
+    "_doc": "gluteo / grupa",
+    "c": [
+     0.09,
+     0.43,
+     0.62
+    ],
+    "r": [
+     0.05,
+     0.08,
+     0.05
+    ],
+    "a": 0.01,
+    "dir": [
+     0.7,
+     0.2,
+     0.4
+    ]
+   }
+  ]
+ },
+ "legs": {
+  "_doc": "Anillos horizontales (antes de 'tilt') de cada pata IZQUIERDA; la derecha es espejo. z: altura; yf/yb: borde delantero/trasero; xi/xo: borde interno/externo; p: exponente superelipse. 'hole': agujero en el tronco donde se injerta la pata (estacion inicial, n. de estaciones, indice de anillo inicial, n. de indices). 'blend': transicion de angulos del bucle del agujero a reparto uniforme.",
+  "front": {
+   "hole": {
+    "station": 4,
+    "along": 4,
+    "ring": 6,
+    "around": 4
+   },
+   "blend": [
+    0.4,
+    0.8
+   ],
+   "paw_from_ring": 8,
+   "rings": [
+    {
+     "z": 0.335,
+     "yf": -0.47,
+     "yb": -0.275,
+     "xi": 0.07,
+     "xo": 0.18,
+     "p": 2.2,
+     "roll": 25
+    },
+    {
+     "z": 0.3,
+     "yf": -0.455,
+     "yb": -0.268,
+     "xi": 0.074,
+     "xo": 0.174,
+     "p": 2.2,
+     "roll": 12
+    },
+    {
+     "z": 0.272,
+     "yf": -0.446,
+     "yb": -0.298,
+     "xi": 0.078,
+     "xo": 0.169,
+     "p": 2.2
+    },
+    {
+     "z": 0.235,
+     "yf": -0.441,
+     "yb": -0.322,
+     "xi": 0.081,
+     "xo": 0.164,
+     "p": 2.1
+    },
+    {
+     "z": 0.185,
+     "yf": -0.435,
+     "yb": -0.333,
+     "xi": 0.084,
+     "xo": 0.16,
+     "p": 2.1
+    },
+    {
+     "z": 0.135,
+     "yf": -0.427,
+     "yb": -0.342,
+     "xi": 0.086,
+     "xo": 0.157,
+     "p": 2.1
+    },
+    {
+     "z": 0.098,
+     "yf": -0.424,
+     "yb": -0.347,
+     "xi": 0.087,
+     "xo": 0.156,
+     "p": 2.1
+    },
+    {
+     "z": 0.07,
+     "yf": -0.438,
+     "yb": -0.35,
+     "xi": 0.084,
+     "xo": 0.159,
+     "p": 2.2
+    },
+    {
+     "z": 0.047,
+     "yf": -0.48,
+     "yb": -0.35,
+     "xi": 0.069,
+     "xo": 0.175,
+     "p": 2.3
+    },
+    {
+     "z": 0.025,
+     "yf": -0.499,
+     "yb": -0.348,
+     "xi": 0.062,
+     "xo": 0.182,
+     "p": 2.4
+    },
+    {
+     "z": 0.006,
+     "yf": -0.494,
+     "yb": -0.355,
+     "xi": 0.066,
+     "xo": 0.178,
+     "p": 2.4
+    }
+   ],
+   "sole_z": 0.0
+  },
+  "hind": {
+   "hole": {
+    "station": 15,
+    "along": 4,
+    "ring": 6,
+    "around": 4
+   },
+   "blend": [
+    0.4,
+    0.8
+   ],
+   "paw_from_ring": 8,
+   "rings": [
+    {
+     "z": 0.395,
+     "yf": 0.225,
+     "yb": 0.59,
+     "xi": 0.07,
+     "xo": 0.188,
+     "p": 2.2,
+     "tilt": 6,
+     "roll": 20
+    },
+    {
+     "z": 0.345,
+     "yf": 0.232,
+     "yb": 0.572,
+     "xi": 0.074,
+     "xo": 0.186,
+     "p": 2.2,
+     "roll": 8
+    },
+    {
+     "z": 0.3,
+     "yf": 0.262,
+     "yb": 0.54,
+     "xi": 0.079,
+     "xo": 0.176,
+     "p": 2.1
+    },
+    {
+     "z": 0.25,
+     "yf": 0.3,
+     "yb": 0.512,
+     "xi": 0.085,
+     "xo": 0.163,
+     "p": 2.0
+    },
+    {
+     "z": 0.2,
+     "yf": 0.335,
+     "yb": 0.49,
+     "xi": 0.089,
+     "xo": 0.154,
+     "p": 2.0
+    },
+    {
+     "z": 0.16,
+     "yf": 0.36,
+     "yb": 0.492,
+     "xi": 0.09,
+     "xo": 0.151,
+     "p": 2.0
+    },
+    {
+     "z": 0.12,
+     "yf": 0.368,
+     "yb": 0.458,
+     "xi": 0.091,
+     "xo": 0.15,
+     "p": 2.0
+    },
+    {
+     "z": 0.075,
+     "yf": 0.368,
+     "yb": 0.45,
+     "xi": 0.091,
+     "xo": 0.15,
+     "p": 2.1
+    },
+    {
+     "z": 0.047,
+     "yf": 0.333,
+     "yb": 0.452,
+     "xi": 0.074,
+     "xo": 0.165,
+     "p": 2.3
+    },
+    {
+     "z": 0.025,
+     "yf": 0.315,
+     "yb": 0.455,
+     "xi": 0.068,
+     "xo": 0.172,
+     "p": 2.4
+    },
+    {
+     "z": 0.006,
+     "yf": 0.321,
+     "yb": 0.45,
+     "xi": 0.071,
+     "xo": 0.169,
+     "p": 2.4
+    }
+   ],
+   "sole_z": 0.0
+  }
+ },
+ "tail": {
+  "_doc": "Trayectoria relativa (dy, dz) desde el centro de la base; se reescala a 'length' de arco. Radios por fraccion de longitud.",
+  "length": 0.55,
+  "rings": 16,
+  "path": [
+   [
+    0.0,
+    0.0
+   ],
+   [
+    0.07,
+    -0.05
+   ],
+   [
+    0.13,
+    -0.14
+   ],
+   [
+    0.16,
+    -0.26
+   ],
+   [
+    0.17,
+    -0.38
+   ],
+   [
+    0.2,
+    -0.47
+   ],
+   [
+    0.25,
+    -0.52
+   ]
+  ],
+  "radius": [
+   [
+    0.0,
+    0.046
+   ],
+   [
+    0.15,
+    0.041
+   ],
+   [
+    0.5,
+    0.036
+   ],
+   [
+    0.85,
+    0.0325
+   ],
+   [
+    1.0,
+    0.028
+   ]
+  ],
+  "blend": [
+   0.5,
+   1.0
+  ],
+  "tip_dome": 0.02
+ },
+ "head": {
+  "_doc": "Coordenadas LOCALES de la cabeza (mismos ejes que el mundo, origen en el occipucio); luego se gira 'pitch_deg' (nariz abajo) y se traslada a 'pivot'. Secciones: igual que el cuerpo; 'drape' baja los labios laterales.",
+  "pivot": [
+   0.0,
+   -0.625,
+   0.6
+  ],
+  "pitch_deg": 18.0,
+  "ring_verts": 32,
+  "occiput_station": 2,
+  "stations": [
+   {
+    "y": 0.07,
+    "zt": 0.045,
+    "zb": -0.09,
+    "w": 0.066,
+    "wz": 0.5,
+    "pt": 2.0,
+    "pb": 2.0
+   },
+   {
+    "y": 0.03,
+    "zt": 0.07,
+    "zb": -0.1,
+    "w": 0.082,
+    "wz": 0.5,
+    "pt": 2.0,
+    "pb": 2.0
+   },
+   {
+    "y": 0.0,
+    "zt": 0.09,
+    "zb": -0.106,
+    "w": 0.096,
+    "wz": 0.5,
+    "pt": 2.1,
+    "pb": 2.1
+   },
+   {
+    "y": -0.03,
+    "zt": 0.11,
+    "zb": -0.11,
+    "w": 0.104,
+    "wz": 0.49,
+    "pt": 2.2,
+    "pb": 2.2
+   },
+   {
+    "y": -0.06,
+    "zt": 0.118,
+    "zb": -0.113,
+    "w": 0.11,
+    "wz": 0.47,
+    "pt": 2.3,
+    "pb": 2.3
+   },
+   {
+    "y": -0.088,
+    "zt": 0.12,
+    "zb": -0.114,
+    "w": 0.112,
+    "wz": 0.45,
+    "pt": 2.2,
+    "pb": 2.4
+   },
+   {
+    "y": -0.112,
+    "zt": 0.118,
+    "zb": -0.106,
+    "w": 0.111,
+    "wz": 0.44,
+    "pt": 2.1,
+    "pb": 2.5
+   },
+   {
+    "y": -0.132,
+    "zt": 0.114,
+    "zb": -0.09,
+    "w": 0.104,
+    "wz": 0.42,
+    "pt": 1.9,
+    "pb": 2.8,
+    "drape": 0.006
+   },
+   {
+    "y": -0.15,
+    "zt": 0.106,
+    "zb": -0.075,
+    "w": 0.094,
+    "wz": 0.38,
+    "pt": 1.75,
+    "pb": 3.0,
+    "drape": 0.01
+   },
+   {
+    "y": -0.168,
+    "zt": 0.094,
+    "zb": -0.068,
+    "w": 0.084,
+    "wz": 0.33,
+    "pt": 1.65,
+    "pb": 3.2,
+    "drape": 0.012
+   },
+   {
+    "y": -0.186,
+    "zt": 0.08,
+    "zb": -0.065,
+    "w": 0.077,
+    "wz": 0.28,
+    "pt": 1.7,
+    "pb": 3.4,
+    "drape": 0.012
+   },
+   {
+    "y": -0.206,
+    "zt": 0.068,
+    "zb": -0.063,
+    "w": 0.076,
+    "wz": 0.28,
+    "pt": 2.0,
+    "pb": 3.6,
+    "drape": 0.012
+   },
+   {
+    "y": -0.226,
+    "zt": 0.059,
+    "zb": -0.061,
+    "w": 0.075,
+    "wz": 0.27,
+    "pt": 2.1,
+    "pb": 3.6,
+    "drape": 0.011
+   },
+   {
+    "y": -0.244,
+    "zt": 0.05,
+    "zb": -0.059,
+    "w": 0.068,
+    "wz": 0.28,
+    "pt": 2.2,
+    "pb": 3.2,
+    "drape": 0.008
+   },
+   {
+    "y": -0.258,
+    "zt": 0.041,
+    "zb": -0.054,
+    "w": 0.054,
+    "wz": 0.33,
+    "pt": 2.1,
+    "pb": 2.6
+   }
+  ],
+  "back_cap_dome": 0.02,
+  "nose_cap_dome": 0.007,
+  "eye_hole": {
+   "station": 7,
+   "along": 3,
+   "ring": 3,
+   "around": 2
+  },
+  "eye": {
+   "radius": 0.0175,
+   "inset": 0.7,
+   "open_x": 1.05,
+   "open_y": 0.74,
+   "slant_deg": 10.0,
+   "socket_rings": [
+    [
+     1.45,
+     0.72
+    ],
+    [
+     1.12,
+     0.74
+    ],
+    [
+     0.92,
+     0.45
+    ],
+    [
+     0.78,
+     0.25
+    ],
+    [
+     0.55,
+     -0.15
+    ]
+   ],
+   "socket_cap_dome": 0.25,
+   "gaze_yaw_deg": 22.0,
+   "gaze_pitch_deg": 2.0
+  },
+  "ear": {
+   "_doc": "pos: centro de la oreja en coords locales de cabeza (lado izq.). yaw: giro hacia afuera; roll: inclinacion lateral; pitch: inclinacion atras.",
+   "pos": [
+    0.078,
+    -0.052,
+    0.1
+   ],
+   "width": 0.068,
+   "height": 0.078,
+   "thickness": 0.022,
+   "cup": 0.012,
+   "min_thickness": 0.004,
+   "top_taper": 0.12,
+   "yaw_deg": 35.0,
+   "roll_deg": 28.0,
+   "pitch_deg": 10.0,
+   "res": 4
+  },
+  "bumps": [
+   {
+    "_doc": "almohadilla de bigotes",
+    "c": [
+     0.034,
+     -0.24,
+     -0.03
+    ],
+    "r": [
+     0.032,
+     0.032,
+     0.026
+    ],
+    "a": 0.012,
+    "dir": [
+     0.6,
+     -0.6,
+     -0.25
+    ]
+   },
+   {
+    "_doc": "arco superciliar",
+    "c": [
+     0.045,
+     -0.15,
+     0.09
+    ],
+    "r": [
+     0.03,
+     0.022,
+     0.018
+    ],
+    "a": 0.006,
+    "dir": [
+     0.2,
+     -0.6,
+     0.75
+    ]
+   },
+   {
+    "_doc": "pomulo / arco cigomatico",
+    "c": [
+     0.088,
+     -0.125,
+     -0.012
+    ],
+    "r": [
+     0.03,
+     0.04,
+     0.03
+    ],
+    "a": 0.008,
+    "dir": [
+     1.0,
+     -0.2,
+     0.0
+    ]
+   },
+   {
+    "_doc": "puente nasal ancho",
+    "c": [
+     0.0,
+     -0.215,
+     0.06
+    ],
+    "r": [
+     0.03,
+     0.04,
+     0.015
+    ],
+    "a": 0.005,
+    "dir": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "_doc": "surco bajo la nariz (filtrum)",
+    "c": [
+     0.0,
+     -0.262,
+     -0.03
+    ],
+    "r": [
+     0.01,
+     0.02,
+     0.02
+    ],
+    "a": -0.004,
+    "dir": [
+     0,
+     -1,
+     0
+    ]
+   }
+  ]
+ },
+ "jaw": {
+  "_doc": "Mandibula inferior en coords locales de cabeza. 'hinge' = articulacion temporomandibular (eje X). open_deg: apertura (boca casi cerrada).",
+  "ring_verts": 20,
+  "hinge": [
+   0.0,
+   -0.1,
+   -0.06
+  ],
+  "open_deg": 1.0,
+  "stations": [
+   {
+    "y": -0.09,
+    "zt": -0.076,
+    "zb": -0.106,
+    "w": 0.07,
+    "wz": 0.6,
+    "pt": 3.0,
+    "pb": 2.2
+   },
+   {
+    "y": -0.112,
+    "zt": -0.078,
+    "zb": -0.11,
+    "w": 0.068,
+    "wz": 0.6,
+    "pt": 3.5,
+    "pb": 2.2
+   },
+   {
+    "y": -0.134,
+    "zt": -0.076,
+    "zb": -0.115,
+    "w": 0.062,
+    "wz": 0.62,
+    "pt": 4.0,
+    "pb": 2.2
+   },
+   {
+    "y": -0.156,
+    "zt": -0.07,
+    "zb": -0.117,
+    "w": 0.058,
+    "wz": 0.64,
+    "pt": 4.0,
+    "pb": 2.2
+   },
+   {
+    "y": -0.178,
+    "zt": -0.064,
+    "zb": -0.117,
+    "w": 0.055,
+    "wz": 0.66,
+    "pt": 4.0,
+    "pb": 2.2
+   },
+   {
+    "y": -0.198,
+    "zt": -0.06,
+    "zb": -0.114,
+    "w": 0.051,
+    "wz": 0.66,
+    "pt": 4.0,
+    "pb": 2.2
+   },
+   {
+    "y": -0.215,
+    "zt": -0.058,
+    "zb": -0.108,
+    "w": 0.046,
+    "wz": 0.66,
+    "pt": 3.6,
+    "pb": 2.2
+   },
+   {
+    "y": -0.228,
+    "zt": -0.058,
+    "zb": -0.099,
+    "w": 0.039,
+    "wz": 0.66,
+    "pt": 3.0,
+    "pb": 2.2
+   },
+   {
+    "y": -0.238,
+    "zt": -0.058,
+    "zb": -0.089,
+    "w": 0.03,
+    "wz": 0.66,
+    "pt": 2.6,
+    "pb": 2.2
+   }
+  ],
+  "back_cap_dome": 0.01,
+  "chin_cap_dome": 0.005
+ }
+}

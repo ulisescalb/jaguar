@@ -1,0 +1,177 @@
+{
+  "_doc": "Parametros del jaguar base. Unidades: metros. Z arriba, el animal mira a -Y; +X es su lado IZQUIERDO. Las coordenadas se dan en un marco de diseno; al final el modelo se recentra para que el origen quede en el suelo, centrado entre las cuatro zarpas. Las patas y ojos/orejas derechos se generan por simetria.",
+  "version_note": "v01: bloqueo inicial desde medidas.md",
+  "subdivision_levels": 1,
+
+  "targets": {
+    "_doc": "Objetivos (ver reference/medidas.md). Se comparan contra medidas calculadas de la malla final.",
+    "head_body_length": 1.65,
+    "withers_height": 0.72,
+    "croup_height": 0.70,
+    "tail_length": 0.55,
+    "head_length": 0.29,
+    "head_width": 0.21,
+    "chest_depth": 0.39,
+    "chest_clearance": 0.33,
+    "belly_clearance": 0.37,
+    "torso_width": 0.32,
+    "front_paw_width": 0.11,
+    "hind_paw_width": 0.095,
+    "forearm_depth": 0.095,
+    "tail_base_diameter": 0.075
+  },
+
+  "body": {
+    "_doc": "Secciones transversales del tronco+cuello, de delante (dentro de la cabeza) hacia atras. y: posicion; zt/zb: cota dorsal/ventral en la linea media; w: semiancho maximo; wz: altura relativa (0=abajo,1=arriba) del ancho maximo; pt/pb: exponente superelipse arriba/abajo (2=elipse, <2 en punta, >2 cuadrada); tilt: giro de la seccion (grados).",
+    "ring_verts": 24,
+    "stations": [
+      {"y": -0.71, "zt": 0.640, "zb": 0.495, "w": 0.070, "wz": 0.50, "pt": 2.0, "pb": 2.0},
+      {"y": -0.64, "zt": 0.655, "zb": 0.480, "w": 0.082, "wz": 0.50, "pt": 2.0, "pb": 2.0},
+      {"y": -0.58, "zt": 0.672, "zb": 0.462, "w": 0.095, "wz": 0.50, "pt": 2.0, "pb": 2.0},
+      {"y": -0.52, "zt": 0.690, "zb": 0.440, "w": 0.110, "wz": 0.45, "pt": 2.0, "pb": 2.0},
+      {"y": -0.46, "zt": 0.705, "zb": 0.415, "w": 0.128, "wz": 0.42, "pt": 1.9, "pb": 2.0},
+      {"y": -0.41, "zt": 0.718, "zb": 0.380, "w": 0.143, "wz": 0.42, "pt": 1.7, "pb": 2.0},
+      {"y": -0.36, "zt": 0.722, "zb": 0.352, "w": 0.152, "wz": 0.42, "pt": 1.7, "pb": 1.9},
+      {"y": -0.31, "zt": 0.716, "zb": 0.338, "w": 0.157, "wz": 0.42, "pt": 1.8, "pb": 1.9},
+      {"y": -0.26, "zt": 0.705, "zb": 0.332, "w": 0.160, "wz": 0.45, "pt": 1.9, "pb": 1.9},
+      {"y": -0.18, "zt": 0.695, "zb": 0.332, "w": 0.160, "wz": 0.48, "pt": 2.0, "pb": 2.0},
+      {"y": -0.08, "zt": 0.690, "zb": 0.338, "w": 0.157, "wz": 0.50, "pt": 2.1, "pb": 2.0},
+      {"y":  0.02, "zt": 0.690, "zb": 0.350, "w": 0.152, "wz": 0.52, "pt": 2.2, "pb": 2.0},
+      {"y":  0.12, "zt": 0.692, "zb": 0.365, "w": 0.146, "wz": 0.54, "pt": 2.2, "pb": 2.0},
+      {"y":  0.22, "zt": 0.695, "zb": 0.380, "w": 0.142, "wz": 0.55, "pt": 2.3, "pb": 2.0},
+      {"y":  0.30, "zt": 0.698, "zb": 0.395, "w": 0.141, "wz": 0.56, "pt": 2.3, "pb": 2.0},
+      {"y":  0.36, "zt": 0.700, "zb": 0.405, "w": 0.143, "wz": 0.56, "pt": 2.4, "pb": 2.0},
+      {"y":  0.44, "zt": 0.702, "zb": 0.415, "w": 0.147, "wz": 0.57, "pt": 2.6, "pb": 2.0},
+      {"y":  0.52, "zt": 0.700, "zb": 0.425, "w": 0.150, "wz": 0.58, "pt": 2.6, "pb": 2.0},
+      {"y":  0.60, "zt": 0.692, "zb": 0.440, "w": 0.148, "wz": 0.60, "pt": 2.4, "pb": 2.0},
+      {"y":  0.67, "zt": 0.675, "zb": 0.455, "w": 0.135, "wz": 0.62, "pt": 2.2, "pb": 2.0},
+      {"y":  0.72, "zt": 0.650, "zb": 0.470, "w": 0.110, "wz": 0.62, "pt": 2.0, "pb": 2.0}
+    ],
+    "neck_cap_dome": 0.03,
+    "rump_cap_dome": 0.05,
+    "tail_hole": {"_doc": "celdas de la rejilla 6x6 de la tapa trasera (i: lateral, j: desde arriba)", "i0": 2, "ha": 2, "j0": 1, "hb": 2}
+  },
+
+  "legs": {
+    "_doc": "Anillos horizontales (antes de 'tilt') de cada pata IZQUIERDA; la derecha es espejo. z: altura; yf/yb: borde delantero/trasero; xi/xo: borde interno/externo; p: exponente superelipse. 'hole': agujero en el tronco donde se injerta la pata (estacion inicial, n. de estaciones, indice de anillo inicial, n. de indices). 'blend': transicion de angulos del bucle del agujero a reparto uniforme.",
+    "front": {
+      "hole": {"station": 4, "along": 4, "ring": 6, "around": 4},
+      "blend": [0.4, 0.8],
+      "paw_from_ring": 7,
+      "rings": [
+        {"z": 0.315, "yf": -0.455, "yb": -0.255, "xi": 0.065, "xo": 0.170, "p": 2.2},
+        {"z": 0.275, "yf": -0.425, "yb": -0.290, "xi": 0.072, "xo": 0.166, "p": 2.2},
+        {"z": 0.235, "yf": -0.415, "yb": -0.315, "xi": 0.078, "xo": 0.160, "p": 2.1},
+        {"z": 0.185, "yf": -0.413, "yb": -0.320, "xi": 0.082, "xo": 0.157, "p": 2.1},
+        {"z": 0.135, "yf": -0.412, "yb": -0.330, "xi": 0.085, "xo": 0.154, "p": 2.1},
+        {"z": 0.095, "yf": -0.415, "yb": -0.337, "xi": 0.086, "xo": 0.153, "p": 2.1},
+        {"z": 0.068, "yf": -0.432, "yb": -0.340, "xi": 0.083, "xo": 0.156, "p": 2.1},
+        {"z": 0.045, "yf": -0.470, "yb": -0.345, "xi": 0.071, "xo": 0.169, "p": 2.3},
+        {"z": 0.024, "yf": -0.490, "yb": -0.345, "xi": 0.065, "xo": 0.175, "p": 2.4},
+        {"z": 0.006, "yf": -0.484, "yb": -0.352, "xi": 0.069, "xo": 0.171, "p": 2.4}
+      ],
+      "sole_z": 0.0
+    },
+    "hind": {
+      "hole": {"station": 15, "along": 4, "ring": 6, "around": 4},
+      "blend": [0.4, 0.8],
+      "paw_from_ring": 8,
+      "rings": [
+        {"z": 0.385, "yf": 0.300, "yb": 0.690, "xi": 0.068, "xo": 0.180, "p": 2.2},
+        {"z": 0.330, "yf": 0.310, "yb": 0.680, "xi": 0.074, "xo": 0.178, "p": 2.2},
+        {"z": 0.280, "yf": 0.360, "yb": 0.670, "xi": 0.080, "xo": 0.168, "p": 2.1},
+        {"z": 0.225, "yf": 0.440, "yb": 0.660, "xi": 0.085, "xo": 0.157, "p": 2.0},
+        {"z": 0.180, "yf": 0.490, "yb": 0.650, "xi": 0.088, "xo": 0.152, "p": 2.0},
+        {"z": 0.150, "yf": 0.510, "yb": 0.645, "xi": 0.089, "xo": 0.150, "p": 2.0},
+        {"z": 0.115, "yf": 0.515, "yb": 0.610, "xi": 0.089, "xo": 0.149, "p": 2.0},
+        {"z": 0.075, "yf": 0.512, "yb": 0.598, "xi": 0.088, "xo": 0.150, "p": 2.1},
+        {"z": 0.045, "yf": 0.480, "yb": 0.598, "xi": 0.076, "xo": 0.162, "p": 2.3},
+        {"z": 0.024, "yf": 0.462, "yb": 0.600, "xi": 0.071, "xo": 0.167, "p": 2.4},
+        {"z": 0.006, "yf": 0.468, "yb": 0.595, "xi": 0.074, "xo": 0.164, "p": 2.4}
+      ],
+      "sole_z": 0.0
+    }
+  },
+
+  "tail": {
+    "_doc": "Trayectoria relativa (dy, dz) desde el centro de la base; se reescala a 'length' de arco. Radios por fraccion de longitud.",
+    "length": 0.55,
+    "rings": 16,
+    "path": [[0.0, 0.0], [0.07, -0.05], [0.13, -0.14], [0.16, -0.26], [0.17, -0.38], [0.20, -0.47], [0.25, -0.52]],
+    "radius": [[0.0, 0.040], [0.15, 0.035], [0.5, 0.031], [0.85, 0.028], [1.0, 0.024]],
+    "blend": [0.5, 1.0],
+    "tip_dome": 0.02
+  },
+
+  "head": {
+    "_doc": "Coordenadas LOCALES de la cabeza (mismos ejes que el mundo, origen en el occipucio); luego se gira 'pitch_deg' (nariz abajo) y se traslada a 'pivot'. Secciones: igual que el cuerpo; 'drape' baja los labios laterales.",
+    "pivot": [0.0, -0.66, 0.60],
+    "pitch_deg": 22.0,
+    "ring_verts": 32,
+    "occiput_station": 2,
+    "stations": [
+      {"y":  0.080, "zt": 0.035, "zb": -0.085, "w": 0.068, "wz": 0.50, "pt": 2.0, "pb": 2.0},
+      {"y":  0.030, "zt": 0.060, "zb": -0.090, "w": 0.080, "wz": 0.50, "pt": 2.0, "pb": 2.0},
+      {"y":  0.000, "zt": 0.075, "zb": -0.095, "w": 0.086, "wz": 0.50, "pt": 2.0, "pb": 2.0},
+      {"y": -0.030, "zt": 0.088, "zb": -0.100, "w": 0.093, "wz": 0.50, "pt": 2.1, "pb": 2.2},
+      {"y": -0.060, "zt": 0.095, "zb": -0.104, "w": 0.101, "wz": 0.48, "pt": 2.2, "pb": 2.3},
+      {"y": -0.090, "zt": 0.098, "zb": -0.104, "w": 0.106, "wz": 0.45, "pt": 2.2, "pb": 2.4},
+      {"y": -0.115, "zt": 0.096, "zb": -0.094, "w": 0.104, "wz": 0.45, "pt": 2.2, "pb": 2.4},
+      {"y": -0.135, "zt": 0.090, "zb": -0.072, "w": 0.096, "wz": 0.47, "pt": 2.1, "pb": 2.6},
+      {"y": -0.155, "zt": 0.083, "zb": -0.054, "w": 0.087, "wz": 0.48, "pt": 2.1, "pb": 3.0},
+      {"y": -0.175, "zt": 0.074, "zb": -0.046, "w": 0.078, "wz": 0.46, "pt": 2.1, "pb": 3.2},
+      {"y": -0.200, "zt": 0.063, "zb": -0.041, "w": 0.070, "wz": 0.42, "pt": 2.2, "pb": 3.4},
+      {"y": -0.225, "zt": 0.054, "zb": -0.040, "w": 0.066, "wz": 0.40, "pt": 2.3, "pb": 3.4},
+      {"y": -0.250, "zt": 0.045, "zb": -0.038, "w": 0.059, "wz": 0.40, "pt": 2.3, "pb": 3.2},
+      {"y": -0.270, "zt": 0.036, "zb": -0.035, "w": 0.049, "wz": 0.42, "pt": 2.2, "pb": 3.0},
+      {"y": -0.283, "zt": 0.027, "zb": -0.031, "w": 0.036, "wz": 0.45, "pt": 2.0, "pb": 2.6}
+    ],
+    "back_cap_dome": 0.02,
+    "nose_cap_dome": 0.008,
+    "eye_hole": {"station": 7, "along": 3, "ring": 4, "around": 2},
+    "eye": {
+      "radius": 0.0165,
+      "inset": 0.45,
+      "forward_bias": 0.55,
+      "open_x": 1.0,
+      "open_y": 0.72,
+      "slant_deg": 8.0,
+      "socket_rings": [[1.40, 0.62], [1.10, 0.66], [0.93, 0.43], [0.78, 0.25], [0.55, -0.15]],
+      "socket_cap_dome": 0.25
+    },
+    "ear": {
+      "_doc": "pos: centro de la oreja en coords locales de cabeza (lado izq.). yaw: giro hacia afuera; roll: inclinacion lateral; pitch: inclinacion atras.",
+      "pos": [0.072, -0.040, 0.082],
+      "width": 0.070,
+      "height": 0.080,
+      "thickness": 0.022,
+      "cup": 0.012,
+      "min_thickness": 0.004,
+      "top_taper": 0.12,
+      "yaw_deg": 35.0,
+      "roll_deg": 28.0,
+      "pitch_deg": 10.0,
+      "res": 4
+    }
+  },
+
+  "jaw": {
+    "_doc": "Mandibula inferior en coords locales de cabeza. 'hinge' = articulacion temporomandibular (eje X). open_deg: apertura (boca casi cerrada).",
+    "ring_verts": 20,
+    "hinge": [0.0, -0.085, -0.045],
+    "open_deg": 2.5,
+    "stations": [
+      {"y": -0.085, "zt": -0.055, "zb": -0.098, "w": 0.068, "wz": 0.60, "pt": 3.0, "pb": 2.2},
+      {"y": -0.110, "zt": -0.058, "zb": -0.101, "w": 0.064, "wz": 0.60, "pt": 3.5, "pb": 2.2},
+      {"y": -0.135, "zt": -0.058, "zb": -0.103, "w": 0.058, "wz": 0.62, "pt": 4.0, "pb": 2.2},
+      {"y": -0.160, "zt": -0.053, "zb": -0.104, "w": 0.052, "wz": 0.64, "pt": 4.0, "pb": 2.2},
+      {"y": -0.190, "zt": -0.048, "zb": -0.102, "w": 0.047, "wz": 0.66, "pt": 4.0, "pb": 2.2},
+      {"y": -0.220, "zt": -0.044, "zb": -0.098, "w": 0.042, "wz": 0.66, "pt": 4.0, "pb": 2.2},
+      {"y": -0.245, "zt": -0.041, "zb": -0.092, "w": 0.037, "wz": 0.66, "pt": 3.6, "pb": 2.2},
+      {"y": -0.265, "zt": -0.039, "zb": -0.085, "w": 0.031, "wz": 0.66, "pt": 3.0, "pb": 2.2},
+      {"y": -0.278, "zt": -0.038, "zb": -0.075, "w": 0.024, "wz": 0.66, "pt": 2.6, "pb": 2.2}
+    ],
+    "back_cap_dome": 0.01,
+    "chin_cap_dome": 0.007
+  }
+}
