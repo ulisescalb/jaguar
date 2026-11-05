@@ -219,6 +219,71 @@ def evaluate_mesh(V, T, nose_y, tail_y, out_dir, label, front_cam=None):
     return res
 
 
+# --------------------------------------- malla limpia posada (skinning rígido)
+def skin_pose(V, comp_of_obj, M, pose, sigma=0.012):
+    """Posa vértices (marco de diseño) con pesos suaves por hueso: cada hueso
+    pesa según la distancia de sus primitivas al vértice."""
+    B = M.sk.bones(pose)
+    B0 = M.sk.bones({})
+    if comp_of_obj != "body":
+        bone = "jaw" if comp_of_obj == "jaw" else "head"
+        p0, P, R = B[bone]
+        return P + (V - p0) @ R.T
+    import sdf as sdfmod
+    bones = sorted({pr.bone for pr in M.prims if pr.comp == "body" and pr.op == "add"})
+    D = np.full((len(V), len(bones)), 1.0)
+    for j, b in enumerate(bones):
+        for pr in M.prims:
+            if pr.comp != "body" or pr.op != "add" or pr.bone != b:
+                continue
+            lo, hi = M.posed_aabb(pr, B0)
+            lo, hi = lo - 0.05, hi + 0.05
+            sel = np.nonzero(np.all((V >= lo) & (V <= hi), 1))[0]
+            if len(sel):
+                D[sel, j] = np.minimum(D[sel, j], pr.sdf(V[sel]))
+    dmin = D.min(1, keepdims=True)
+    W = np.exp(-np.maximum(D - dmin, 0) / sigma)
+    W[D - dmin > 4 * sigma] = 0.0
+    W /= W.sum(1, keepdims=True)
+    out = np.zeros_like(V)
+    for j, b in enumerate(bones):
+        p0, P, R = B[b]
+        out += W[:, j:j + 1] * (P + (V - p0) @ R.T)
+    return out
+
+
+def evaluate_posed_mesh(P, M, objs, off, out_dir, label):
+    """IoU de la malla limpia final en las poses de las fotos."""
+    import bpy  # noqa: F401
+    os.makedirs(out_dir, exist_ok=True)
+    comp = {"Jaguar_Body": "body", "Jaguar_LowerJaw": "jaw"}
+    res = {}
+    for view, pose in (("side", P["poses"]["side_photo"]), ("front", P["poses"]["front_photo"])):
+        Vs, Ts, n0 = [], [], 0
+        for o in objs:
+            V, T = mesh_arrays([o])
+            V = V + off  # al marco de diseño (el de la escultura)
+            V = skin_pose(V, comp.get(o.name, "head"), M, pose)
+            Vs.append(V)
+            Ts.append(T + n0)
+            n0 += len(V)
+        V, T = np.concatenate(Vs), np.concatenate(Ts)
+        ref = load_ref(view)
+        if view == "side":
+            tail_y = M.sk.posed_points(pose)["tail_base"][1]
+            P2, _ = project_side(V, ref, V[:, 1].min(), tail_y)
+        else:
+            P2 = project_persp(V, P["fit"]["front_cam"], ref["shape"])
+        m = raster(P2, T, ref["shape"])
+        res[view + "_iou"] = iou(m, ref["mask_arr"])
+        overlay(m, ref["mask_arr"], os.path.join(out_dir, "iou_%s.png" % view),
+                "%s %s IoU %.3f" % (label, "lateral" if view == "side" else "frontal", res[view + "_iou"]))
+    with open(os.path.join(out_dir, "iou.json"), "w") as f:
+        json.dump(res, f, indent=2)
+    print("IoU malla final:", res)
+    return res
+
+
 def main():
     argv = sys.argv
     argv = argv[argv.index("--") + 1:] if "--" in argv else argv[1:]

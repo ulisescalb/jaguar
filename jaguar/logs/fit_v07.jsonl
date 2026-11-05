@@ -1,0 +1,173 @@
+{"stage": "start", "side": 0.6407932702076645, "front": 0.44007295466388746, "mass": 124.56115199999999, "measures": {"head_body_length": 1.456, "withers_height": 0.7491, "croup_height": 0.7314, "tail_length": 0.55, "head_length": 0.3024, "head_width": 0.252, "chest_depth": 0.4089, "chest_clearance": 0.3402, "belly_clearance": 0.3456, "torso_width": 0.3718, "front_paw_width": 0.1128, "hind_paw_width": 0.1001, "forearm_depth": 0.1006, "tail_base_diameter": 0.081}}
+{"stage": "A", "gen": 1, "evals": 13, "best_f": -0.29757821989788086, "best": {"side": 0.6857}, "pen": 0.3882, "worst_dev": 0.1662, "mass": 115.6, "t": 4.1}
+{"stage": "A", "gen": 2, "evals": 26, "best_f": -0.3028043482738038, "best": {"side": 0.7078}, "pen": 0.405, "worst_dev": 0.1625, "mass": 123.2, "t": 8.0}
+{"stage": "A", "gen": 3, "evals": 39, "best_f": -0.41563441729725803, "best": {"side": 0.7194}, "pen": 0.3038, "worst_dev": 0.1641, "mass": 121.2, "t": 11.8}
+{"stage": "A", "gen": 4, "evals": 52, "best_f": -0.41563441729725803, "best": {"side": 0.7194}, "pen": 0.3038, "worst_dev": 0.1641, "mass": 121.2, "t": 15.8}
+{"stage": "A", "gen": 5, "evals": 65, "best_f": -0.41563441729725803, "best": {"side": 0.7194}, "pen": 0.3038, "worst_dev": 0.1641, "mass": 121.2, "t": 19.6}
+{"stage": "A", "gen": 6, "evals": 78, "best_f": -0.44063598499067236, "best": {"side": 0.7119}, "pen": 0.2713, "worst_dev": 0.1611, "mass": 119.9, "t": 23.6}
+{"stage": "A", "gen": 7, "evals": 91, "best_f": -0.44063598499067236, "best": {"side": 0.7119}, "pen": 0.2713, "worst_dev": 0.1611, "mass": 119.9, "t": 27.4}
+{"stage": "A", "gen": 8, "evals": 104, "best_f": -0.44063598499067236, "best": {"side": 0.7119}, "pen": 0.2713, "worst_dev": 0.1611, "mass": 119.9, "t": 31.3}
+{"stage": "A", "gen": 9, "evals": 117, "best_f": -0.44063598499067236, "best": {"side": 0.7119}, "pen": 0.2713, "worst_dev": 0.1611, "mass": 119.9, "t": 35.1}
+{"stage": "A", "gen": 10, "evals": 130, "best_f": -0.44063598499067236, "best": {"side": 0.7119}, "pen": 0.2713, "worst_dev": 0.1611, "mass": 119.9, "t": 39.1}
+{"stage": "A", "gen": 11, "evals": 143, "best_f": -0.44063598499067236, "best": {"side": 0.7119}, "pen": 0.2713, "worst_dev": 0.1611, "mass": 119.9, "t": 43.0}
+{"stage": "A", "gen": 12, "evals": 156, "best_f": -0.44063598499067236, "best": {"side": 0.7119}, "pen": 0.2713, "worst_dev": 0.1611, "mass": 119.9, "t": 47.0}
+{"stage": "A", "gen": 13, "evals": 169, "best_f": -0.44063598499067236, "best": {"side": 0.7119}, "pen": 0.2713, "worst_dev": 0.1611, "mass": 119.9, "t": 51.2}
+{"stage": "A", "gen": 14, "evals": 182, "best_f": -0.4440869086988222, "best": {"side": 0.7231}, "pen": 0.279, "worst_dev": 0.1644, "mass": 119.7, "t": 54.9}
+{"stage": "A", "gen": 15, "evals": 195, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 58.7}
+{"stage": "A", "gen": 16, "evals": 208, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 62.4}
+{"stage": "A", "gen": 17, "evals": 221, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 66.2}
+{"stage": "A", "gen": 18, "evals": 234, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 70.1}
+{"stage": "A", "gen": 19, "evals": 247, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 74.0}
+{"stage": "A", "gen": 20, "evals": 260, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 77.7}
+{"stage": "A", "gen": 21, "evals": 273, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 81.4}
+{"stage": "A", "gen": 22, "evals": 286, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 85.3}
+{"stage": "A", "gen": 23, "evals": 299, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 89.3}
+{"stage": "A", "gen": 24, "evals": 312, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 93.1}
+{"stage": "A", "gen": 25, "evals": 325, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 96.9}
+{"stage": "A", "gen": 26, "evals": 338, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 100.8}
+{"stage": "A", "gen": 27, "evals": 351, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 104.8}
+{"stage": "A", "gen": 28, "evals": 364, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 108.6}
+{"stage": "A", "gen": 29, "evals": 377, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 112.6}
+{"stage": "A", "gen": 30, "evals": 390, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 116.8}
+{"stage": "A", "gen": 31, "evals": 403, "best_f": -0.452270859522804, "best": {"side": 0.7347}, "pen": 0.2824, "worst_dev": 0.1646, "mass": 120.2, "t": 120.7}
+{"stage": "A", "done": true, "side": 0.7346910465934721, "front": 0.4347440239692568, "mass": 120.227328, "measures": {"head_body_length": 1.3847, "withers_height": 0.7459, "croup_height": 0.7284, "tail_length": 0.55, "head_length": 0.281, "head_width": 0.228, "chest_depth": 0.4073, "chest_clearance": 0.3385, "belly_clearance": 0.344, "torso_width": 0.3727, "front_paw_width": 0.1128, "hind_paw_width": 0.1004, "forearm_depth": 0.1011, "tail_base_diameter": 0.081}}
+{"stage": "C", "gen": 1, "evals": 12, "best_f": -0.6324982314053619, "best": {"front": 0.6325}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 2.0}
+{"stage": "C", "gen": 2, "evals": 24, "best_f": -0.8285442196145097, "best": {"front": 0.8285}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 4.0}
+{"stage": "C", "gen": 3, "evals": 36, "best_f": -0.8285442196145097, "best": {"front": 0.8285}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 6.1}
+{"stage": "C", "gen": 4, "evals": 48, "best_f": -0.8285442196145097, "best": {"front": 0.8285}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 8.1}
+{"stage": "C", "gen": 5, "evals": 60, "best_f": -0.8387769176527109, "best": {"front": 0.8388}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 10.2}
+{"stage": "C", "gen": 6, "evals": 72, "best_f": -0.8496140119176768, "best": {"front": 0.8496}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 12.4}
+{"stage": "C", "gen": 7, "evals": 84, "best_f": -0.8496140119176768, "best": {"front": 0.8496}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 14.6}
+{"stage": "C", "gen": 8, "evals": 96, "best_f": -0.8496140119176768, "best": {"front": 0.8496}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 16.7}
+{"stage": "C", "gen": 9, "evals": 108, "best_f": -0.8496140119176768, "best": {"front": 0.8496}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 18.8}
+{"stage": "C", "gen": 10, "evals": 120, "best_f": -0.8496140119176768, "best": {"front": 0.8496}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 20.9}
+{"stage": "C", "gen": 11, "evals": 132, "best_f": -0.8496140119176768, "best": {"front": 0.8496}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 23.1}
+{"stage": "C", "gen": 12, "evals": 144, "best_f": -0.8496140119176768, "best": {"front": 0.8496}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 25.2}
+{"stage": "C", "gen": 13, "evals": 156, "best_f": -0.8496140119176768, "best": {"front": 0.8496}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 27.2}
+{"stage": "C", "gen": 14, "evals": 168, "best_f": -0.8496140119176768, "best": {"front": 0.8496}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 29.3}
+{"stage": "C", "gen": 15, "evals": 180, "best_f": -0.8496140119176768, "best": {"front": 0.8496}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 31.4}
+{"stage": "C", "gen": 16, "evals": 192, "best_f": -0.8496140119176768, "best": {"front": 0.8496}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 33.5}
+{"stage": "C", "gen": 17, "evals": 204, "best_f": -0.8496140119176768, "best": {"front": 0.8496}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 35.5}
+{"stage": "C", "gen": 18, "evals": 216, "best_f": -0.8496140119176768, "best": {"front": 0.8496}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 37.6}
+{"stage": "C", "gen": 19, "evals": 228, "best_f": -0.8496140119176768, "best": {"front": 0.8496}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 39.8}
+{"stage": "C", "gen": 20, "evals": 240, "best_f": -0.8496140119176768, "best": {"front": 0.8496}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 41.9}
+{"stage": "C", "gen": 21, "evals": 252, "best_f": -0.8496140119176768, "best": {"front": 0.8496}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 44.1}
+{"stage": "C", "gen": 22, "evals": 264, "best_f": -0.8536835767437552, "best": {"front": 0.8537}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 46.2}
+{"stage": "C", "gen": 23, "evals": 276, "best_f": -0.8536835767437552, "best": {"front": 0.8537}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 48.4}
+{"stage": "C", "gen": 24, "evals": 288, "best_f": -0.8536835767437552, "best": {"front": 0.8537}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 50.6}
+{"stage": "C", "gen": 25, "evals": 300, "best_f": -0.8536835767437552, "best": {"front": 0.8537}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 52.6}
+{"stage": "C", "gen": 26, "evals": 312, "best_f": -0.8536835767437552, "best": {"front": 0.8537}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 54.7}
+{"stage": "C", "gen": 27, "evals": 324, "best_f": -0.8536835767437552, "best": {"front": 0.8537}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 56.8}
+{"stage": "C", "gen": 28, "evals": 336, "best_f": -0.8536835767437552, "best": {"front": 0.8537}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 58.9}
+{"stage": "C", "gen": 29, "evals": 348, "best_f": -0.8536835767437552, "best": {"front": 0.8537}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 61.1}
+{"stage": "C", "gen": 30, "evals": 360, "best_f": -0.8536835767437552, "best": {"front": 0.8537}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 63.2}
+{"stage": "C", "gen": 31, "evals": 372, "best_f": -0.8536835767437552, "best": {"front": 0.8537}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 65.1}
+{"stage": "C", "gen": 32, "evals": 384, "best_f": -0.8536835767437552, "best": {"front": 0.8537}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 67.2}
+{"stage": "C", "gen": 33, "evals": 396, "best_f": -0.8615481926299596, "best": {"front": 0.8615}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 69.4}
+{"stage": "C", "gen": 34, "evals": 408, "best_f": -0.8615481926299596, "best": {"front": 0.8615}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 71.6}
+{"stage": "C", "done": true, "side": 0.7346910465934721, "front": 0.8615481926299596, "mass": 120.227328, "measures": {"head_body_length": 1.3847, "withers_height": 0.7459, "croup_height": 0.7284, "tail_length": 0.55, "head_length": 0.281, "head_width": 0.228, "chest_depth": 0.4073, "chest_clearance": 0.3385, "belly_clearance": 0.344, "torso_width": 0.3727, "front_paw_width": 0.1128, "hind_paw_width": 0.1004, "forearm_depth": 0.1011, "tail_base_diameter": 0.081}}
+{"stage": "B", "gen": 1, "evals": 13, "best_f": 0.3716765418899316, "best": {"side": 0.7083, "front": 0.8512}, "pen": 1.1228, "worst_dev": 0.1327, "mass": 120.4, "t": 5.9}
+{"stage": "B", "gen": 2, "evals": 26, "best_f": 0.1727983925773363, "best": {"side": 0.7153, "front": 0.8504}, "pen": 0.9286, "worst_dev": 0.1221, "mass": 121.4, "t": 11.8}
+{"stage": "B", "gen": 3, "evals": 39, "best_f": -0.100325315333198, "best": {"side": 0.7258, "front": 0.8624}, "pen": 0.6665, "worst_dev": 0.1154, "mass": 113.2, "t": 18.2}
+{"stage": "B", "gen": 4, "evals": 52, "best_f": -0.27608764890013854, "best": {"side": 0.7439, "front": 0.8454}, "pen": 0.4982, "worst_dev": 0.1019, "mass": 111.0, "t": 24.0}
+{"stage": "B", "gen": 5, "evals": 65, "best_f": -0.3542316448620453, "best": {"side": 0.7388, "front": 0.8541}, "pen": 0.4192, "worst_dev": 0.0925, "mass": 112.6, "t": 30.0}
+{"stage": "B", "gen": 6, "evals": 78, "best_f": -0.4826550684544726, "best": {"side": 0.7366, "front": 0.842}, "pen": 0.2856, "worst_dev": 0.0846, "mass": 108.3, "t": 35.9}
+{"stage": "B", "gen": 7, "evals": 91, "best_f": -0.4826550684544726, "best": {"side": 0.7366, "front": 0.842}, "pen": 0.2856, "worst_dev": 0.0846, "mass": 108.3, "t": 41.3}
+{"stage": "B", "gen": 8, "evals": 104, "best_f": -0.4952865061790862, "best": {"side": 0.7141, "front": 0.8437}, "pen": 0.2577, "worst_dev": 0.088, "mass": 106.2, "t": 47.1}
+{"stage": "B", "gen": 9, "evals": 117, "best_f": -0.4952865061790862, "best": {"side": 0.7141, "front": 0.8437}, "pen": 0.2577, "worst_dev": 0.088, "mass": 106.2, "t": 53.0}
+{"stage": "B", "gen": 10, "evals": 130, "best_f": -0.4952865061790862, "best": {"side": 0.7141, "front": 0.8437}, "pen": 0.2577, "worst_dev": 0.088, "mass": 106.2, "t": 59.3}
+{"stage": "B", "gen": 11, "evals": 143, "best_f": -0.4985890859477971, "best": {"side": 0.6974, "front": 0.8287}, "pen": 0.2382, "worst_dev": 0.0925, "mass": 104.1, "t": 65.3}
+{"stage": "B", "gen": 12, "evals": 156, "best_f": -0.4985890859477971, "best": {"side": 0.6974, "front": 0.8287}, "pen": 0.2382, "worst_dev": 0.0925, "mass": 104.1, "t": 71.4}
+{"stage": "B", "gen": 13, "evals": 169, "best_f": -0.5406613531137091, "best": {"side": 0.7322, "front": 0.8343}, "pen": 0.2222, "worst_dev": 0.0882, "mass": 103.9, "t": 77.4}
+{"stage": "B", "gen": 14, "evals": 182, "best_f": -0.5670498097016179, "best": {"side": 0.7077, "front": 0.8188}, "pen": 0.174, "worst_dev": 0.0947, "mass": 97.8, "t": 83.3}
+{"stage": "B", "gen": 15, "evals": 195, "best_f": -0.6395643709109481, "best": {"side": 0.6336, "front": 0.7925}, "pen": 0.0417, "worst_dev": 0.0854, "mass": 94.2, "t": 89.1}
+{"stage": "B", "gen": 16, "evals": 208, "best_f": -0.6395643709109481, "best": {"side": 0.6336, "front": 0.7925}, "pen": 0.0417, "worst_dev": 0.0854, "mass": 94.2, "t": 94.8}
+{"stage": "B", "gen": 17, "evals": 221, "best_f": -0.6395643709109481, "best": {"side": 0.6336, "front": 0.7925}, "pen": 0.0417, "worst_dev": 0.0854, "mass": 94.2, "t": 100.4}
+{"stage": "B", "gen": 18, "evals": 234, "best_f": -0.6395643709109481, "best": {"side": 0.6336, "front": 0.7925}, "pen": 0.0417, "worst_dev": 0.0854, "mass": 94.2, "t": 105.9}
+{"stage": "B", "gen": 19, "evals": 247, "best_f": -0.6395643709109481, "best": {"side": 0.6336, "front": 0.7925}, "pen": 0.0417, "worst_dev": 0.0854, "mass": 94.2, "t": 111.9}
+{"stage": "B", "gen": 20, "evals": 260, "best_f": -0.6395643709109481, "best": {"side": 0.6336, "front": 0.7925}, "pen": 0.0417, "worst_dev": 0.0854, "mass": 94.2, "t": 117.8}
+{"stage": "B", "gen": 21, "evals": 273, "best_f": -0.6395643709109481, "best": {"side": 0.6336, "front": 0.7925}, "pen": 0.0417, "worst_dev": 0.0854, "mass": 94.2, "t": 123.5}
+{"stage": "B", "gen": 22, "evals": 286, "best_f": -0.6395643709109481, "best": {"side": 0.6336, "front": 0.7925}, "pen": 0.0417, "worst_dev": 0.0854, "mass": 94.2, "t": 129.4}
+{"stage": "B", "gen": 23, "evals": 299, "best_f": -0.6395643709109481, "best": {"side": 0.6336, "front": 0.7925}, "pen": 0.0417, "worst_dev": 0.0854, "mass": 94.2, "t": 135.2}
+{"stage": "B", "gen": 24, "evals": 312, "best_f": -0.6395643709109481, "best": {"side": 0.6336, "front": 0.7925}, "pen": 0.0417, "worst_dev": 0.0854, "mass": 94.2, "t": 141.3}
+{"stage": "B", "gen": 25, "evals": 325, "best_f": -0.6516301021936427, "best": {"side": 0.6847, "front": 0.814}, "pen": 0.0718, "worst_dev": 0.0909, "mass": 96.1, "t": 147.3}
+{"stage": "B", "gen": 26, "evals": 338, "best_f": -0.7030732314626829, "best": {"side": 0.6917, "front": 0.8149}, "pen": 0.0256, "worst_dev": 0.086, "mass": 94.5, "t": 153.2}
+{"stage": "B", "gen": 27, "evals": 351, "best_f": -0.7030732314626829, "best": {"side": 0.6917, "front": 0.8149}, "pen": 0.0256, "worst_dev": 0.086, "mass": 94.5, "t": 158.8}
+{"stage": "B", "gen": 28, "evals": 364, "best_f": -0.7030732314626829, "best": {"side": 0.6917, "front": 0.8149}, "pen": 0.0256, "worst_dev": 0.086, "mass": 94.5, "t": 164.5}
+{"stage": "B", "gen": 29, "evals": 377, "best_f": -0.7383237842353033, "best": {"side": 0.7148, "front": 0.8126}, "pen": 0.0059, "worst_dev": 0.0814, "mass": 94.2, "t": 171.5}
+{"stage": "B", "gen": 30, "evals": 390, "best_f": -0.7383237842353033, "best": {"side": 0.7148, "front": 0.8126}, "pen": 0.0059, "worst_dev": 0.0814, "mass": 94.2, "t": 181.7}
+{"stage": "B", "gen": 31, "evals": 403, "best_f": -0.7383237842353033, "best": {"side": 0.7148, "front": 0.8126}, "pen": 0.0059, "worst_dev": 0.0814, "mass": 94.2, "t": 188.1}
+{"stage": "B", "done": true, "side": 0.7148485008725081, "front": 0.8126003274050764, "mass": 94.17945599999999, "measures": {"head_body_length": 1.3856, "withers_height": 0.7394, "croup_height": 0.7116, "tail_length": 0.55, "head_length": 0.278, "head_width": 0.228, "chest_depth": 0.3953, "chest_clearance": 0.344, "belly_clearance": 0.3696, "torso_width": 0.3455, "front_paw_width": 0.1143, "hind_paw_width": 0.093, "forearm_depth": 0.0873, "tail_base_diameter": 0.0715}}
+{"stage": "C", "gen": 1, "evals": 12, "best_f": -0.8086091358230817, "best": {"front": 0.8086}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 3.9}
+{"stage": "C", "gen": 2, "evals": 24, "best_f": -0.8086091358230817, "best": {"front": 0.8086}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 7.9}
+{"stage": "C", "gen": 3, "evals": 36, "best_f": -0.8086091358230817, "best": {"front": 0.8086}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 10.1}
+{"stage": "C", "gen": 4, "evals": 48, "best_f": -0.8086091358230817, "best": {"front": 0.8086}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 12.0}
+{"stage": "C", "gen": 5, "evals": 60, "best_f": -0.81294690930501, "best": {"front": 0.8129}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 13.9}
+{"stage": "C", "gen": 6, "evals": 72, "best_f": -0.81294690930501, "best": {"front": 0.8129}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 15.9}
+{"stage": "C", "gen": 7, "evals": 84, "best_f": -0.81294690930501, "best": {"front": 0.8129}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 17.9}
+{"stage": "C", "gen": 8, "evals": 96, "best_f": -0.81294690930501, "best": {"front": 0.8129}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 19.8}
+{"stage": "C", "gen": 9, "evals": 108, "best_f": -0.81294690930501, "best": {"front": 0.8129}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 21.4}
+{"stage": "C", "gen": 10, "evals": 120, "best_f": -0.81294690930501, "best": {"front": 0.8129}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 23.1}
+{"stage": "C", "gen": 11, "evals": 132, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 24.8}
+{"stage": "C", "gen": 12, "evals": 144, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 26.5}
+{"stage": "C", "gen": 13, "evals": 156, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 28.3}
+{"stage": "C", "gen": 14, "evals": 168, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 30.3}
+{"stage": "C", "gen": 15, "evals": 180, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 32.1}
+{"stage": "C", "gen": 16, "evals": 192, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 34.0}
+{"stage": "C", "gen": 17, "evals": 204, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 35.9}
+{"stage": "C", "gen": 18, "evals": 216, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 37.8}
+{"stage": "C", "gen": 19, "evals": 228, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 39.8}
+{"stage": "C", "gen": 20, "evals": 240, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 41.6}
+{"stage": "C", "gen": 21, "evals": 252, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 43.5}
+{"stage": "C", "gen": 22, "evals": 264, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 45.4}
+{"stage": "C", "gen": 23, "evals": 276, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 47.4}
+{"stage": "C", "gen": 24, "evals": 288, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 49.3}
+{"stage": "C", "gen": 25, "evals": 300, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 51.3}
+{"stage": "C", "gen": 26, "evals": 312, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 53.3}
+{"stage": "C", "gen": 27, "evals": 324, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 55.1}
+{"stage": "C", "gen": 28, "evals": 336, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 57.0}
+{"stage": "C", "gen": 29, "evals": 348, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 58.9}
+{"stage": "C", "gen": 30, "evals": 360, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 60.8}
+{"stage": "C", "gen": 31, "evals": 372, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 62.8}
+{"stage": "C", "gen": 32, "evals": 384, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 64.7}
+{"stage": "C", "gen": 33, "evals": 396, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 66.6}
+{"stage": "C", "gen": 34, "evals": 408, "best_f": -0.8217592257204538, "best": {"front": 0.8218}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 68.6}
+{"stage": "C", "done": true, "side": 0.7148485008725081, "front": 0.8217592257204538, "mass": 94.17945599999999, "measures": {"head_body_length": 1.3856, "withers_height": 0.7394, "croup_height": 0.7116, "tail_length": 0.55, "head_length": 0.278, "head_width": 0.228, "chest_depth": 0.3953, "chest_clearance": 0.344, "belly_clearance": 0.3696, "torso_width": 0.3455, "front_paw_width": 0.1143, "hind_paw_width": 0.093, "forearm_depth": 0.0873, "tail_base_diameter": 0.0715}}
+{"stage": "B", "gen": 1, "evals": 13, "best_f": -0.73353925072023, "best": {"side": 0.7183, "front": 0.8257}, "pen": 0.0169, "worst_dev": 0.0823, "mass": 94.8, "t": 5.9}
+{"stage": "B", "gen": 2, "evals": 26, "best_f": -0.73353925072023, "best": {"side": 0.7183, "front": 0.8257}, "pen": 0.0169, "worst_dev": 0.0823, "mass": 94.8, "t": 13.1}
+{"stage": "B", "gen": 3, "evals": 39, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 22.0}
+{"stage": "B", "gen": 4, "evals": 52, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 31.0}
+{"stage": "B", "gen": 5, "evals": 65, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 38.1}
+{"stage": "B", "gen": 6, "evals": 78, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 43.5}
+{"stage": "B", "gen": 7, "evals": 91, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 48.6}
+{"stage": "B", "gen": 8, "evals": 104, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 53.7}
+{"stage": "B", "gen": 9, "evals": 117, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 59.1}
+{"stage": "B", "gen": 10, "evals": 130, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 64.5}
+{"stage": "B", "gen": 11, "evals": 143, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 70.0}
+{"stage": "B", "gen": 12, "evals": 156, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 75.2}
+{"stage": "B", "gen": 13, "evals": 169, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 82.6}
+{"stage": "B", "gen": 14, "evals": 182, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 91.0}
+{"stage": "B", "gen": 15, "evals": 195, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 97.7}
+{"stage": "B", "gen": 16, "evals": 208, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 105.3}
+{"stage": "B", "gen": 17, "evals": 221, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 111.2}
+{"stage": "B", "gen": 18, "evals": 234, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 116.4}
+{"stage": "B", "gen": 19, "evals": 247, "best_f": -0.7464284517577373, "best": {"side": 0.7142, "front": 0.8344}, "pen": 0.0038, "worst_dev": 0.081, "mass": 93.1, "t": 121.7}
+{"stage": "B", "gen": 20, "evals": 260, "best_f": -0.74686268639891, "best": {"side": 0.7122, "front": 0.8277}, "pen": 0.0, "worst_dev": 0.0769, "mass": 93.8, "t": 127.3}
+{"stage": "B", "gen": 21, "evals": 273, "best_f": -0.7553866572903063, "best": {"side": 0.7206, "front": 0.8366}, "pen": 0.0, "worst_dev": 0.0798, "mass": 92.1, "t": 132.9}
+{"stage": "B", "gen": 22, "evals": 286, "best_f": -0.7553866572903063, "best": {"side": 0.7206, "front": 0.8366}, "pen": 0.0, "worst_dev": 0.0798, "mass": 92.1, "t": 138.6}
+{"stage": "B", "gen": 23, "evals": 299, "best_f": -0.7553866572903063, "best": {"side": 0.7206, "front": 0.8366}, "pen": 0.0, "worst_dev": 0.0798, "mass": 92.1, "t": 144.1}
+{"stage": "B", "gen": 24, "evals": 312, "best_f": -0.7553866572903063, "best": {"side": 0.7206, "front": 0.8366}, "pen": 0.0, "worst_dev": 0.0798, "mass": 92.1, "t": 149.5}
+{"stage": "B", "gen": 25, "evals": 325, "best_f": -0.7553866572903063, "best": {"side": 0.7206, "front": 0.8366}, "pen": 0.0, "worst_dev": 0.0798, "mass": 92.1, "t": 154.9}
+{"stage": "B", "gen": 26, "evals": 338, "best_f": -0.7553866572903063, "best": {"side": 0.7206, "front": 0.8366}, "pen": 0.0, "worst_dev": 0.0798, "mass": 92.1, "t": 160.6}
+{"stage": "B", "gen": 27, "evals": 351, "best_f": -0.7553866572903063, "best": {"side": 0.7206, "front": 0.8366}, "pen": 0.0, "worst_dev": 0.0798, "mass": 92.1, "t": 166.1}
+{"stage": "B", "gen": 28, "evals": 364, "best_f": -0.7557745440285091, "best": {"side": 0.7254, "front": 0.8266}, "pen": 0.0, "worst_dev": 0.078, "mass": 94.9, "t": 171.9}
+{"stage": "B", "gen": 29, "evals": 377, "best_f": -0.7557745440285091, "best": {"side": 0.7254, "front": 0.8266}, "pen": 0.0, "worst_dev": 0.078, "mass": 94.9, "t": 177.4}
+{"stage": "B", "gen": 30, "evals": 390, "best_f": -0.7559433559722424, "best": {"side": 0.7229, "front": 0.8331}, "pen": 0.0, "worst_dev": 0.0776, "mass": 93.1, "t": 182.5}
+{"stage": "B", "gen": 31, "evals": 403, "best_f": -0.756684100246728, "best": {"side": 0.726, "front": 0.8284}, "pen": 0.0, "worst_dev": 0.0797, "mass": 94.5, "t": 187.9}
+{"stage": "B", "done": true, "side": 0.725966902924675, "front": 0.828357560664852, "mass": 94.54406399999999, "measures": {"head_body_length": 1.3909, "withers_height": 0.7499, "croup_height": 0.74, "tail_length": 0.55, "head_length": 0.2728, "head_width": 0.228, "chest_depth": 0.4069, "chest_clearance": 0.343, "belly_clearance": 0.3777, "torso_width": 0.3455, "front_paw_width": 0.1079, "hind_paw_width": 0.0977, "forearm_depth": 0.0901, "tail_base_diameter": 0.0739}}
+{"stage": "start", "side": 0.7559664093894849, "front": 0.8246187521744173, "mass": 94.578624, "measures": {"head_body_length": 1.3909, "withers_height": 0.7499, "croup_height": 0.74, "tail_length": 0.55, "head_length": 0.2728, "head_width": 0.228, "chest_depth": 0.4069, "chest_clearance": 0.343, "belly_clearance": 0.3777, "torso_width": 0.3455, "front_paw_width": 0.1079, "hind_paw_width": 0.0977, "forearm_depth": 0.0901, "tail_base_diameter": 0.0739}}
+{"stage": "P:tail", "gen": 1, "evals": 10, "best_f": -0.4830620940141091, "best": {"region": 0.4831}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 1.5}
+{"stage": "P:tail", "gen": 2, "evals": 20, "best_f": -0.6587805652588123, "best": {"region": 0.6588}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 3.1}
+{"stage": "P:tail", "gen": 3, "evals": 30, "best_f": -0.6587805652588123, "best": {"region": 0.6588}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 4.6}
+{"stage": "P:tail", "gen": 4, "evals": 40, "best_f": -0.6788095625304927, "best": {"region": 0.6788}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 6.3}
+{"stage": "P:tail", "gen": 5, "evals": 50, "best_f": -0.6788095625304927, "best": {"region": 0.6788}, "pen": 0.0, "worst_dev": 0.0, "mass": 0.0, "t": 7.8}

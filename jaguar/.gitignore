@@ -1,3 +1,5 @@
 *.blend1
 __pycache__/
 renders/_preview/
+renders/_*/
+blend/jaguar__*.blend

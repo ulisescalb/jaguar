@@ -1,5 +1,6 @@
 """Medidas reales calculadas desde la malla final + validación topológica."""
 import json
+import math
 import os
 
 import bmesh
@@ -65,7 +66,8 @@ def tail_metrics(body):
                 best, bi = dd, i
         return acc[bi]
 
-    sp = [(param(p), p) for p in tv]
+    s_base = param(base)
+    sp = [(param(p) - s_base, p) for p in tv]
     step = 0.025
     bins = {}
     for s, p in sp:
@@ -75,10 +77,12 @@ def tail_metrics(body):
     poly = cents + [tip]
     length = sum((b - a).length for a, b in zip(poly, poly[1:]))
     # diámetro cerca de la base (5–9 cm a lo largo de la cola)
-    near = [p for s, p in sp if 0.05 <= s <= 0.09]
+    near = [p for s, p in sp if 0.05 <= s <= 0.09] or [p for s, p in sp if 0.0 <= s <= 0.12]
     c = centroid(near)
     # el centroide del tramo; radio medio respecto al eje local
-    t_dir = (centroid([p for s, p in sp if 0.09 < s <= 0.12]) - centroid([p for s, p in sp if 0.02 <= s < 0.05])).normalized()
+    far = [p for s, p in sp if 0.09 < s <= 0.14] or [p for s, p in sp if s > 0.09][:50]
+    nearb = [p for s, p in sp if 0.0 <= s < 0.05] or [p for s, p in sp if s < 0.09][:50]
+    t_dir = (centroid(far) - centroid(nearb)).normalized()
     radii = []
     for p in near:
         d = p - c
@@ -202,6 +206,21 @@ def topology(obj):
             continue
         selfx += 1
     poles = sum(1 for v in bm.verts if len(v.link_edges) not in (4,) and v.link_edges)
+    # calidad de quads: ángulos interiores y caras colapsadas
+    angs = []
+    collapsed = 0
+    for f in bm.faces:
+        if f.calc_area() < 1e-9:
+            collapsed += 1
+        vs = [v.co for v in f.verts]
+        n = len(vs)
+        for i in range(n):
+            a = vs[i - 1] - vs[i]
+            b = vs[(i + 1) % n] - vs[i]
+            if a.length > 1e-12 and b.length > 1e-12:
+                angs.append(math.degrees(a.angle(b)))
+    angs = sorted(angs)
+    bad = sum(1 for a in angs if a < 25 or a > 155)
     bm.free()
     return {
         "verts": len(obj.data.vertices), "faces": len(obj.data.polygons),
@@ -209,7 +228,20 @@ def topology(obj):
         "boundary_edges": boundary, "loose_verts": loose_v, "loose_edges": loose_e,
         "inconsistent_normals": flipped, "signed_volume": vol,
         "outward_normals": vol > 0, "self_intersections": selfx, "poles": poles,
+        "collapsed_faces": collapsed, "angle_min": angs[0] if angs else 0.0,
+        "angle_max": angs[-1] if angs else 0.0, "angles_outside_25_155": bad,
+        "angle_p01": angs[len(angs) // 100] if angs else 0.0,
+        "angle_p99": angs[-len(angs) // 100 - 1] if angs else 0.0,
     }
+
+
+def sdf_extra(P, M):
+    """Volumen real de la unión de la escultura (sin sumar solapes) y masa."""
+    import sculpt
+    vol = sculpt.union_volume(M, h=0.005)
+    dens = 1000.0
+    return {"sculpt_union_volume_m3": vol, "mass_union_kg": vol * dens,
+            "mass_union_kg_1040": vol * 1040.0}
 
 
 def full_report(P, objs):
@@ -259,17 +291,29 @@ def format_report(rep):
                      ex["head_pct_of_hb"], ex["tail_pct_of_hb"], ex["wheelbase_paws"],
                      ex["overall_length_bbox"], ex["hb_dorsal_contour"], ex["mass_est_kg"]))
     lines.append("")
+    if "mass_union_kg" in ex:
+        lines.append("")
+        lines.append("Masa por volumen real de la unión de la escultura (sin solapes): %.1f kg a 1000 kg/m³ "
+                     "(%.1f kg a 1040 kg/m³); volumen %.4f m³." % (
+                         ex["mass_union_kg"], ex["mass_union_kg_1040"], ex["sculpt_union_volume_m3"]))
+    if "iou" in rep:
+        lines.append("")
+        lines.append("IoU de la malla final posada como en las fotos: lateral %.3f, frontal %.3f." % (
+            rep["iou"].get("side_iou", 0), rep["iou"].get("front_iou", 0)))
+    lines.append("")
     lines.append("| Objeto | Quads | Tris | N-gons | No-manifold | Bordes abiertos | Vért. sueltos | "
-                 "Normales incoherentes | Normales afuera | Auto-intersec. |")
-    lines.append("|---|---:|---:|---:|---:|---:|---:|---:|:-:|---:|")
+                 "Normales incoherentes | Normales afuera | Auto-intersec. | Caras colapsadas | "
+                 "Ángulos [p1, p99] | Ángulos fuera de 25–155° |")
+    lines.append("|---|---:|---:|---:|---:|---:|---:|---:|:-:|---:|---:|---:|---:|")
     tq = 0
     for name, t in rep["topology"].items():
         tq += t["quads"]
-        lines.append("| %s | %d | %d | %d | %d | %d | %d | %d | %s | %d |" % (
+        lines.append("| %s | %d | %d | %d | %d | %d | %d | %d | %s | %d | %d | [%.0f°, %.0f°] | %d |" % (
             name, t["quads"], t["tris"], t["ngons"], t["non_manifold_edges"], t["boundary_edges"],
             t["loose_verts"], t["inconsistent_normals"], "sí" if t["outward_normals"] else "NO",
-            t["self_intersections"]))
-    lines.append("| **Total** | **%d** | | | | | | | | |" % tq)
+            t["self_intersections"], t.get("collapsed_faces", 0), t.get("angle_p01", 0),
+            t.get("angle_p99", 0), t.get("angles_outside_25_155", 0)))
+    lines.append("| **Total** | **%d** | | | | | | | | | | | |" % tq)
     return "\n".join(lines)
 
 

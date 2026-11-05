@@ -1025,11 +1025,11 @@
  "skeleton": {
   "_doc": "Landmarks de la pose neutra (de pie), lado IZQUIERDO (+X) y linea media; el derecho es espejo. Columna: centros de los cuerpos vertebrales. Medidas oseas de Panthera escaladas: escapula ~0.23 m, humero ~0.23, radio ~0.21, metacarpo ~0.085, femur ~0.25, tibia ~0.23, metatarso ~0.13, cervicales ~0.25, toracicas+lumbares ~0.82. 'scales' las ajusta el optimizador dentro de +-12 %.",
   "scales": {
-   "height": 1.0,
-   "torso_length": 1.0,
-   "neck_length": 1.0,
-   "head": 1.0,
-   "head_pitch": 0.0
+   "height": 0.99163,
+   "torso_length": 0.9648,
+   "neck_length": 1.05595,
+   "head": 0.90385,
+   "head_pitch": 6.43631
   },
   "points": {
    "withers": [
@@ -1248,10 +1248,10 @@
    "_doc": "6 segmentos iguales desde Ca1; cada angulo dobla el segmento siguiente (>0 hacia abajo) respecto al anterior; el primero respecto a la horizontal hacia atras.",
    "length": 0.55,
    "angles_neutral": [
-    40,
     25,
-    20,
-    10,
+    30,
+    25,
+    15,
     -5,
     -25
    ]
@@ -1260,45 +1260,139 @@
  "poses": {
   "_doc": "Poses de las fotos (grados, ver convencion en src/skeleton.py). Las ajusta el optimizador; la pose neutra es {}.",
   "side_photo": {
-   "scap_top_L": -8,
-   "shoulder_L": -22,
-   "elbow_L": -5,
-   "carpus_L": -30,
+   "scap_top_L": 15.895,
+   "shoulder_L": -16.816,
+   "elbow_L": 0.07,
+   "carpus_L": -41.853,
    "mcp_L": 0,
-   "scap_top_R": 4,
-   "shoulder_R": 2,
-   "elbow_R": 0,
-   "carpus_R": 0,
-   "hip_L": -14,
-   "knee_L": -8,
-   "hock_L": 10,
+   "scap_top_R": -3.482,
+   "shoulder_R": -40.399,
+   "elbow_R": 11.489,
+   "carpus_R": 1.953,
+   "hip_L": -30.348,
+   "knee_L": 4.757,
+   "hock_L": -5.123,
    "mtp_L": 0,
-   "hip_R": 16,
-   "knee_R": 6,
-   "hock_R": -6,
-   "neck1": 6,
-   "neck2": 0,
-   "head": -4,
-   "tail0": 10,
-   "tail1": -5,
-   "tail2": -30,
-   "tail3": -50,
-   "tail4": -45,
-   "tail5": -25
+   "hip_R": 0.723,
+   "knee_R": 11.399,
+   "hock_R": -6.537,
+   "neck1": -9.91,
+   "neck2": 11.28,
+   "head": 16.661,
+   "tail0": 34,
+   "tail1": -39,
+   "tail2": -33,
+   "tail3": -40,
+   "tail4": -32,
+   "tail5": -13
   },
   "front_photo": {
-   "shoulder_R": -12,
-   "carpus_R": -6,
-   "shoulder_L": 6,
-   "neck1": 8,
-   "head": -6,
-   "hip_L": -8,
-   "hip_R": 6
+   "shoulder_R": -12.297,
+   "carpus_R": -20.092,
+   "shoulder_L": 12.43,
+   "neck1": -5.655,
+   "head": 8.252,
+   "hip_L": -26.546,
+   "hip_R": 4.185,
+   "elbow_L": 30.163,
+   "carpus_L": -11.56,
+   "elbow_R": -2.138
   }
  },
  "sculpt": {
   "_doc": "Volumenes musculares de la escultura SDF (src/sdf.py). Cada primitiva va unida a un hueso; 'c'/'a'/'b' se dan con landmarks ('lm', 'at' = punto sobre un segmento) o en coords locales de cabeza ('hl'); 'off' en metros; 'k' = radio de mezcla suave; 'g' = grupo de escala que ajusta el optimizador; 'mirror' crea la copia derecha.",
-  "groups": {},
+  "groups": {
+   "chest": [
+    0.81596,
+    1.0,
+    0.94346
+   ],
+   "loin": [
+    0.97606,
+    1.0,
+    1.07221
+   ],
+   "belly": [
+    0.83994,
+    1.0,
+    0.78331
+   ],
+   "croup": [
+    0.81746,
+    1.0,
+    1.19669
+   ],
+   "neck": [
+    0.76813,
+    1.0,
+    1.17439
+   ],
+   "back": [
+    0.768,
+    0.768,
+    0.768
+   ],
+   "fold": [
+    0.40015,
+    0.40015,
+    0.40015
+   ],
+   "shoulder": [
+    0.7537,
+    0.7537,
+    0.7537
+   ],
+   "arm": [
+    0.77918,
+    0.77918,
+    0.77918
+   ],
+   "forearm": [
+    0.89869,
+    0.89869,
+    0.89869
+   ],
+   "thigh": [
+    0.75028,
+    0.75028,
+    0.75028
+   ],
+   "shank": [
+    1.05598,
+    1.05598,
+    1.05598
+   ],
+   "paw_f": [
+    0.95543,
+    0.95543,
+    0.95543
+   ],
+   "paw_h": [
+    0.97654,
+    0.97654,
+    0.97654
+   ],
+   "tail": [
+    0.91196,
+    0.91196,
+    0.91196
+   ],
+   "muzzle": [
+    0.97541,
+    0.97541,
+    0.97541
+   ],
+   "jaw": [
+    1.16666,
+    1.16666,
+    1.16666
+   ],
+   "tuck": [
+    1.18172,
+    1.18172,
+    1.18172
+   ]
+  },
   "eye": {
    "radius": 0.0185,
    "gaze_yaw_deg": 22.0,
@@ -3103,5 +3197,16 @@
     ]
    }
   ]
+ },
+ "fit": {
+  "front_cam": {
+   "dist": 4.78053,
+   "height": 0.17603,
+   "aim_z": 0.20044,
+   "aim_y": -0.29941,
+   "f": 3775.16656,
+   "dx": 0.21007,
+   "cy": 149.71966
+  }
  }
 }

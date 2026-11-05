@@ -20,6 +20,7 @@ import sys
 
 import bpy
 import bmesh
+import numpy as np
 from mathutils import Vector, Matrix
 
 SRC_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -502,11 +503,86 @@ def build_all(P):
     return objs, off
 
 
+def build_all_conform(P):
+    """Etapa 2 (v07+): topología limpia colocada sobre la escultura SDF."""
+    import conform
+    import sdf as sdfmod
+    bpy.ops.wm.read_factory_settings(use_empty=True)
+    scene = bpy.context.scene
+    scene.unit_settings.system = 'METRIC'
+    scene.unit_settings.scale_length = 1.0
+    coll = bpy.data.collections.new("Jaguar")
+    scene.collection.children.link(coll)
+    M = sdfmod.JaguarSDF(P)
+    body_md, centerline = conform.build_body(P, M)
+    head_md, eyes = conform.build_head(P, M)
+    jaw_md = conform.build_jaw(P, M)
+    ears = [conform.build_ear(P, M, s) for s in ("L", "R")]
+    R = P["sculpt"]["eye"]["radius"]
+    eye_mds = []
+    for side in ("L", "R"):
+        verts, faces = quad_sphere(6)
+        md = MeshData("Jaguar_Eye" + side)
+        md.verts = [Vector(eyes[side][0]) + v * R for v in verts]
+        md.faces = list(faces)
+        eye_mds.append(md)
+    # la malla limpia hace los párpados con sus propios bucles: se proyecta sobre
+    # la cabeza SIN la resta de la cuenca (que sí está en la escultura)
+    fields = {"Jaguar_Body": conform.Field(M, ("body",)),
+              "Jaguar_Head": conform.Field(M, ("head",), keep=lambda p: not p.name.startswith("eye_socket")),
+              "Jaguar_LowerJaw": conform.Field(M, ("jaw",)), "Jaguar_EarL": conform.Field(M, ("ear_L",)),
+              "Jaguar_EarR": conform.Field(M, ("ear_R",))}
+    objs = []
+    lv = P.get("subdivision_levels", 1)
+    it = P["conform"].get("relax_iters", 4)
+    residual = {}
+    for md in [body_md, head_md, jaw_md] + ears:
+        o = to_object(md, coll)
+        apply_subsurf(o, lv)
+        if o.name.startswith("Jaguar_Ear"):
+            # la concha ya sale del marco de su primitiva; proyectar una lámina
+            # tan fina sobre la SDF la pliega, así que sólo se relaja
+            objs.append(o)
+            continue
+        residual[o.name] = conform.project_relax(o, fields[o.name], iters=it,
+                                                 skip_group="eye_inner" if o.name == "Jaguar_Head" else None)
+        bm = bmesh.new()
+        bm.from_mesh(o.data)
+        bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+        bm.to_mesh(o.data)
+        bm.free()
+        objs.append(o)
+    print("Residuo de proyección (media, máx) m:", residual)
+    for md in eye_mds:
+        objs.append(to_object(md, coll))
+    for o in objs:
+        shade_smooth(o)
+    body = objs[0]
+    off = recenter(objs, body)
+    body["tail_centerline"] = [c for p in centerline for c in (p - off)]
+    B = M.sk.bones({})
+    p0, Pj, Rj = B["jaw"]
+    jaw = bpy.data.objects["Jaguar_LowerJaw"]
+    jaw["jaw_hinge_world"] = list(Vector(p0) - off)
+    jaw["jaw_hinge_axis"] = list(Vector(M.sk.head_R @ np.array([1.0, 0, 0])).normalized())
+    head = bpy.data.objects["Jaguar_Head"]
+    head["head_pivot_world"] = list(Vector(M.sk.head_origin) - off)
+    for side in ("L", "R"):
+        bpy.data.objects["Jaguar_Eye" + side]["eye_center_world"] = list(Vector(eyes[side][0]) - off)
+    for o in objs:
+        o["projection_residual_m"] = residual.get(o.name, (0.0, 0.0))[1]
+    return objs, off, M
+
+
 def main():
     args = parse_args()
     with open(args.params, "r", encoding="utf-8") as f:
         P = json.load(f)
-    objs, off = build_all(P)
+    M = None
+    if "conform" in P:
+        objs, off, M = build_all_conform(P)
+    else:
+        objs, off = build_all(P)
 
     import measure
     report = measure.full_report(P, objs)
@@ -517,6 +593,19 @@ def main():
     dst = os.path.join(vdir, "params_used.json")
     if os.path.abspath(args.params) != os.path.abspath(dst):
         shutil.copyfile(args.params, dst)
+    if M is not None:
+        import skeleton as skmod
+        import silhouette as sil
+        exp_dir = os.path.join(ROOT_DIR, "export")
+        os.makedirs(exp_dir, exist_ok=True)
+        skmod.export_landmarks(M.sk, os.path.join(exp_dir, "landmarks.json"), offset=np.array(off),
+                               poses={k: v for k, v in P["poses"].items() if not k.startswith("_")})
+        report["extra"].update(measure.sdf_extra(P, M))
+        try:
+            report["iou"] = sil.evaluate_posed_mesh(P, M, objs, np.array(off), os.path.join(vdir, "iou"),
+                                                    args.version)
+        except ImportError as e:  # Blender sin OpenCV: el IoU se calcula desde el venv
+            print("IoU omitido (falta OpenCV en este Python):", e)
     measure.write_report(report, vdir, args.version)
     print(measure.format_report(report))
 
