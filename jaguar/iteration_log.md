@@ -577,12 +577,23 @@ auto-intersecciones por zona):
 
 Proporciones medidas sobre la foto frontal (respecto al ancho de mejillas):
 
-| Proporción | Foto | Modelo antes | v07 |
+| Proporción | Foto | Modelo antes | v07 (medido en la malla) |
 |---|---:|---:|---:|
-| Distancia entre pupilas | 49 % | 32 % | ≈ 47 % |
-| Ancho del hocico | 68 % | 46 % | ≈ 62 % |
-| Ancho de la trufa | 26 % | 21 % | ≈ 27 % |
-| Ancho del ojo | 16 % | 13 % | ≈ 16 % |
+| Distancia entre pupilas | 49 % | 32 % | 43 % |
+| Ancho del hocico | 68 % | 46 % | 48 % |
+| Ancho de la trufa | 26 % | 21 % | 20 % |
+| Ancho del ojo | 16 % | 13 % | 16 % |
+
+Cómo se mide la v07, sobre `Jaguar_Head` (ancho 0.219 m):
+- Pupilas: distancia en X entre centros de ojo.
+- Hocico: ancho de la franja 3–4.5 cm por detrás de la punta de la nariz.
+- Trufa: ancho de los 8 mm delanteros.
+- Ojo: apertura del párpado.
+
+**El hocico y la trufa siguen estrechos frente a la foto.** La proyección de la
+malla limpia y la escala de la cabeza (×0.90 del ajuste) se comen parte del
+ensanche de la escultura. Esto explica buena parte de la lectura «cachorro» de
+frente.
 
 Cambios:
 - Ojos 4.4 mm más separados en x y radio 21.5 mm.
