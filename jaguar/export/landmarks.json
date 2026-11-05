@@ -7,8 +7,8 @@
   "C1": {
    "pos": [
     0.0,
-    -0.64809,
-    0.59775
+    -0.6216,
+    0.5877
    ],
    "parent": "C2",
    "desc": "Atlas (C1)"
@@ -16,8 +16,8 @@
   "C2": {
    "pos": [
     0.0,
-    -0.62309,
-    0.59175
+    -0.59609,
+    0.5814
    ],
    "parent": "C3",
    "desc": "Axis (C2)"
@@ -25,8 +25,8 @@
   "C3": {
    "pos": [
     0.0,
-    -0.59309,
-    0.57975
+    -0.56548,
+    0.5688
    ],
    "parent": "C4",
    "desc": "C3"
@@ -34,8 +34,8 @@
   "C4": {
    "pos": [
     0.0,
-    -0.55809,
-    0.56475
+    -0.52978,
+    0.55305
    ],
    "parent": "C5",
    "desc": "C4"
@@ -43,8 +43,8 @@
   "C5": {
    "pos": [
     0.0,
-    -0.52309,
-    0.54775
+    -0.49407,
+    0.5352
    ],
    "parent": "C6",
    "desc": "C5"
@@ -52,8 +52,8 @@
   "C6": {
    "pos": [
     0.0,
-    -0.48809,
-    0.52975
+    -0.45836,
+    0.5163
    ],
    "parent": "C7",
    "desc": "C6"
@@ -61,8 +61,8 @@
   "C7": {
    "pos": [
     0.0,
-    -0.45309,
-    0.51475
+    -0.42265,
+    0.50054
    ],
    "parent": "T1",
    "desc": "C7"
@@ -70,8 +70,8 @@
   "L4": {
    "pos": [
     0.0,
-    0.23191,
-    0.61775
+    0.22552,
+    0.59964
    ],
    "parent": "T13",
    "desc": "Lomo (L4)"
@@ -79,8 +79,8 @@
   "L7": {
    "pos": [
     0.0,
-    0.39191,
-    0.61475
+    0.37628,
+    0.59673
    ],
    "parent": "L4",
    "desc": "L7"
@@ -88,8 +88,8 @@
   "T1": {
    "pos": [
     0.0,
-    -0.41809,
-    0.50475
+    -0.38695,
+    0.49004
    ],
    "parent": null,
    "desc": "Primera torácica"
@@ -97,8 +97,8 @@
   "T10": {
    "pos": [
     0.0,
-    -0.12809,
-    0.61175
+    -0.11369,
+    0.59382
    ],
    "parent": "T5",
    "desc": "T10"
@@ -106,8 +106,8 @@
   "T13": {
    "pos": [
     0.0,
-    0.03191,
-    0.61475
+    0.03707,
+    0.59673
    ],
    "parent": "T10",
    "desc": "T13 (última torácica)"
@@ -115,8 +115,8 @@
   "T5": {
    "pos": [
     0.0,
-    -0.29809,
-    0.59475
+    -0.27388,
+    0.57733
    ],
    "parent": "T1",
    "desc": "T5 (bajo la cruz)"
@@ -124,8 +124,8 @@
   "calcaneus_L": {
    "pos": [
     0.1,
-    0.50391,
-    0.17775
+    0.48181,
+    0.1729
    ],
    "parent": "hock_L",
    "desc": "Calcáneo (punta del corvejón)"
@@ -133,8 +133,8 @@
   "calcaneus_R": {
    "pos": [
     -0.1,
-    0.50391,
-    0.17775
+    0.48181,
+    0.1729
    ],
    "parent": "hock_R",
    "desc": "Calcáneo (punta del corvejón)"
@@ -142,8 +142,8 @@
   "carpus_L": {
    "pos": [
     0.1,
-    -0.36309,
-    0.10975
+    -0.33512,
+    0.10695
    ],
    "parent": "elbow_L",
    "desc": "Muñeca (carpo)"
@@ -151,8 +151,8 @@
   "carpus_R": {
    "pos": [
     -0.1,
-    -0.36309,
-    0.10975
+    -0.33512,
+    0.10695
    ],
    "parent": "elbow_R",
    "desc": "Muñeca (carpo)"
@@ -160,8 +160,8 @@
   "chin": {
    "pos": [
     0.0,
-    -0.86827,
-    0.4269
+    -0.8299,
+    0.44623
    ],
    "parent": "jaw_hinge_L",
    "desc": "Barbilla (sínfisis mandibular)"
@@ -169,26 +169,26 @@
   "condyle": {
    "pos": [
     0.0,
-    -0.65809,
-    0.59975
+    -0.63102,
+    0.58964
    ],
    "parent": "C1",
    "desc": "Cóndilos occipitales (pivote de la cabeza)"
   },
   "ear_base_L": {
    "pos": [
-    0.078,
-    -0.73549,
-    0.65559
+    0.07208,
+    -0.68487,
+    0.6496
    ],
    "parent": "condyle",
    "desc": "Base de la oreja"
   },
   "ear_base_R": {
    "pos": [
-    -0.078,
-    -0.73549,
-    0.65559
+    -0.07208,
+    -0.68487,
+    0.6496
    ],
    "parent": "condyle",
    "desc": "Base de la oreja"
@@ -196,8 +196,8 @@
   "elbow_L": {
    "pos": [
     0.11,
-    -0.34309,
-    0.31975
+    -0.31628,
+    0.31062
    ],
    "parent": "shoulder_L",
    "desc": "Codo (articulación húmero-cúbito)"
@@ -205,8 +205,8 @@
   "elbow_R": {
    "pos": [
     -0.11,
-    -0.34309,
-    0.31975
+    -0.31628,
+    0.31062
    ],
    "parent": "shoulder_R",
    "desc": "Codo (articulación húmero-cúbito)"
@@ -214,8 +214,8 @@
   "ftoe_L": {
    "pos": [
     0.1,
-    -0.46309,
-    0.01175
+    -0.42935,
+    0.01191
    ],
    "parent": "mcp_L",
    "desc": "Punta de los dedos delanteros"
@@ -223,8 +223,8 @@
   "ftoe_R": {
    "pos": [
     -0.1,
-    -0.46309,
-    0.01175
+    -0.42935,
+    0.01191
    ],
    "parent": "mcp_R",
    "desc": "Punta de los dedos delanteros"
@@ -232,8 +232,8 @@
   "hip_L": {
    "pos": [
     0.09,
-    0.45691,
-    0.53975
+    0.43752,
+    0.52399
    ],
    "parent": "sacrum",
    "desc": "Cadera (acetábulo)"
@@ -241,8 +241,8 @@
   "hip_R": {
    "pos": [
     -0.09,
-    0.45691,
-    0.53975
+    0.43752,
+    0.52399
    ],
    "parent": "sacrum",
    "desc": "Cadera (acetábulo)"
@@ -250,8 +250,8 @@
   "hock_L": {
    "pos": [
     0.1,
-    0.46191,
-    0.15975
+    0.44223,
+    0.15544
    ],
    "parent": "knee_L",
    "desc": "Corvejón (articulación tarsal)"
@@ -259,8 +259,8 @@
   "hock_R": {
    "pos": [
     -0.1,
-    0.46191,
-    0.15975
+    0.44223,
+    0.15544
    ],
    "parent": "knee_R",
    "desc": "Corvejón (articulación tarsal)"
@@ -268,8 +268,8 @@
   "htoe_L": {
    "pos": [
     0.1,
-    0.37691,
-    0.01175
+    0.36214,
+    0.01191
    ],
    "parent": "mtp_L",
    "desc": "Punta de los dedos traseros"
@@ -277,8 +277,8 @@
   "htoe_R": {
    "pos": [
     -0.1,
-    0.37691,
-    0.01175
+    0.36214,
+    0.01191
    ],
    "parent": "mtp_R",
    "desc": "Punta de los dedos traseros"
@@ -286,8 +286,8 @@
   "iliac_crest_L": {
    "pos": [
     0.075,
-    0.35691,
-    0.66475
+    0.3433,
+    0.64522
    ],
    "parent": "sacrum",
    "desc": "Cresta ilíaca (tuber coxae)"
@@ -295,8 +295,8 @@
   "iliac_crest_R": {
    "pos": [
     -0.075,
-    0.35691,
-    0.66475
+    0.3433,
+    0.64522
    ],
    "parent": "sacrum",
    "desc": "Cresta ilíaca (tuber coxae)"
@@ -304,8 +304,8 @@
   "ischium_L": {
    "pos": [
     0.06,
-    0.55691,
-    0.52475
+    0.53175,
+    0.50944
    ],
    "parent": "hip_L",
    "desc": "Tuberosidad isquiática (punta de la nalga)"
@@ -313,26 +313,26 @@
   "ischium_R": {
    "pos": [
     -0.06,
-    0.55691,
-    0.52475
+    0.53175,
+    0.50944
    ],
    "parent": "hip_R",
    "desc": "Tuberosidad isquiática (punta de la nalga)"
   },
   "jaw_hinge_L": {
    "pos": [
-    0.068,
-    -0.71761,
-    0.54224
+    0.06127,
+    -0.68783,
+    0.54133
    ],
    "parent": "condyle",
    "desc": "Bisagra de la mandíbula (ATM)"
   },
   "jaw_hinge_R": {
    "pos": [
-    -0.068,
-    -0.71761,
-    0.54224
+    -0.06127,
+    -0.68783,
+    0.54133
    ],
    "parent": "condyle",
    "desc": "Bisagra de la mandíbula (ATM)"
@@ -340,8 +340,8 @@
   "knee_L": {
    "pos": [
     0.12,
-    0.31391,
-    0.33475
+    0.30278,
+    0.32517
    ],
    "parent": "hip_L",
    "desc": "Rodilla (babilla)"
@@ -349,8 +349,8 @@
   "knee_R": {
    "pos": [
     -0.12,
-    0.31391,
-    0.33475
+    0.30278,
+    0.32517
    ],
    "parent": "hip_R",
    "desc": "Rodilla (babilla)"
@@ -358,8 +358,8 @@
   "mcp_L": {
    "pos": [
     0.1,
-    -0.40309,
-    0.03475
+    -0.37281,
+    0.03421
    ],
    "parent": "carpus_L",
    "desc": "Metacarpo-falángica"
@@ -367,8 +367,8 @@
   "mcp_R": {
    "pos": [
     -0.1,
-    -0.40309,
-    0.03475
+    -0.37281,
+    0.03421
    ],
    "parent": "carpus_R",
    "desc": "Metacarpo-falángica"
@@ -376,8 +376,8 @@
   "mtp_L": {
    "pos": [
     0.1,
-    0.43691,
-    0.03475
+    0.41868,
+    0.03421
    ],
    "parent": "hock_L",
    "desc": "Metatarso-falángica"
@@ -385,8 +385,8 @@
   "mtp_R": {
    "pos": [
     -0.1,
-    0.43691,
-    0.03475
+    0.41868,
+    0.03421
    ],
    "parent": "hock_R",
    "desc": "Metatarso-falángica"
@@ -394,8 +394,8 @@
   "nose_tip": {
    "pos": [
     0.0,
-    -0.93702,
-    0.5037
+    -0.88142,
+    0.52833
    ],
    "parent": "condyle",
    "desc": "Punta nasal (rinario)"
@@ -403,8 +403,8 @@
   "occiput": {
    "pos": [
     0.0,
-    -0.68104,
-    0.68174
+    -0.64696,
+    0.66469
    ],
    "parent": "condyle",
    "desc": "Occipucio (cresta occipital)"
@@ -412,8 +412,8 @@
   "olecranon_L": {
    "pos": [
     0.105,
-    -0.30809,
-    0.33975
+    -0.2833,
+    0.33002
    ],
    "parent": "elbow_L",
    "desc": "Olécranon (punta del codo)"
@@ -421,26 +421,26 @@
   "olecranon_R": {
    "pos": [
     -0.105,
-    -0.30809,
-    0.33975
+    -0.2833,
+    0.33002
    ],
    "parent": "elbow_R",
    "desc": "Olécranon (punta del codo)"
   },
   "orbit_L": {
    "pos": [
-    0.042,
-    -0.82875,
-    0.58858
+    0.04685,
+    -0.78584,
+    0.59196
    ],
    "parent": "condyle",
    "desc": "Centro de la órbita"
   },
   "orbit_R": {
    "pos": [
-    -0.042,
-    -0.82875,
-    0.58858
+    -0.04685,
+    -0.78584,
+    0.59196
    ],
    "parent": "condyle",
    "desc": "Centro de la órbita"
@@ -448,8 +448,8 @@
   "patella_L": {
    "pos": [
     0.12,
-    0.28391,
-    0.34975
+    0.27451,
+    0.33972
    ],
    "parent": "knee_L",
    "desc": "Rótula"
@@ -457,8 +457,8 @@
   "patella_R": {
    "pos": [
     -0.12,
-    0.28391,
-    0.34975
+    0.27451,
+    0.33972
    ],
    "parent": "knee_R",
    "desc": "Rótula"
@@ -466,8 +466,8 @@
   "sacrum": {
    "pos": [
     0.0,
-    0.45191,
-    0.60575
+    0.43281,
+    0.588
    ],
    "parent": "L7",
    "desc": "Sacro"
@@ -475,8 +475,8 @@
   "scap_low_L": {
    "pos": [
     0.105,
-    -0.45309,
-    0.54475
+    -0.41993,
+    0.52884
    ],
    "parent": "scap_top_L",
    "desc": "Escápula, borde inferior (cuello de la escápula)"
@@ -484,8 +484,8 @@
   "scap_low_R": {
    "pos": [
     -0.105,
-    -0.45309,
-    0.54475
+    -0.41993,
+    0.52884
    ],
    "parent": "scap_top_R",
    "desc": "Escápula, borde inferior (cuello de la escápula)"
@@ -493,8 +493,8 @@
   "scap_top_L": {
    "pos": [
     0.065,
-    -0.36309,
-    0.71475
+    -0.33512,
+    0.69371
    ],
    "parent": "T5",
    "desc": "Escápula, borde dorsal (cruz)"
@@ -502,8 +502,8 @@
   "scap_top_R": {
    "pos": [
     -0.065,
-    -0.36309,
-    0.71475
+    -0.33512,
+    0.69371
    ],
    "parent": "T5",
    "desc": "Escápula, borde dorsal (cruz)"
@@ -511,8 +511,8 @@
   "shoulder_L": {
    "pos": [
     0.12,
-    -0.47309,
-    0.50475
+    -0.43877,
+    0.49004
    ],
    "parent": "scap_top_L",
    "desc": "Articulación del hombro (glenohumeral)"
@@ -520,8 +520,8 @@
   "shoulder_R": {
    "pos": [
     -0.12,
-    -0.47309,
-    0.50475
+    -0.43877,
+    0.49004
    ],
    "parent": "scap_top_R",
    "desc": "Articulación del hombro (glenohumeral)"
@@ -529,8 +529,8 @@
   "tail_base": {
    "pos": [
     0.0,
-    0.50691,
-    0.59475
+    0.48463,
+    0.57733
    ],
    "parent": "sacrum",
    "desc": "Base de la cola (Ca1)"
@@ -538,8 +538,8 @@
   "tail_tip": {
    "pos": [
     0.0,
-    0.68923,
-    0.12458
+    0.67027,
+    0.09862
    ],
    "parent": "tail_base",
    "desc": "Punta de la cola"
@@ -547,26 +547,26 @@
   "withers": {
    "pos": [
     0.0,
-    -0.36309,
-    0.74975
+    -0.33512,
+    0.72766
    ],
    "parent": "T5",
    "desc": "Cruz (piel sobre las escápulas)"
   },
   "zygoma_L": {
    "pos": [
-    0.105,
-    -0.76373,
-    0.56866
+    0.09461,
+    -0.72779,
+    0.56773
    ],
    "parent": "condyle",
    "desc": "Arco cigomático (máximo ancho)"
   },
   "zygoma_R": {
    "pos": [
-    -0.105,
-    -0.76373,
-    0.56866
+    -0.09461,
+    -0.72779,
+    0.56773
    ],
    "parent": "condyle",
    "desc": "Arco cigomático (máximo ancho)"
@@ -595,76 +595,79 @@
  "tail_chain": [
   [
    0.0,
-   0.50691,
-   0.59475
+   0.48463,
+   0.57733
   ],
   [
    0.0,
-   0.58999,
-   0.55601
+   0.56922,
+   0.53789
   ],
   [
    0.0,
-   0.64257,
-   0.48092
+   0.62276,
+   0.46143
   ],
   [
    0.0,
-   0.65848,
-   0.39064
+   0.63896,
+   0.36952
   ],
   [
    0.0,
-   0.65049,
-   0.29933
+   0.63083,
+   0.27654
   ],
   [
    0.0,
-   0.65049,
-   0.20766
+   0.63083,
+   0.1832
   ],
   [
    0.0,
-   0.68923,
-   0.12458
+   0.67027,
+   0.09862
   ]
  ],
  "photo_poses_deg": {
   "side_photo": {
-   "scap_top_L": -8,
-   "shoulder_L": -22,
-   "elbow_L": -5,
-   "carpus_L": -30,
+   "scap_top_L": -6.217,
+   "shoulder_L": -28.367,
+   "elbow_L": -1.626,
+   "carpus_L": -39.193,
    "mcp_L": 0,
-   "scap_top_R": 4,
-   "shoulder_R": 2,
-   "elbow_R": 0,
-   "carpus_R": 0,
-   "hip_L": -14,
-   "knee_L": -8,
-   "hock_L": 10,
+   "scap_top_R": 26.247,
+   "shoulder_R": -38.771,
+   "elbow_R": 8.995,
+   "carpus_R": 9.806,
+   "hip_L": -12.197,
+   "knee_L": -44.846,
+   "hock_L": 36.712,
    "mtp_L": 0,
-   "hip_R": 16,
-   "knee_R": 6,
-   "hock_R": -6,
-   "neck1": 6,
-   "neck2": 0,
-   "head": -4,
-   "tail0": 10,
-   "tail1": -5,
-   "tail2": -30,
-   "tail3": -50,
-   "tail4": -45,
-   "tail5": -25
+   "hip_R": 31.563,
+   "knee_R": -24.478,
+   "hock_R": -23.945,
+   "neck1": -10.335,
+   "neck2": -9.309,
+   "head": 44.984,
+   "tail0": 43.184,
+   "tail1": -50.895,
+   "tail2": -39.964,
+   "tail3": -35.925,
+   "tail4": -23.255,
+   "tail5": -18.589
   },
   "front_photo": {
-   "shoulder_R": -12,
-   "carpus_R": -6,
-   "shoulder_L": 6,
-   "neck1": 8,
-   "head": -6,
-   "hip_L": -8,
-   "hip_R": 6
+   "shoulder_R": -11.764,
+   "carpus_R": -34.181,
+   "shoulder_L": 2.836,
+   "neck1": 34.678,
+   "head": 32.8,
+   "hip_L": -22.856,
+   "hip_R": -14.601,
+   "elbow_L": 10.896,
+   "carpus_L": -2.021,
+   "elbow_R": 34.953
   }
  }
 }

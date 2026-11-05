@@ -462,3 +462,217 @@ Detalles:
   proyectando los vértices).
 - Suelo y fondo más oscuros que la arcilla y luz key más baja.
 - Se mide la fracción de píxeles quemados por vista (`render_check.json`): 0.0 %.
+
+## Paso 4 — ajuste automático contra las siluetas
+
+`src/fit_silhouette.py`. Cada evaluación hace SDF a 12 mm → marching cubes →
+rasterizado de las dos vistas, en 0.3–0.8 s sin renders. Registro completo en
+`logs/fit_v07.jsonl`.
+
+**Parámetros:**
+- Escalas del esqueleto, limitadas a ±12 % (altura, largo del tronco, cuello,
+  cabeza) más la inclinación de la cabeza.
+- Tamaños de 18 grupos musculares.
+- Desplazamientos de 9 volúmenes del tronco: grupa, glúteo, lomo, dorsal, cruz,
+  pliegue ventral, abdomen, cuello y nuca.
+- Pose de la foto lateral: 14 articulaciones de patas, cuello, cabeza y 6
+  segmentos de cola.
+- Pose y cámara de la foto frontal.
+
+**Restricciones (penalización):**
+- Medidas en pose neutra ±8 %.
+- Masa 80–95 kg.
+- Regularización: los tamaños musculares no se alejan sin motivo de su valor
+  anatómico (ver más abajo).
+
+**Etapas y lecciones:**
+1. *A + C + B* (pose + esqueleto, cámara frontal, volúmenes): lateral
+   0.641 → 0.726. CMA-ES dejó la cola enroscada sobre la grupa (mínimo local) y
+   las patas traseras con la fase cambiada: el IoU global diluye los errores de
+   las piezas finas.
+2. *P (por regiones):* IoU recortado a cola, patas delanteras, patas traseras y
+   cabeza, con la cola inicializada con ángulos medidos en la foto. Lateral
+   **0.726 → 0.761 → 0.802 → 0.808 → 0.816**.
+3. *Desplazamientos por volumen + nueva B:* lateral ≈ 0.80–0.81, frontal
+   0.83–0.85.
+4. *Juicio visual por encima del número.* Para cumplir los 95 kg, el optimizador
+   llevó tórax, vientre, hombros y muslos al límite inferior (×0.75) y estiró el
+   cuello en vertical al máximo (×1.30). Resultado: joroba en la cruz y cintura
+   de «hueso de perro» vista desde arriba. Lo corregí:
+   - Regularización de los tamaños (peso 0.6 × media de log²).
+   - Límites ×0.80–1.25, cuello en vertical ≤ ×1.15.
+   - Rebalanceo a mano hacia un tórax de barril. La masa estaba mal repartida:
+     el tronco era el 48 % y lo normal en mamíferos es ~55–60 %; cuello (9 kg)
+     y muslos (13 kg) iban cargados.
+
+**Resultado de la escultura** (`renders/v07/iou/sculpt_iou_*.png`):
+- **IoU lateral 0.801.**
+- **IoU frontal 0.830.**
+
+## Paso 5 — transferencia a la malla limpia
+
+`src/conform.py`. Misma topología que la v06 (anillos, injertos, tapas de rejilla,
+párpados, comisura), pero cada anillo se coloca en su plano anatómico y se lanza
+por *raycast* hasta la escultura:
+- Tronco: planos verticales.
+- Cuello: perpendicular a su eje.
+- Patas y cola: perpendicular al hueso, centrado en el landmark.
+- Muslo y rodilla: cortes horizontales.
+- Zarpa: anillos horizontales.
+- Cabeza y mandíbula: perpendicular al eje del cráneo, con las estaciones
+  escaladas a la extensión real de la escultura.
+
+Después, 1 nivel de Catmull-Clark, proyección Newton sobre la SDF de cada objeto
+y 4 iteraciones de relajación tangencial (Laplaciano proyectado al plano
+tangente + reproyección). Residuo de proyección: media < 0.003 mm, máximo
+1.2 mm.
+
+Problemas que aparecieron y cómo los resolví (con alambre y con recuento de
+auto-intersecciones por zona):
+- *Pliegues en hombro y muslo:* los anillos del tronco quedaban debajo de los
+  músculos y la proyección final los doblaba. Ahora la pared del tronco incluye
+  escápula y muslo, pero no tríceps.
+- *Astillas en la unión pata–tronco:* el primer anillo de la pata quedaba por
+  encima del borde inferior del injerto. Ahora la pata empieza en el codo y en
+  la pierna, y el injerto trasero se puso un índice más alto.
+- *Pinzamiento en la raíz de la cola:* los anillos empezaban dentro de la grupa.
+  Ahora arrancan donde la cadena sale del tronco, y el agujero de la tapa bajó
+  una fila.
+- *Pozo en la cuenca del ojo:* el agujero de la rejilla no coincidía con el ojo.
+  - El injerto se elige solo: es el bloque de celdas más cercano al punto de
+    piel del ojo.
+  - El globo se coloca a 0.70 R bajo esa piel, a lo largo de la mirada.
+  - El contorno y el párpado exterior se apoyan sobre la piel; el borde del
+    párpado (0.8 R) y los anillos interiores quedan fijos.
+  - Apertura en almendra de ≈ 34 × 22 mm.
+- *Púas en el hocico:* había una cavidad interna en la línea media entre el
+  cráneo y el hocico, y los rayos sin cruce usaban un respaldo de 8.8 cm. Añadí
+  un relleno interior (`head_core` / `jaw_core`), y los rayos sin cruce toman la
+  mediana de su anillo.
+- *Orejas:* la concha sale del marco de su primitiva. Proyectar una lámina tan
+  fina la plegaba, así que no se proyecta.
+
+**Quads:**
+- 10 288 en total: cuerpo 5 344, cabeza 2 832, mandíbula 912, orejas 2×384, ojos
+  2×216.
+- No hizo falta subir hacia 15k: los anillos extra van en la zarpa (4 en vez de
+  3), compensados por el muslo, que ahora es parte de la pared del tronco.
+
+**Bucles de aristas en su sitio:**
+- Hombro y cadera: borde del injerto.
+- Codo, muñeca, rodilla y corvejón: un anillo de jaula centrado en el landmark,
+  más vecinos, que dan 5–6 bucles tras subdividir.
+- Párpados: 5 anillos.
+- Comisura: estaciones densas de cabeza y mandíbula.
+
+**Validación:**
+- Sin triángulos ni n-gons, sin aristas no-manifold, sin bordes abiertos, sin
+  vértices sueltos, sin normales incoherentes y sin caras colapsadas.
+- Ángulos de quads entre 39° y 140° en el percentil 1–99 del cuerpo.
+- **Quedan auto-intersecciones locales** (la v06 tenía 0):
+  - Cuerpo, 110: unión de la pata trasera y raíz de la cola.
+  - Cabeza, 141: dentro de las cuencas, tapadas por el globo ocular.
+
+## Paso 6 — cabeza
+
+Proporciones medidas sobre la foto frontal (respecto al ancho de mejillas):
+
+| Proporción | Foto | Modelo antes | v07 |
+|---|---:|---:|---:|
+| Distancia entre pupilas | 49 % | 32 % | ≈ 47 % |
+| Ancho del hocico | 68 % | 46 % | ≈ 62 % |
+| Ancho de la trufa | 26 % | 21 % | ≈ 27 % |
+| Ancho del ojo | 16 % | 13 % | ≈ 16 % |
+
+Cambios:
+- Ojos 4.4 mm más separados en x y radio 21.5 mm.
+- Trufa ancha y punto más adelantado de la cabeza; hocico corto. Las
+  almohadillas de bigotes van debajo de la nariz y se funden con los carrillos.
+- Filtrum y fosas nasales sutiles.
+- Labio superior que cae sobre la mandíbula.
+- Arco de cejas fino. Quité el suelo de la órbita, que dibujaba «gafas».
+- Pómulos y carrillos 4–5 mm más estrechos (ancho de cabeza 0.219 m).
+- Orejas en las esquinas superiores, inclinadas 40° hacia fuera y 12 % más
+  altas que anchas, con concavidad interna (resta `ear_cup`).
+
+**Crítica honesta:** de perfil y en primer plano ya se lee un felino: trufa,
+almohadillas, ojo almendrado con párpado. De frente sigue pareciendo más un
+cachorro de león que un jaguar adulto, y las orejas son demasiado de disco y
+quedan altas: en la superposición frontal faltan las orejas, que en la foto
+sobresalen por los lados. Con 32 vértices por anillo de cabeza, el detalle
+facial fino es trabajo de esculpido/normal map.
+
+## Paso 7 — zarpas
+
+Escultura:
+- Bloque central más pequeño y 4 dedos con surcos entre lóbulos (mezcla de 6 mm).
+- Almohadilla central (metacarpal/metatarsal) y almohadilla carpal.
+- Espolón en las delanteras.
+- Anchos: delantera 0.106 m y trasera 0.096 m (objetivo 0.11 y 0.095).
+
+Malla limpia:
+- 4 anillos de zarpa (antes 3).
+- Los vértices se concentran delante, en los dedos (θ' = θ − a·sin(θ − θ_frente),
+  hasta a = 0.42), y la densidad crece poco a poco desde el metacarpo para no
+  retorcer la pata.
+- Los dedos se ven en la escultura (`renders/v07/sculpt/`). En la malla limpia,
+  con ~6 mm entre vértices delante, solo se insinúan como un festón: el
+  espolón y las almohadillas quedan para el normal map.
+
+## v07 — resultado
+
+**IoU:**
+
+| | Lateral | Frontal |
+|---|---:|---:|
+| v06 (línea base) | 0.533 | 0.747 |
+| v07, escultura | 0.801 | 0.830 |
+| v07, malla limpia posada como en las fotos | 0.782 | 0.832 |
+
+La malla limpia se posa con *skinning* rígido suave por hueso sobre los mismos
+landmarks. Superposiciones en `renders/v07/iou/`, incluida la comparación
+`antes_despues_iou.png`.
+
+**Criterios no alcanzados:** IoU lateral ≥ 0.90 y frontal ≥ 0.85. Lo que limita,
+según las superposiciones:
+1. La foto es de un animal más compacto, profundo y pesado. Con ±8 % y ≤ ~95 kg
+   no se puede copiar su vientre y su lomo: el ajuste sin restricciones pedía
+   ~107 kg.
+2. Las patas y las zarpas de la foto están en zancada y en perspectiva, y las
+   zarpas casi no tienen área en común.
+3. La foto frontal tiene perspectiva fuerte y otra pose; las orejas no coinciden.
+4. Errores de un par de cm en piezas finas (cola, patas) cuestan mucho IoU.
+
+**Medidas:** las 14, dentro de ±8 % (`renders/v07/measurements.md`).
+
+**Masa** (volumen real de la unión): 98.2 kg a 1000 kg/m³, **≈ 3 % por encima de
+95**. Lo elegí a propósito. Con ≤ 95 kg, el tórax quedaba en 0.26–0.29 m (−10…−19 %),
+fuera de ±8 % y con cintura de «hueso de perro». Prefiero cumplir las medidas y
+el juicio visual (tórax de barril) y quedar algo por encima de la masa
+aproximada, que encaja con un macho grande del Pantanal.
+
+**Entregables:**
+- `export/landmarks.json`, regenerado con el mismo desplazamiento que la malla.
+- `export/jaguar_base_v07.glb`.
+- `blend/jaguar_v07.blend`.
+- `blend/jaguar_v07_sculpt.blend`: escultura de 0.31 M triángulos, cuerpo a 5 mm
+  y cabeza a 3 mm.
+- Renders cuadrados ajustados, sin píxeles quemados: `renders/v07/` y
+  `renders/v07/sculpt/`.
+- Comparación de contact sheets: `renders/v07/antes_despues_contact.png`.
+
+**Reproducibilidad:**
+- `python src/build_jaguar.py --version v07 --export-glb` (venv con
+  `requirements.txt`) regenera todo en ~5 min.
+- `blender -b -P src/build_jaguar.py -- --version v07`, con el Blender 4.0.2 real
+  y en una copia limpia, genera la malla en 19 s con medidas idénticas. Omite
+  con aviso el IoU y la escultura porque ese Python no tiene OpenCV ni
+  scikit-image.
+
+**Qué sigue débil:**
+1. Cabeza de frente (cachorro de león) y orejas de disco.
+2. Malla limpia más lisa que la escultura: dedos y musculatura sólo insinuados.
+3. Auto-intersecciones locales en la unión trasera, la raíz de la cola y las
+   cuencas.
+4. IoU por debajo del objetivo, por los motivos de arriba.
+5. Masa algo alta.

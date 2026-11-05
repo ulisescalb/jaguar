@@ -170,6 +170,18 @@ class JaguarSDF:
         return base + off
 
     def _resolve(self, s, side):
+        off = self.P["sculpt"].get("offsets", {}).get(s["name"])
+        if off:  # desplazamiento ajustado por el optimizador (m, marco neutro)
+            s = dict(s)
+            for key in ("c", "a", "b"):
+                if key in s:
+                    spec = dict(s[key])
+                    o = list(spec.get("off", [0.0, 0.0, 0.0]))
+                    if "hl" in spec:
+                        spec["hl"] = [spec["hl"][i] + off[i] for i in range(3)]
+                    else:
+                        spec["off"] = [o[i] + off[i] for i in range(3)]
+                    s[key] = spec
         name = s["name"] + ("_R" if side == "R" else ("_L" if s.get("mirror") else ""))
         bone = s.get("bone", "torso")
         if side == "R":

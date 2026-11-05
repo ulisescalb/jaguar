@@ -110,8 +110,10 @@ def measurements(P, objs):
     waist_y = ph.y - 0.28
     waist = [p for p in torso if abs(p.y - waist_y) <= 0.03 and abs(p.x) < 0.05]
     belly_clear = min(p.z for p in waist)
-    torso_noneck = [p for p in torso if p.y > pf.y - 0.15]
-    torso_w = extent(torso_noneck, 0)
+    # costillar: entre codos y rodillas (sin deltoides ni muslos, que en la v07
+    # forman parte de la pared lateral de la malla)
+    rib = [p for p in torso if pf.y + 0.05 <= p.y <= ph.y - 0.15] or [p for p in torso if p.y > pf.y - 0.15]
+    torso_w = extent(rib, 0)
     pawF = coords(body, "paw_FL")
     pawH = coords(body, "paw_HL")
     fore = [p for p in coords(body, "leg_FL") if 0.175 <= p.z <= 0.195]
@@ -249,12 +251,13 @@ def full_report(P, objs):
     m["hb_dorsal_contour"] = extra["hb_dorsal_contour"]
     topo = {o.name: topology(o) for o in objs}
     rows = []
+    tol = 100.0 * P.get("targets_tol", 0.05)  # etapa 1: ±5 %; etapa 2: ±8 %
     for k, tgt in P["targets"].items():
         if k.startswith("_"):
             continue
         val = m.get(k)
         dev = 100.0 * (val - tgt) / tgt
-        rows.append({"name": k, "target": tgt, "value": val, "dev_pct": dev, "ok": abs(dev) <= 5.0})
+        rows.append({"name": k, "target": tgt, "value": val, "dev_pct": dev, "ok": abs(dev) <= tol})
     return {"rows": rows, "extra": extra, "topology": topo}
 
 
@@ -269,7 +272,7 @@ NAMES_ES = {
     "chest_depth": "Profundidad de pecho (cruz→esternón)",
     "chest_clearance": "Altura libre bajo el pecho",
     "belly_clearance": "Altura libre en el ijar (remetido)",
-    "torso_width": "Ancho máximo del tronco",
+    "torso_width": "Ancho máximo del tronco (costillar)",
     "front_paw_width": "Ancho zarpa delantera",
     "hind_paw_width": "Ancho zarpa trasera",
     "forearm_depth": "Grosor antebrazo (fondo, z≈0.185)",

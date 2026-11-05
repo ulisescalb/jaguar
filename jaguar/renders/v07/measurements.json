@@ -1,0 +1,286 @@
+{
+  "rows": [
+    {
+      "name": "head_body_length",
+      "target": 1.5,
+      "value": 1.4730382561683655,
+      "dev_pct": -1.7974495887756348,
+      "ok": true
+    },
+    {
+      "name": "withers_height",
+      "target": 0.72,
+      "value": 0.7034542560577393,
+      "dev_pct": -2.298019991980655,
+      "ok": true
+    },
+    {
+      "name": "croup_height",
+      "target": 0.7,
+      "value": 0.6910632252693176,
+      "dev_pct": -1.27668210438319,
+      "ok": true
+    },
+    {
+      "name": "tail_length",
+      "target": 0.55,
+      "value": 0.5615739712302793,
+      "dev_pct": 2.104358405505319,
+      "ok": true
+    },
+    {
+      "name": "head_length",
+      "target": 0.29,
+      "value": 0.29331343405527294,
+      "dev_pct": 1.1425634673355025,
+      "ok": true
+    },
+    {
+      "name": "head_width",
+      "target": 0.22,
+      "value": 0.21935665607452393,
+      "dev_pct": -0.2924290570345797,
+      "ok": true
+    },
+    {
+      "name": "chest_depth",
+      "target": 0.39,
+      "value": 0.36354807019233704,
+      "dev_pct": -6.7825461045289686,
+      "ok": true
+    },
+    {
+      "name": "chest_clearance",
+      "target": 0.33,
+      "value": 0.3399061858654022,
+      "dev_pct": 3.001874504667335,
+      "ok": true
+    },
+    {
+      "name": "belly_clearance",
+      "target": 0.37,
+      "value": 0.38581758737564087,
+      "dev_pct": 4.275023615038074,
+      "ok": true
+    },
+    {
+      "name": "torso_width",
+      "target": 0.32,
+      "value": 0.30832618474960327,
+      "dev_pct": -3.64806726574898,
+      "ok": true
+    },
+    {
+      "name": "front_paw_width",
+      "target": 0.11,
+      "value": 0.10570972412824631,
+      "dev_pct": -3.9002507925033574,
+      "ok": true
+    },
+    {
+      "name": "hind_paw_width",
+      "target": 0.095,
+      "value": 0.09579355642199516,
+      "dev_pct": 0.8353225494685914,
+      "ok": true
+    },
+    {
+      "name": "forearm_depth",
+      "target": 0.095,
+      "value": 0.09904694557189941,
+      "dev_pct": 4.25994270726254,
+      "ok": true
+    },
+    {
+      "name": "tail_base_diameter",
+      "target": 0.075,
+      "value": 0.07501841933789466,
+      "dev_pct": 0.0245591171928831,
+      "ok": true
+    }
+  ],
+  "extra": {
+    "volume_m3": 0.09517161907977556,
+    "mass_est_kg": 98.97848384296658,
+    "hb_dorsal_contour": 1.969032167593788,
+    "head_pct_of_hb": 19.912139608528115,
+    "tail_pct_of_hb": 38.12351572531681,
+    "wheelbase_paws": 0.7911025583744049,
+    "nose_tip_yz": [
+      -0.8976,
+      0.5446
+    ],
+    "tail_base_yz": [
+      0.5755,
+      0.6152
+    ],
+    "tail_tip_z": 0.072,
+    "front_paw_center_y": -0.3956,
+    "hind_paw_center_y": 0.3956,
+    "overall_length_bbox": 1.5926929712295532,
+    "waist_y": 0.11555123448371885,
+    "sculpt_union_volume_m3": 0.09823612500000002,
+    "mass_union_kg": 98.23612500000002,
+    "mass_union_kg_1040": 102.16557000000002
+  },
+  "topology": {
+    "Jaguar_Body": {
+      "verts": 5346,
+      "faces": 5344,
+      "quads": 5344,
+      "tris": 0,
+      "ngons": 0,
+      "non_manifold_edges": 0,
+      "boundary_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "inconsistent_normals": 0,
+      "signed_volume": 0.08863490752665973,
+      "outward_normals": true,
+      "self_intersections": 110,
+      "poles": 48,
+      "collapsed_faces": 0,
+      "angle_min": 5.59821685036015,
+      "angle_max": 174.7106518741851,
+      "angles_outside_25_155": 128,
+      "angle_p01": 38.60255920766,
+      "angle_p99": 139.65791614800457
+    },
+    "Jaguar_Head": {
+      "verts": 2834,
+      "faces": 2832,
+      "quads": 2832,
+      "tris": 0,
+      "ngons": 0,
+      "non_manifold_edges": 0,
+      "boundary_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "inconsistent_normals": 0,
+      "signed_volume": 0.005788724866815708,
+      "outward_normals": true,
+      "self_intersections": 141,
+      "poles": 24,
+      "collapsed_faces": 0,
+      "angle_min": 0.23406796817454534,
+      "angle_max": 175.72781730576173,
+      "angles_outside_25_155": 80,
+      "angle_p01": 39.17581015451,
+      "angle_p99": 135.8204426647246
+    },
+    "Jaguar_LowerJaw": {
+      "verts": 914,
+      "faces": 912,
+      "quads": 912,
+      "tris": 0,
+      "ngons": 0,
+      "non_manifold_edges": 0,
+      "boundary_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "inconsistent_normals": 0,
+      "signed_volume": 0.0007479866863001235,
+      "outward_normals": true,
+      "self_intersections": 0,
+      "poles": 8,
+      "collapsed_faces": 0,
+      "angle_min": 12.093555996313025,
+      "angle_max": 166.84283402584236,
+      "angles_outside_25_155": 62,
+      "angle_p01": 24.190443417393723,
+      "angle_p99": 150.94648397798645
+    },
+    "Jaguar_EarL": {
+      "verts": 386,
+      "faces": 384,
+      "quads": 384,
+      "tris": 0,
+      "ngons": 0,
+      "non_manifold_edges": 0,
+      "boundary_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "inconsistent_normals": 0,
+      "signed_volume": 3.13517628774331e-05,
+      "outward_normals": true,
+      "self_intersections": 0,
+      "poles": 8,
+      "collapsed_faces": 0,
+      "angle_min": 54.69571432626064,
+      "angle_max": 137.11013264418474,
+      "angles_outside_25_155": 0,
+      "angle_p01": 60.878616713915044,
+      "angle_p99": 117.59355010979031
+    },
+    "Jaguar_EarR": {
+      "verts": 386,
+      "faces": 384,
+      "quads": 384,
+      "tris": 0,
+      "ngons": 0,
+      "non_manifold_edges": 0,
+      "boundary_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "inconsistent_normals": 0,
+      "signed_volume": 3.1351777964756755e-05,
+      "outward_normals": true,
+      "self_intersections": 0,
+      "poles": 8,
+      "collapsed_faces": 0,
+      "angle_min": 54.69571432626064,
+      "angle_max": 137.1106380781833,
+      "angles_outside_25_155": 0,
+      "angle_p01": 60.87866452523923,
+      "angle_p99": 117.59322226071015
+    },
+    "Jaguar_EyeL": {
+      "verts": 218,
+      "faces": 216,
+      "quads": 216,
+      "tris": 0,
+      "ngons": 0,
+      "non_manifold_edges": 0,
+      "boundary_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "inconsistent_normals": 0,
+      "signed_volume": 4.040022775655863e-05,
+      "outward_normals": true,
+      "self_intersections": 0,
+      "poles": 8,
+      "collapsed_faces": 0,
+      "angle_min": 68.73414705194094,
+      "angle_max": 118.72532611563976,
+      "angles_outside_25_155": 0,
+      "angle_p01": 68.73414705194094,
+      "angle_p99": 118.72532611563976
+    },
+    "Jaguar_EyeR": {
+      "verts": 218,
+      "faces": 216,
+      "quads": 216,
+      "tris": 0,
+      "ngons": 0,
+      "non_manifold_edges": 0,
+      "boundary_edges": 0,
+      "loose_verts": 0,
+      "loose_edges": 0,
+      "inconsistent_normals": 0,
+      "signed_volume": 4.0400227756557686e-05,
+      "outward_normals": true,
+      "self_intersections": 0,
+      "poles": 8,
+      "collapsed_faces": 0,
+      "angle_min": 68.73414705194094,
+      "angle_max": 118.72532611563976,
+      "angles_outside_25_155": 0,
+      "angle_p01": 68.73414705194094,
+      "angle_p99": 118.72532611563976
+    }
+  },
+  "iou": {
+    "side_iou": 0.7818621613181532,
+    "front_iou": 0.8321220985886371
+  }
+}

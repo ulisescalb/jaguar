@@ -1,0 +1,7 @@
+# Entorno para regenerar todo (etapa 2) fuera de Blender: Python 3.11
+bpy==4.5.15            # Blender 4.5 LTS como módulo (oficial, PyPI)
+numpy==1.26.4          # la versión que trae bpy 4.5
+scipy
+scikit-image           # marching cubes de la escultura
+opencv-python-headless<4.11   # máscaras de las fotos y rasterizado del IoU
+cma                    # CMA-ES del ajuste de siluetas

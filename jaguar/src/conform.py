@@ -100,7 +100,10 @@ def raycast(field, centers, dirs, rmax, n=48):
         inn = dm < 0
         lo = np.where(inn, mid, lo)
         hi = np.where(inn, hi, mid)
-    return np.where(ok, (lo + hi) / 2, t), ok
+    out = np.where(ok, (lo + hi) / 2, t)
+    if ok.any() and not ok.all():
+        out = np.where(ok, out, np.median(out[ok]))
+    return out, ok
 
 
 def inside_span(field, origin, direction, a=-0.6, b=0.6, n=240):
@@ -258,6 +261,11 @@ def leg_rings(md, loop, spec, sk, field, side):
     for k, (c, u, v, r) in enumerate(frames):
         beta = blend[k] if k < len(blend) else 1.0
         angs = np.array(blended_angles(ang, sense, beta))
+        if r.get("warp"):
+            # más vértices delante (dedos): θ' = θ + a·sin(θ − θ_frente)
+            fwd = np.array([0.0, -1.0, 0.0])
+            th_f = math.atan2(fwd @ v, fwd @ u)
+            angs = angs - r["warp"] * np.sin(angs - th_f)
         dirs = np.cos(angs)[:, None] * u[None, :] + np.sin(angs)[:, None] * v[None, :]
         t, _ = raycast(field, c, dirs, r.get("rmax", 0.14))
         pts = c[None, :] + dirs * t[:, None]
@@ -345,6 +353,21 @@ def build_tail(md, loop, T, sk, field, trunk=None):
 
 
 # ------------------------------------------------------------------- cabeza
+def fit_stations(field, O, R, template, z_local, y_from, margin):
+    """Reescala la lista de estaciones (coords locales) para que la última quede
+    `margin` por detrás de la punta real de la escultura (nariz o barbilla)."""
+    o = O + R @ np.array([0.0, y_from, z_local])
+    d = R @ np.array([0.0, -1.0, 0.0])
+    t, ok = raycast(field, o, d[None, :], 0.25)
+    if not ok[0]:
+        return list(template)
+    front = y_from - t[0]
+    y0, y1 = template[0], template[-1]
+    target = front + margin
+    return [y0 + (y - y0) * (target - y0) / (y1 - y0) for y in template]
+
+
+
 def head_frame(sk):
     return sk.head_origin, sk.head_R
 
@@ -357,15 +380,40 @@ def build_head(P, M):
     n = C["ring_verts"]
     md = MeshData("Jaguar_Head")
     rings = []
-    for yl in C["stations_y"]:
+    ys = fit_stations(field, O, R, C["stations_y"], z_local=0.0, y_from=-0.10, margin=0.012)
+    for yl in ys:
         o = O + R @ np.array([0.0, yl, 0.0])
         up = R @ Z
         ctr, _, _ = inside_span(field, o, up, -0.15, 0.2)
         dirs = np.array([R @ d for d in ring_dirs(0.0, n)])
         t, _ = raycast(field, ctr, dirs, 0.16)
         rings.append(md.add_verts([Vector(ctr + d * ti) for d, ti in zip(dirs, t)]))
+    E = P["sculpt"]["eye"]
+    skin = Field(M, ("head",), keep=lambda p: not p.name.startswith("eye_socket"))
+    eyes, skinpt = {}, {}
+    for side, sx in (("L", 1.0), ("R", -1.0)):
+        gy, gp = math.radians(E["gaze_yaw_deg"]), math.radians(E["gaze_pitch_deg"])
+        A = R @ np.array([sx * math.sin(gy) * math.cos(gp), -math.cos(gy) * math.cos(gp), math.sin(gp)])
+        # piel a lo largo del eje del ojo desde la órbita; el globo queda
+        # `inset_frac` radios por debajo de ella (córnea asomando ~0.3 R)
+        O = sk.pts["orbit_" + side]
+        t, ok = raycast(skin, O - A * 0.03, A[None, :], 0.08)
+        Sk = O - A * 0.03 + A * t[0] if ok[0] else O
+        eyes[side] = (Sk - A * E.get("inset_frac", 0.70) * E["radius"], A)
+        skinpt[side] = Sk
+    # bloque de celdas del injerto: el más cercano al punto de piel del ojo
     eh = C["eye_hole"]
-    s0, la, r0, lr = eh["station"], eh["along"], eh["ring"], eh["around"]
+    la, lr = eh["along"], eh["around"]
+    best = (9e9, eh["station"], eh["ring"])
+    for s0c in range(1, len(rings) - la - 1):
+        for r0c in range(1, n // 2 - lr):
+            vs = [md.verts[rings[s0c + i][r0c + j]] for i in range(la + 1) for j in range(lr + 1)]
+            c = sum(vs, Vector()) / len(vs)
+            dd = (c - Vector(skinpt["L"])).length
+            if dd < best[0]:
+                best = (dd, s0c, r0c)
+    s0, r0 = best[1], best[2]
+    print("Injerto del ojo: estación %d, anillo %d (%.1f mm del punto de piel)" % (s0, r0, best[0] * 1000))
     tube_faces(md, rings, [(s0, la, r0, lr), (s0, la, mirror_hole(n, r0, lr), lr)])
     a = n // 4
     c0 = (n - a // 2) % n
@@ -376,15 +424,7 @@ def build_head(P, M):
     md.group("nose_tip", [Gf[a // 2][a // 2]])
     md.group("occiput", [rings[C["occiput_station"]][0]])
     # cuencas: bucles de párpado alrededor del globo ocular
-    E = P["sculpt"]["eye"]
-    eyes = {}
-    for side, sx in (("L", 1.0), ("R", -1.0)):
-        gy, gp = math.radians(E["gaze_yaw_deg"]), math.radians(E["gaze_pitch_deg"])
-        A = R @ np.array([sx * math.sin(gy) * math.cos(gp), -math.cos(gy) * math.cos(gp), math.sin(gp)])
-        Ec = sk.pts["orbit_" + side] - A * E["inset"]
-        eyes[side] = (Ec, A)
     loopL = hole_loop(rings, s0, la, r0, lr)
-    skin = Field(M, ("head",), keep=lambda p: not p.name.startswith("eye_socket"))
     ringsL = eye_socket(md, loopL, eyes["L"], E, C, R, field=skin)
     loopR = hole_loop(rings, s0, la, r0, lr, mirror=True)
     prev, ringsR = loopR, []
@@ -455,7 +495,8 @@ def build_jaw(P, M):
     n = C["ring_verts"]
     md = MeshData("Jaguar_LowerJaw")
     rings = []
-    for yl in C["stations_y"]:
+    ys = fit_stations(field, O, R, C["stations_y"], z_local=-0.075, y_from=-0.15, margin=0.010)
+    for yl in ys:
         o = O + R @ np.array([0.0, yl, -0.075])
         ctr, _, _ = inside_span(field, o, R @ Z, -0.06, 0.06)
         dirs = np.array([R @ d for d in ring_dirs(0.0, n)])

@@ -1,6 +1,6 @@
 {
  "_doc": "Parametros del jaguar base. Unidades: metros. Z arriba, el animal mira a -Y; +X es su lado IZQUIERDO. Las coordenadas se dan en un marco de diseno; al final el modelo se recentra para que el origen quede en el suelo, centrado entre las cuatro zarpas. Las patas y ojos/orejas derechos se generan por simetria.",
- "version_note": "v06: lectura felina de la cabeza \u2014 orejas laterales y mas bajas, puente nasal estrecho con trufa definida, ojos mas grandes",
+ "version_note": "v07: forma guiada por referencias (escultura SDF ajustada a las siluetas + topologia v06 transferida)",
  "subdivision_levels": 1,
  "targets": {
   "_doc": "Objetivos (ver reference/medidas.md). Se comparan contra medidas calculadas de la malla final.",
@@ -1025,11 +1025,11 @@
  "skeleton": {
   "_doc": "Landmarks de la pose neutra (de pie), lado IZQUIERDO (+X) y linea media; el derecho es espejo. Columna: centros de los cuerpos vertebrales. Medidas oseas de Panthera escaladas: escapula ~0.23 m, humero ~0.23, radio ~0.21, metacarpo ~0.085, femur ~0.25, tibia ~0.23, metatarso ~0.13, cervicales ~0.25, toracicas+lumbares ~0.82. 'scales' las ajusta el optimizador dentro de +-12 %.",
   "scales": {
-   "height": 0.99163,
-   "torso_length": 0.9648,
-   "neck_length": 1.05595,
-   "head": 0.90385,
-   "head_pitch": 6.43631
+   "height": 0.96985,
+   "torso_length": 0.94225,
+   "neck_length": 1.08274,
+   "head": 0.90104,
+   "head_pitch": -3.63858
   },
   "points": {
    "withers": [
@@ -1213,14 +1213,14 @@
      0.085
     ],
     "orbit_L": [
-     0.042,
+     0.052,
      -0.165,
-     0.045
+     0.048
     ],
     "nose_tip": [
      0.0,
-     -0.295,
-     0.0
+     -0.286,
+     0.008
     ],
     "jaw_hinge_L": [
      0.068,
@@ -1238,15 +1238,15 @@
      0.005
     ],
     "ear_base_L": [
-     0.078,
-     -0.055,
-     0.078
+     0.08,
+     -0.04,
+     0.08
     ]
    }
   },
   "tail": {
    "_doc": "6 segmentos iguales desde Ca1; cada angulo dobla el segmento siguiente (>0 hacia abajo) respecto al anterior; el primero respecto a la horizontal hacia atras.",
-   "length": 0.55,
+   "length": 0.56,
    "angles_neutral": [
     25,
     30,
@@ -1260,147 +1260,148 @@
  "poses": {
   "_doc": "Poses de las fotos (grados, ver convencion en src/skeleton.py). Las ajusta el optimizador; la pose neutra es {}.",
   "side_photo": {
-   "scap_top_L": 15.895,
-   "shoulder_L": -16.816,
-   "elbow_L": 0.07,
-   "carpus_L": -41.853,
+   "scap_top_L": -6.217,
+   "shoulder_L": -28.367,
+   "elbow_L": -1.626,
+   "carpus_L": -39.193,
    "mcp_L": 0,
-   "scap_top_R": -3.482,
-   "shoulder_R": -40.399,
-   "elbow_R": 11.489,
-   "carpus_R": 1.953,
-   "hip_L": -30.348,
-   "knee_L": 4.757,
-   "hock_L": -5.123,
+   "scap_top_R": 26.247,
+   "shoulder_R": -38.771,
+   "elbow_R": 8.995,
+   "carpus_R": 9.806,
+   "hip_L": -12.197,
+   "knee_L": -44.846,
+   "hock_L": 36.712,
    "mtp_L": 0,
-   "hip_R": 0.723,
-   "knee_R": 11.399,
-   "hock_R": -6.537,
-   "neck1": -9.91,
-   "neck2": 11.28,
-   "head": 16.661,
-   "tail0": 34,
-   "tail1": -39,
-   "tail2": -33,
-   "tail3": -40,
-   "tail4": -32,
-   "tail5": -13
+   "hip_R": 31.563,
+   "knee_R": -24.478,
+   "hock_R": -23.945,
+   "neck1": -10.335,
+   "neck2": -9.309,
+   "head": 44.984,
+   "tail0": 43.184,
+   "tail1": -50.895,
+   "tail2": -39.964,
+   "tail3": -35.925,
+   "tail4": -23.255,
+   "tail5": -18.589
   },
   "front_photo": {
-   "shoulder_R": -12.297,
-   "carpus_R": -20.092,
-   "shoulder_L": 12.43,
-   "neck1": -5.655,
-   "head": 8.252,
-   "hip_L": -26.546,
-   "hip_R": 4.185,
-   "elbow_L": 30.163,
-   "carpus_L": -11.56,
-   "elbow_R": -2.138
+   "shoulder_R": -11.764,
+   "carpus_R": -34.181,
+   "shoulder_L": 2.836,
+   "neck1": 34.678,
+   "head": 32.8,
+   "hip_L": -22.856,
+   "hip_R": -14.601,
+   "elbow_L": 10.896,
+   "carpus_L": -2.021,
+   "elbow_R": 34.953
   }
  },
  "sculpt": {
   "_doc": "Volumenes musculares de la escultura SDF (src/sdf.py). Cada primitiva va unida a un hueso; 'c'/'a'/'b' se dan con landmarks ('lm', 'at' = punto sobre un segmento) o en coords locales de cabeza ('hl'); 'off' en metros; 'k' = radio de mezcla suave; 'g' = grupo de escala que ajusta el optimizador; 'mirror' crea la copia derecha.",
   "groups": {
    "chest": [
-    0.81596,
-    1.0,
-    0.94346
+    1.03,
+    1,
+    0.9
    ],
    "loin": [
-    0.97606,
-    1.0,
-    1.07221
+    0.86,
+    1,
+    1.0
    ],
    "belly": [
-    0.83994,
-    1.0,
-    0.78331
+    0.78,
+    1,
+    0.8
    ],
    "croup": [
-    0.81746,
-    1.0,
-    1.19669
+    0.88,
+    1,
+    0.98
    ],
    "neck": [
-    0.76813,
-    1.0,
-    1.17439
+    0.74,
+    1,
+    0.8
    ],
    "back": [
-    0.768,
-    0.768,
-    0.768
+    0.76,
+    0.76,
+    0.76
    ],
    "fold": [
-    0.40015,
-    0.40015,
-    0.40015
+    0.45,
+    0.45,
+    0.45
    ],
    "shoulder": [
-    0.7537,
-    0.7537,
-    0.7537
+    0.79,
+    0.79,
+    0.79
    ],
    "arm": [
-    0.77918,
-    0.77918,
-    0.77918
+    0.78,
+    0.78,
+    0.78
    ],
    "forearm": [
-    0.89869,
-    0.89869,
-    0.89869
+    1.0,
+    1.0,
+    1.0
    ],
    "thigh": [
-    0.75028,
-    0.75028,
-    0.75028
+    0.76,
+    0.76,
+    0.76
    ],
    "shank": [
-    1.05598,
-    1.05598,
-    1.05598
+    0.97,
+    0.97,
+    0.97
    ],
    "paw_f": [
-    0.95543,
-    0.95543,
-    0.95543
+    1.02,
+    1.02,
+    1.02
    ],
    "paw_h": [
-    0.97654,
-    0.97654,
-    0.97654
+    1.05,
+    1.05,
+    1.05
    ],
    "tail": [
-    0.91196,
-    0.91196,
-    0.91196
+    1.05,
+    1.05,
+    1.05
    ],
    "muzzle": [
-    0.97541,
-    0.97541,
-    0.97541
+    1.17161,
+    1.17161,
+    1.17161
    ],
    "jaw": [
-    1.16666,
-    1.16666,
-    1.16666
+    1.08,
+    1.08,
+    1.08
    ],
    "tuck": [
-    1.18172,
-    1.18172,
-    1.18172
+    0.87897,
+    0.87897,
+    0.87897
    ]
   },
   "eye": {
-   "radius": 0.0185,
+   "radius": 0.0215,
    "gaze_yaw_deg": 22.0,
    "gaze_pitch_deg": 2.0,
-   "inset": 0.011
+   "inset": 0.011,
+   "inset_frac": 0.7
   },
   "res": {
-   "body": 0.008,
+   "body": 0.005,
    "head": 0.003
   },
   "prims": [
@@ -1466,7 +1467,7 @@
      0.058
     ],
     "bone": "torso",
-    "k": 0.05,
+    "k": 0.07,
     "g": "back"
    },
    {
@@ -1486,7 +1487,7 @@
      0.088
     ],
     "bone": "torso",
-    "k": 0.06,
+    "k": 0.08,
     "g": "loin"
    },
    {
@@ -1526,7 +1527,7 @@
      0.065
     ],
     "bone": "torso",
-    "k": 0.06,
+    "k": 0.08,
     "g": "fold"
    },
    {
@@ -1546,7 +1547,7 @@
      0.12
     ],
     "bone": "torso",
-    "k": 0.05,
+    "k": 0.07,
     "g": "croup"
    },
    {
@@ -1566,7 +1567,7 @@
      0.075
     ],
     "bone": "torso",
-    "k": 0.05,
+    "k": 0.07,
     "g": "croup",
     "mirror": true
    },
@@ -1587,7 +1588,7 @@
      0.1
     ],
     "bone": "torso",
-    "k": 0.05,
+    "k": 0.07,
     "g": "chest"
    },
    {
@@ -1607,7 +1608,7 @@
      0.15
     ],
     "bone": "torso",
-    "k": 0.05,
+    "k": 0.07,
     "g": "neck"
    },
    {
@@ -1722,7 +1723,7 @@
      0.07
     ],
     "bone": "scapula_L",
-    "k": 0.05,
+    "k": 0.07,
     "g": "shoulder",
     "mirror": true,
     "axis": [
@@ -1748,7 +1749,7 @@
      0.06
     ],
     "bone": "scapula_L",
-    "k": 0.05,
+    "k": 0.07,
     "g": "shoulder",
     "mirror": true
    },
@@ -1774,7 +1775,7 @@
      0.065
     ],
     "bone": "humerus_L",
-    "k": 0.05,
+    "k": 0.07,
     "g": "arm",
     "mirror": true,
     "axis": [
@@ -1804,7 +1805,7 @@
      0.04
     ],
     "bone": "humerus_L",
-    "k": 0.04,
+    "k": 0.06,
     "g": "arm",
     "mirror": true,
     "axis": [
@@ -1865,7 +1866,7 @@
      0.055
     ],
     "bone": "radius_L",
-    "k": 0.04,
+    "k": 0.05,
     "g": "forearm",
     "mirror": true,
     "axis": [
@@ -1991,17 +1992,17 @@
      ],
      "off": [
       0,
-      0,
+      0.008,
       0.012
      ]
     },
     "r": [
-     0.056,
-     0.052,
-     0.028
+     0.046,
+     0.04,
+     0.026
     ],
     "bone": "fdigits_L",
-    "k": 0.02,
+    "k": 0.015,
     "g": "paw_f",
     "mirror": true
    },
@@ -2016,18 +2017,18 @@
       0.5
      ],
      "off": [
-      -0.032,
-      -0.035,
-      0.004
+      -0.034,
+      -0.03,
+      0.002
      ]
     },
     "r": [
-     0.019,
-     0.022,
-     0.019
+     0.02,
+     0.023,
+     0.02
     ],
     "bone": "fdigits_L",
-    "k": 0.008,
+    "k": 0.006,
     "g": "paw_f",
     "mirror": true
    },
@@ -2042,18 +2043,18 @@
       0.5
      ],
      "off": [
-      -0.011,
-      -0.048,
-      0.004
+      -0.012,
+      -0.044,
+      0.002
      ]
     },
     "r": [
-     0.019,
-     0.022,
-     0.019
+     0.02,
+     0.023,
+     0.02
     ],
     "bone": "fdigits_L",
-    "k": 0.008,
+    "k": 0.006,
     "g": "paw_f",
     "mirror": true
    },
@@ -2068,18 +2069,18 @@
       0.5
      ],
      "off": [
-      0.011,
-      -0.048,
-      0.004
+      0.012,
+      -0.044,
+      0.002
      ]
     },
     "r": [
-     0.019,
-     0.022,
-     0.019
+     0.02,
+     0.023,
+     0.02
     ],
     "bone": "fdigits_L",
-    "k": 0.008,
+    "k": 0.006,
     "g": "paw_f",
     "mirror": true
    },
@@ -2094,18 +2095,18 @@
       0.5
      ],
      "off": [
-      0.032,
-      -0.035,
-      0.004
+      0.034,
+      -0.03,
+      0.002
      ]
     },
     "r": [
-     0.019,
-     0.022,
-     0.019
+     0.02,
+     0.023,
+     0.02
     ],
     "bone": "fdigits_L",
-    "k": 0.008,
+    "k": 0.006,
     "g": "paw_f",
     "mirror": true
    },
@@ -2121,14 +2122,14 @@
      ],
      "off": [
       0,
-      0.014,
-      0.0
+      0.016,
+      -0.004
      ]
     },
     "r": [
      0.03,
      0.022,
-     0.014
+     0.012
     ],
     "bone": "fdigits_L",
     "k": 0.01,
@@ -2156,7 +2157,7 @@
      0.105
     ],
     "bone": "femur_L",
-    "k": 0.06,
+    "k": 0.08,
     "g": "thigh",
     "mirror": true,
     "axis": [
@@ -2186,7 +2187,7 @@
      0.06
     ],
     "bone": "femur_L",
-    "k": 0.05,
+    "k": 0.07,
     "g": "thigh",
     "mirror": true,
     "axis": [
@@ -2216,7 +2217,7 @@
      0.07
     ],
     "bone": "femur_L",
-    "k": 0.05,
+    "k": 0.07,
     "g": "thigh",
     "mirror": true,
     "axis": [
@@ -2242,7 +2243,7 @@
      0.055
     ],
     "bone": "femur_L",
-    "k": 0.04,
+    "k": 0.05,
     "g": "shank",
     "mirror": true
    },
@@ -2268,7 +2269,7 @@
      0.045
     ],
     "bone": "tibia_L",
-    "k": 0.04,
+    "k": 0.05,
     "g": "shank",
     "mirror": true,
     "axis": [
@@ -2397,17 +2398,17 @@
      ],
      "off": [
       0,
-      0,
+      0.008,
       0.012
      ]
     },
     "r": [
-     0.05,
-     0.05,
-     0.027
+     0.042,
+     0.038,
+     0.025
     ],
     "bone": "hdigits_L",
-    "k": 0.02,
+    "k": 0.015,
     "g": "paw_h",
     "mirror": true
    },
@@ -2422,18 +2423,18 @@
       0.5
      ],
      "off": [
+      -0.03,
       -0.028,
-      -0.033,
-      0.004
+      0.002
      ]
     },
     "r": [
-     0.017,
-     0.02,
-     0.018
+     0.018,
+     0.021,
+     0.019
     ],
     "bone": "hdigits_L",
-    "k": 0.008,
+    "k": 0.006,
     "g": "paw_h",
     "mirror": true
    },
@@ -2449,17 +2450,17 @@
      ],
      "off": [
       -0.01,
-      -0.045,
-      0.004
+      -0.04,
+      0.002
      ]
     },
     "r": [
-     0.017,
-     0.02,
-     0.018
+     0.018,
+     0.021,
+     0.019
     ],
     "bone": "hdigits_L",
-    "k": 0.008,
+    "k": 0.006,
     "g": "paw_h",
     "mirror": true
    },
@@ -2475,17 +2476,17 @@
      ],
      "off": [
       0.01,
-      -0.045,
-      0.004
+      -0.04,
+      0.002
      ]
     },
     "r": [
-     0.017,
-     0.02,
-     0.018
+     0.018,
+     0.021,
+     0.019
     ],
     "bone": "hdigits_L",
-    "k": 0.008,
+    "k": 0.006,
     "g": "paw_h",
     "mirror": true
    },
@@ -2500,18 +2501,18 @@
       0.5
      ],
      "off": [
-      0.028,
-      -0.033,
-      0.004
+      0.03,
+      -0.028,
+      0.002
      ]
     },
     "r": [
-     0.017,
-     0.02,
-     0.018
+     0.018,
+     0.021,
+     0.019
     ],
     "bone": "hdigits_L",
-    "k": 0.008,
+    "k": 0.006,
     "g": "paw_h",
     "mirror": true
    },
@@ -2527,14 +2528,14 @@
      ],
      "off": [
       0,
-      0.012,
-      0.0
+      0.014,
+      -0.004
      ]
     },
     "r": [
      0.027,
      0.02,
-     0.013
+     0.012
     ],
     "bone": "hdigits_L",
     "k": 0.01,
@@ -2678,6 +2679,46 @@
     "g": "head"
    },
    {
+    "name": "head_core",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0,
+      -0.15,
+      0.005
+     ]
+    },
+    "r": [
+     0.05,
+     0.12,
+     0.045
+    ],
+    "bone": "head",
+    "k": 0.03,
+    "g": "head"
+   },
+   {
+    "name": "jaw_core",
+    "comp": "jaw",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0,
+      -0.17,
+      -0.076
+     ]
+    },
+    "r": [
+     0.035,
+     0.075,
+     0.018
+    ],
+    "bone": "jaw",
+    "k": 0.02,
+    "g": "jaw"
+   },
+   {
     "name": "temporal",
     "comp": "head",
     "type": "ell",
@@ -2730,7 +2771,7 @@
      ]
     },
     "r": [
-     0.065,
+     0.075,
      0.065,
      0.042
     ],
@@ -2744,15 +2785,15 @@
     "type": "ell",
     "c": {
      "hl": [
-      0.088,
-      -0.115,
-      0.0
+      0.086,
+      -0.12,
+      0.005
      ]
     },
     "r": [
-     0.03,
-     0.065,
-     0.032
+     0.024,
+     0.06,
+     0.03
     ],
     "bone": "head",
     "k": 0.025,
@@ -2770,18 +2811,18 @@
     "type": "ell",
     "c": {
      "hl": [
-      0.072,
-      -0.095,
+      0.071,
+      -0.1,
       -0.045
      ]
     },
     "r": [
-     0.04,
-     0.055,
-     0.05
+     0.031,
+     0.05,
+     0.045
     ],
     "bone": "head",
-    "k": 0.03,
+    "k": 0.045,
     "g": "head",
     "mirror": true
    },
@@ -2791,18 +2832,18 @@
     "type": "ell",
     "c": {
      "hl": [
-      0.085,
-      -0.07,
-      -0.03
+      0.08,
+      -0.08,
+      -0.035
      ]
     },
     "r": [
-     0.035,
-     0.05,
-     0.05
+     0.025,
+     0.045,
+     0.045
     ],
     "bone": "head",
-    "k": 0.03,
+    "k": 0.045,
     "g": "head",
     "mirror": true
    },
@@ -2812,38 +2853,18 @@
     "type": "ell",
     "c": {
      "hl": [
-      0.042,
-      -0.165,
-      0.072
-     ]
-    },
-    "r": [
-     0.026,
-     0.016,
-     0.012
-    ],
-    "bone": "head",
-    "k": 0.015,
-    "mirror": true
-   },
-   {
-    "name": "orbit_floor",
-    "comp": "head",
-    "type": "ell",
-    "c": {
-     "hl": [
       0.05,
-      -0.17,
-      0.02
+      -0.168,
+      0.075
      ]
     },
     "r": [
-     0.028,
-     0.02,
-     0.015
+     0.03,
+     0.012,
+     0.009
     ],
     "bone": "head",
-    "k": 0.015,
+    "k": 0.02,
     "mirror": true
    },
    {
@@ -2853,17 +2874,17 @@
     "c": {
      "hl": [
       0,
-      -0.222,
-      -0.012
+      -0.212,
+      -0.018
      ]
     },
     "r": [
-     0.052,
-     0.062,
-     0.04
+     0.066,
+     0.05,
+     0.036
     ],
     "bone": "head",
-    "k": 0.035,
+    "k": 0.04,
     "g": "muzzle"
    },
    {
@@ -2880,14 +2901,14 @@
     "b": {
      "hl": [
       0,
-      -0.27,
-      0.03
+      -0.262,
+      0.034
      ]
     },
-    "ra": 0.04,
-    "rb": 0.026,
+    "ra": 0.046,
+    "rb": 0.03,
     "bone": "head",
-    "k": 0.025,
+    "k": 0.035,
     "g": "muzzle"
    },
    {
@@ -2896,18 +2917,18 @@
     "type": "ell",
     "c": {
      "hl": [
-      0.028,
-      -0.255,
-      -0.026
+      0.034,
+      -0.238,
+      -0.036
      ]
     },
     "r": [
-     0.028,
+     0.034,
      0.026,
-     0.026
+     0.024
     ],
     "bone": "head",
-    "k": 0.015,
+    "k": 0.022,
     "g": "muzzle",
     "mirror": true
    },
@@ -2917,18 +2938,18 @@
     "type": "ell",
     "c": {
      "hl": [
-      0.042,
-      -0.21,
-      -0.046
+      0.05,
+      -0.2,
+      -0.05
      ]
     },
     "r": [
-     0.03,
-     0.05,
+     0.032,
+     0.046,
      0.02
     ],
     "bone": "head",
-    "k": 0.015,
+    "k": 0.025,
     "g": "muzzle",
     "mirror": true
    },
@@ -2939,17 +2960,17 @@
     "c": {
      "hl": [
       0,
-      -0.282,
+      -0.27,
       0.012
      ]
     },
     "r": [
-     0.024,
-     0.014,
-     0.017
+     0.03,
+     0.016,
+     0.02
     ],
     "bone": "head",
-    "k": 0.01
+    "k": 0.015
    },
    {
     "name": "philtrum",
@@ -2958,8 +2979,8 @@
     "c": {
      "hl": [
       0,
-      -0.292,
-      -0.022
+      -0.27,
+      -0.024
      ]
     },
     "r": [
@@ -2977,18 +2998,18 @@
     "type": "ell",
     "c": {
      "hl": [
-      0.01,
-      -0.297,
-      0.008
+      0.012,
+      -0.284,
+      0.006
      ]
     },
     "r": [
-     0.005,
-     0.01,
-     0.004
+     0.004,
+     0.006,
+     0.003
     ],
     "bone": "head",
-    "k": 0.003,
+    "k": 0.002,
     "op": "sub",
     "mirror": true
    },
@@ -2998,18 +3019,18 @@
     "type": "ell",
     "c": {
      "hl": [
-      0.042374606593415916,
+      0.05237460659341591,
       -0.16592718385456678,
-      0.045035
+      0.048035
      ]
     },
     "r": [
-     0.021,
-     0.02,
-     0.0145
+     0.019,
+     0.019,
+     0.0115
     ],
     "bone": "head",
-    "k": 0.006,
+    "k": 0.004,
     "op": "sub",
     "mirror": true,
     "rot": [
@@ -3111,27 +3132,27 @@
     "type": "ell",
     "c": {
      "hl": [
-      0.078,
-      -0.055,
-      0.078
+      0.08,
+      -0.04,
+      0.08
      ],
      "off": [
-      0.012,
+      0.014,
       0.0,
       0.02
      ]
     },
     "r": [
-     0.032,
-     0.01,
-     0.034
+     0.03168,
+     0.011,
+     0.04032
     ],
     "bone": "head",
     "k": 0.01,
     "mirror": true,
     "rot": [
-     -10,
-     35,
+     -5,
+     40,
      30
     ]
    },
@@ -3141,28 +3162,28 @@
     "type": "ell",
     "c": {
      "hl": [
-      0.078,
-      -0.055,
-      0.078
+      0.08,
+      -0.04,
+      0.08
      ],
      "off": [
-      0.0178,
-      -0.0061,
-      0.0233
+      0.0205,
+      -0.0062,
+      0.0228
      ]
     },
     "r": [
-     0.025,
-     0.007,
-     0.027
+     0.02552,
+     0.008,
+     0.033600000000000005
     ],
     "bone": "head",
     "k": 0.004,
     "op": "sub",
     "mirror": true,
     "rot": [
-     -10,
-     35,
+     -5,
+     40,
      30
     ]
    },
@@ -3172,41 +3193,484 @@
     "type": "ell",
     "c": {
      "hl": [
-      0.078,
-      -0.055,
-      0.078
+      0.08,
+      -0.04,
+      0.08
      ],
      "off": [
-      0.004,
+      0.005,
       0.0,
       0.002
      ]
     },
     "r": [
-     0.026,
-     0.016,
-     0.022
+     0.0264,
+     0.017,
+     0.026880000000000005
     ],
     "bone": "head",
     "k": 0.012,
     "mirror": true,
     "rot": [
-     -10,
-     35,
+     -5,
+     40,
      30
     ]
    }
-  ]
+  ],
+  "offsets": {
+   "croup": [
+    0.0,
+    0.02139,
+    -0.01038
+   ],
+   "glute": [
+    0.0,
+    -0.02616,
+    -0.03094
+   ],
+   "loin": [
+    0.0,
+    0.0,
+    -0.03191
+   ],
+   "thorax_dorsal": [
+    0.0,
+    0.0,
+    0.00135
+   ],
+   "withers": [
+    0.0,
+    0.0,
+    -0.03008
+   ],
+   "belly_fold": [
+    0.0,
+    0.0,
+    0.03385
+   ],
+   "abdomen": [
+    0.0,
+    0.0,
+    0.02086
+   ],
+   "neck": [
+    0.0,
+    0.0,
+    0.01877
+   ],
+   "nape": [
+    0.0,
+    0.0,
+    -0.01384
+   ]
+  }
  },
  "fit": {
   "front_cam": {
-   "dist": 4.78053,
-   "height": 0.17603,
-   "aim_z": 0.20044,
-   "aim_y": -0.29941,
-   "f": 3775.16656,
-   "dx": 0.21007,
-   "cy": 149.71966
+   "dist": 7.68844,
+   "height": 0.15371,
+   "aim_z": 0.29889,
+   "aim_y": -0.22376,
+   "f": 5684.36044,
+   "dx": 0.23027,
+   "cy": 55.23847
   }
- }
+ },
+ "conform": {
+  "_doc": "Topologia limpia (misma que v06) colocada sobre la escultura: estaciones definidas con landmarks ('a','b','t' = punto sobre el segmento a->b, t puede salir de [0,1]); anillos de pata perpendiculares al hueso (o horizontales en la zarpa: 'paw_z'); raycast hasta la superficie. Luego 1 nivel de Catmull-Clark, proyeccion y relajacion tangencial.",
+  "ring_verts": 24,
+  "neck_fracs": [
+   0.0,
+   0.28,
+   0.55,
+   0.78
+  ],
+  "torso_y": [
+   [
+    "shoulder_L",
+    "olecranon_L",
+    -0.03
+   ],
+   [
+    "shoulder_L",
+    "olecranon_L",
+    0.27
+   ],
+   [
+    "shoulder_L",
+    "olecranon_L",
+    0.575
+   ],
+   [
+    "shoulder_L",
+    "olecranon_L",
+    0.88
+   ],
+   [
+    "shoulder_L",
+    "olecranon_L",
+    1.18
+   ],
+   [
+    "olecranon_L",
+    "patella_L",
+    0.169
+   ],
+   [
+    "olecranon_L",
+    "patella_L",
+    0.304
+   ],
+   [
+    "olecranon_L",
+    "patella_L",
+    0.439
+   ],
+   [
+    "olecranon_L",
+    "patella_L",
+    0.574
+   ],
+   [
+    "olecranon_L",
+    "patella_L",
+    0.709
+   ],
+   [
+    "olecranon_L",
+    "patella_L",
+    0.845
+   ],
+   [
+    "patella_L",
+    "ischium_L",
+    -0.117
+   ],
+   [
+    "patella_L",
+    "ischium_L",
+    0.139
+   ],
+   [
+    "patella_L",
+    "ischium_L",
+    0.396
+   ],
+   [
+    "patella_L",
+    "ischium_L",
+    0.652
+   ],
+   [
+    "patella_L",
+    "ischium_L",
+    0.85
+   ],
+   [
+    "patella_L",
+    "ischium_L",
+    0.97
+   ]
+  ],
+  "holes": {
+   "front": {
+    "station": 4,
+    "along": 4,
+    "ring": 6,
+    "around": 4
+   },
+   "hind": {
+    "station": 15,
+    "along": 4,
+    "ring": 7,
+    "around": 4
+   }
+  },
+  "tail_hole": {
+   "i0": 2,
+   "ha": 2,
+   "j0": 2,
+   "hb": 2
+  },
+  "rump_dome": 0.04,
+  "legs": {
+   "front": {
+    "blend": [
+     0.4,
+     0.8
+    ],
+    "paw_from_ring": 7,
+    "rings": [
+     {
+      "a": "shoulder",
+      "b": "elbow",
+      "t": 1.0,
+      "blend_next": [
+       "elbow",
+       "carpus"
+      ],
+      "rmax": 0.14
+     },
+     {
+      "a": "elbow",
+      "b": "carpus",
+      "t": 0.15,
+      "rmax": 0.12
+     },
+     {
+      "a": "elbow",
+      "b": "carpus",
+      "t": 0.4,
+      "rmax": 0.12
+     },
+     {
+      "a": "elbow",
+      "b": "carpus",
+      "t": 0.65,
+      "rmax": 0.12
+     },
+     {
+      "a": "elbow",
+      "b": "carpus",
+      "t": 0.88,
+      "rmax": 0.1
+     },
+     {
+      "a": "elbow",
+      "b": "carpus",
+      "t": 1.0,
+      "blend_next": [
+       "carpus",
+       "mcp"
+      ],
+      "rmax": 0.1
+     },
+     {
+      "a": "carpus",
+      "b": "mcp",
+      "t": 0.5,
+      "rmax": 0.1,
+      "warp": 0.15
+     },
+     {
+      "paw": [
+       "mcp",
+       "ftoe",
+       0.35
+      ],
+      "paw_z": 0.05,
+      "rmax": 0.1,
+      "warp": 0.25
+     },
+     {
+      "paw": [
+       "mcp",
+       "ftoe",
+       0.35
+      ],
+      "paw_z": 0.036,
+      "rmax": 0.1,
+      "warp": 0.38
+     },
+     {
+      "paw": [
+       "mcp",
+       "ftoe",
+       0.35
+      ],
+      "paw_z": 0.022,
+      "rmax": 0.1,
+      "warp": 0.42
+     },
+     {
+      "paw": [
+       "mcp",
+       "ftoe",
+       0.35
+      ],
+      "paw_z": 0.009,
+      "rmax": 0.1,
+      "warp": 0.42
+     }
+    ]
+   },
+   "hind": {
+    "blend": [
+     0.4,
+     0.8
+    ],
+    "paw_from_ring": 6,
+    "rings": [
+     {
+      "a": "knee",
+      "b": "hock",
+      "t": 0.25,
+      "rmax": 0.14
+     },
+     {
+      "a": "knee",
+      "b": "hock",
+      "t": 0.5,
+      "rmax": 0.12
+     },
+     {
+      "a": "knee",
+      "b": "hock",
+      "t": 0.75,
+      "rmax": 0.1
+     },
+     {
+      "a": "knee",
+      "b": "hock",
+      "t": 1.0,
+      "blend_next": [
+       "hock",
+       "mtp"
+      ],
+      "rmax": 0.1
+     },
+     {
+      "a": "hock",
+      "b": "mtp",
+      "t": 0.35,
+      "rmax": 0.1
+     },
+     {
+      "a": "hock",
+      "b": "mtp",
+      "t": 0.7,
+      "rmax": 0.1,
+      "warp": 0.15
+     },
+     {
+      "paw": [
+       "mtp",
+       "htoe",
+       0.35
+      ],
+      "paw_z": 0.05,
+      "rmax": 0.1,
+      "warp": 0.25
+     },
+     {
+      "paw": [
+       "mtp",
+       "htoe",
+       0.35
+      ],
+      "paw_z": 0.036,
+      "rmax": 0.1,
+      "warp": 0.38
+     },
+     {
+      "paw": [
+       "mtp",
+       "htoe",
+       0.35
+      ],
+      "paw_z": 0.022,
+      "rmax": 0.1,
+      "warp": 0.42
+     },
+     {
+      "paw": [
+       "mtp",
+       "htoe",
+       0.35
+      ],
+      "paw_z": 0.009,
+      "rmax": 0.1,
+      "warp": 0.42
+     }
+    ]
+   }
+  },
+  "tail": {
+   "rings": 14,
+   "start": 0.06,
+   "tip_cap": 0.022,
+   "blend": [
+    0.5
+   ]
+  },
+  "head": {
+   "ring_verts": 32,
+   "stations_y": [
+    0.04,
+    0.015,
+    -0.01,
+    -0.035,
+    -0.06,
+    -0.088,
+    -0.112,
+    -0.132,
+    -0.15,
+    -0.168,
+    -0.186,
+    -0.206,
+    -0.226,
+    -0.246,
+    -0.264,
+    -0.28
+   ],
+   "occiput_station": 1,
+   "eye_hole": {
+    "station": 7,
+    "along": 3,
+    "ring": 2,
+    "around": 2
+   },
+   "socket_rings": [
+    [
+     1.4,
+     0.7
+    ],
+    [
+     1.05,
+     0.74
+    ],
+    [
+     0.8,
+     0.62
+    ],
+    [
+     0.68,
+     0.45
+    ],
+    [
+     0.45,
+     0.0
+    ]
+   ],
+   "eye_open": [
+    1.05,
+    0.68
+   ],
+   "eye_slant_deg": 10.0,
+   "eye_fixed_from": 0,
+   "socket_snap": {
+    "0": 0.0,
+    "1": 0.0015
+   }
+  },
+  "jaw": {
+   "ring_verts": 20,
+   "stations_y": [
+    -0.09,
+    -0.11,
+    -0.13,
+    -0.15,
+    -0.17,
+    -0.19,
+    -0.208,
+    -0.224,
+    -0.238,
+    -0.25
+   ]
+  },
+  "ear_res": 4,
+  "relax_iters": 4
+ },
+ "targets_tol": 0.08
 }

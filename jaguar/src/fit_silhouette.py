@@ -32,10 +32,14 @@ import silhouette as sil  # noqa: E402
 DENSITY = 1000.0  # kg/m³ (cuerpo entero con pulmones ≈ agua; ver bitácora)
 MASS_RANGE = (80.0, 95.0)
 TOL = 0.08
+REG = 0.6  # peso de la regularización de tamaños musculares
 
 LEGS_SIDE = ["scap_top_L", "shoulder_L", "elbow_L", "carpus_L", "scap_top_R", "shoulder_R", "elbow_R",
              "carpus_R", "hip_L", "knee_L", "hock_L", "hip_R", "knee_R", "hock_R"]
 TAILS = ["tail%d" % i for i in range(6)]
+# desplazamientos por primitiva (y = adelante/atrás, z = arriba/abajo)
+OFFSETS = {"croup": "yz", "glute": "yz", "loin": "z", "thorax_dorsal": "z", "withers": "z",
+           "belly_fold": "z", "abdomen": "z", "neck": "z", "nape": "z"}
 GROUPS_XZ = ["chest", "loin", "belly", "croup", "neck"]
 GROUPS_U = ["back", "fold", "shoulder", "arm", "forearm", "thigh", "shank", "paw_f", "paw_h", "tail",
             "muzzle", "jaw", "tuck"]
@@ -70,10 +74,14 @@ def param_space(stage):
         for j in TAILS:
             ps.append(("pose_side", j, -70.0, 70.0))
     if stage == "B":
+        for name, axes in OFFSETS.items():
+            for ax in axes:
+                ps.append(("offset", name + ":" + ax, -0.04, 0.04))
         for g in GROUPS_XZ:
-            ps += [("group_x", g, 0.75, 1.30), ("group_z", g, 0.75, 1.30)]
+            hz = 1.15 if g == "neck" else 1.30
+            ps += [("group_x", g, 0.80, 1.25), ("group_z", g, 0.80, hz)]
         for g in GROUPS_U:
-            lo, hi = (0.4, 1.8) if g in ("fold", "tuck") else (0.75, 1.30)
+            lo, hi = (0.4, 1.8) if g in ("fold", "tuck") else (0.80, 1.25)
             ps.append(("group_u", g, lo, hi))
     if stage == "C":
         for j in ("shoulder_L", "elbow_L", "carpus_L", "shoulder_R", "elbow_R", "carpus_R",
@@ -94,6 +102,7 @@ class State:
         self.pose_side = dict(P["poses"]["side_photo"])
         self.pose_front = dict(P["poses"]["front_photo"])
         self.cam = dict(P.get("fit", {}).get("front_cam", sil.FRONT_CAM0))
+        self.offsets = {k: list(v) for k, v in P["sculpt"].get("offsets", {}).items()}
 
     def get(self, kind, key):
         if kind == "scale":
@@ -101,6 +110,9 @@ class State:
         if kind in ("group_x", "group_z", "group_u"):
             g = self.groups.get(key, [1.0, 1.0, 1.0])
             return g[0] if kind != "group_z" else g[2]
+        if kind == "offset":
+            n, ax = key.split(":")
+            return self.offsets.get(n, [0.0, 0.0, 0.0])["xyz".index(ax)]
         if kind == "pose_side":
             return self.pose_side.get(key, 0.0)
         if kind == "pose_front":
@@ -119,6 +131,9 @@ class State:
                 g[2] = v
             else:
                 g[0] = g[1] = g[2] = v
+        elif kind == "offset":
+            n, ax = key.split(":")
+            self.offsets.setdefault(n, [0.0, 0.0, 0.0])["xyz".index(ax)] = v
         elif kind == "pose_side":
             self.pose_side[key] = v
         elif kind == "pose_front":
@@ -132,6 +147,7 @@ class State:
         P["poses"]["side_photo"] = {k: round(v, 3) for k, v in self.pose_side.items()}
         P["poses"]["front_photo"] = {k: round(v, 3) for k, v in self.pose_front.items()}
         P.setdefault("fit", {})["front_cam"] = {k: round(v, 5) for k, v in self.cam.items()}
+        P["sculpt"]["offsets"] = {k: [round(x, 5) for x in v] for k, v in self.offsets.items()}
 
 
 # ------------------------------------------------------------ evaluación
@@ -145,6 +161,7 @@ class Evaluator:
         self.targets = {k: v for k, v in T.items() if not k.startswith("_")}
 
     def model(self, st):
+        self.P["sculpt"]["offsets"] = st.offsets
         return sdfmod.JaguarSDF(self.P, scales=st.scales, groups=st.groups)
 
     def union_mesh(self, M, pose, h=None):
@@ -203,7 +220,7 @@ class Evaluator:
         chest_clear = z[sel].min() if sel.any() else 0.0
         sel = mid & (np.abs(y - (ph[1] - 0.28)) < 0.03) & (z > 0.15)
         belly = z[sel].min() if sel.any() else 0.0
-        sel = (y > pf[1] - 0.05) & (y < ph[1] - 0.15) & (z > chest_clear + 0.05)
+        sel = (y > pf[1] + 0.05) & (y < ph[1] - 0.15) & (z > chest_clear + 0.05)
         torso_w = 2 * np.abs(x[sel]).max() if sel.any() else 0.0
         nose = V[np.argmin(y)]
         sel = (z < 0.05) & (np.abs(y - pf[1]) < 0.08) & (x > 0)
@@ -283,6 +300,10 @@ def run_stage(P, st, ev, stage, evals, log, seed=1):
             out["front"] = ev.front(M, s2)
             m, mass = ev.measures(M)
             pen, worst = ev.penalty(m, mass)
+            # regularización: los volúmenes no deben alejarse mucho de su tamaño
+            # anatómico (si no, el ajuste compensa masa con formas raras)
+            gdev = [math.log(max(1e-3, v)) for g in s2.groups.values() for v in (g[0], g[2])]
+            pen += REG * float(np.mean(np.square(gdev))) if gdev else 0.0
             val = -(0.7 * out["side"] + 0.3 * out["front"]) + pen
         else:
             out["front"] = ev.front(M, s2)

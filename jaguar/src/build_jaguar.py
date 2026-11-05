@@ -47,6 +47,8 @@ def parse_args():
     ap.add_argument("--no-render", action="store_true")
     ap.add_argument("--samples", type=int, default=48)
     ap.add_argument("--export-glb", action="store_true")
+    ap.add_argument("--no-sculpt", action="store_true",
+                    help="no exportar la escultura de alta resolución (v07+)")
     ap.add_argument("--preview", action="store_true",
                     help="renders rápidos a media resolución en renders/_preview (sin .blend)")
     return ap.parse_args(argv)
@@ -595,13 +597,13 @@ def main():
         shutil.copyfile(args.params, dst)
     if M is not None:
         import skeleton as skmod
-        import silhouette as sil
         exp_dir = os.path.join(ROOT_DIR, "export")
         os.makedirs(exp_dir, exist_ok=True)
         skmod.export_landmarks(M.sk, os.path.join(exp_dir, "landmarks.json"), offset=np.array(off),
                                poses={k: v for k, v in P["poses"].items() if not k.startswith("_")})
         report["extra"].update(measure.sdf_extra(P, M))
         try:
+            import silhouette as sil
             report["iou"] = sil.evaluate_posed_mesh(P, M, objs, np.array(off), os.path.join(vdir, "iou"),
                                                     args.version)
         except ImportError as e:  # Blender sin OpenCV: el IoU se calcula desde el venv
@@ -634,6 +636,55 @@ def main():
         # cámaras/luces se añaden después de guardar: el .blend queda limpio
         render_views.render_all(args.version, samples=args.samples, report=report,
                                  targets=P["targets"])
+    if M is not None and not args.no_sculpt:
+        export_sculpt(P, args, np.array(off), render=not args.no_render)
+
+
+def export_sculpt(P, args, off, render=True):
+    """Escultura de alta resolución (marching cubes) en su propio .blend."""
+    try:
+        import sculpt
+    except ImportError:
+        return
+    try:
+        import skimage  # noqa: F401
+    except ImportError:
+        print("Escultura omitida: falta scikit-image en este Python")
+        return
+    import math as _m
+    import sdf as sdfmod
+    bpy.ops.wm.read_factory_settings(use_empty=True)
+    M = sdfmod.JaguarSDF(P)
+    meshes = sculpt.surfaces(M, None, P["sculpt"]["res"])
+    for k in meshes:
+        v, f = meshes[k]
+        meshes[k] = (v - off, f)
+    objs = sculpt.to_blender(meshes, prefix="Sculpt_")
+    ntri = sum(len(f) for _, f in meshes.values())
+    print("Escultura: %d triángulos" % ntri)
+    E = P["sculpt"]["eye"]
+    import conform
+    hd = conform.Field(M, ("head",), keep=lambda p: not p.name.startswith("eye_socket"))
+    gy, gp = _m.radians(E["gaze_yaw_deg"]), _m.radians(E["gaze_pitch_deg"])
+    for side, sx in (("L", 1.0), ("R", -1.0)):
+        A = M.sk.head_R @ np.array([sx * _m.sin(gy) * _m.cos(gp), -_m.cos(gy) * _m.cos(gp), _m.sin(gp)])
+        O = M.sk.pts["orbit_" + side]
+        t, ok = conform.raycast(hd, O - A * 0.03, A[None, :], 0.08)
+        Sk = O - A * 0.03 + A * t[0] if ok[0] else O
+        c = Sk - A * E.get("inset_frac", 0.7) * E["radius"] - off
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=E["radius"], location=tuple(c), segments=32, ring_count=16)
+        o = bpy.context.active_object
+        o.name = "Sculpt_Eye" + side
+        objs.append(o)
+    path = os.path.join(ROOT_DIR, "blend", "jaguar_%s_sculpt.blend" % args.version)
+    bpy.ops.wm.save_as_mainfile(filepath=path, compress=True)
+    print("Escultura guardada:", path)
+    if render:
+        import render_views
+        heads = [o for o in objs if o.name in ("Sculpt_head", "Sculpt_jaw")]
+        render_views.render_all(args.version, samples=args.samples, objs=objs, head_objs=heads,
+                                out=os.path.join(ROOT_DIR, "renders", args.version, "sculpt"),
+                                targets=P["targets"])
 
 
 if __name__ == "__main__":
