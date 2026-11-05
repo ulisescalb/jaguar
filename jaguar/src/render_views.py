@@ -228,8 +228,67 @@ def contact_sheet(paths, dst, tile=512, cols=3):
     save_rgba(sheet, dst)
 
 
+# ---------------------------------------------------------------- encuadre
+FILL = 0.86  # fracción del cuadro que ocupa el animal en su dimensión mayor
+
+
+def sample_points(objs, n=6000):
+    pts = []
+    for o in objs:
+        me = o.data
+        V = np.empty(len(me.vertices) * 3, np.float64)
+        me.vertices.foreach_get("co", V)
+        V = V.reshape(-1, 3)
+        if len(V) > n:
+            V = V[np.linspace(0, len(V) - 1, n).astype(int)]
+        M = np.array(o.matrix_world)
+        pts.append(V @ M[:3, :3].T + M[:3, 3])
+    return np.concatenate(pts)
+
+
+def ortho_frame(pts, right, up, view_dir, fill=FILL):
+    """Cámara ortográfica cuadrada centrada en la silueta proyectada."""
+    right, up, view_dir = (np.asarray(v, float) for v in (right, up, view_dir))
+    u, v = pts @ right, pts @ up
+    cu, cv = (u.min() + u.max()) / 2, (v.min() + v.max()) / 2
+    scale = max(u.max() - u.min(), v.max() - v.min()) / fill
+    loc = right * cu + up * cv  # la profundidad la fija quien llama
+    return Vector(loc), scale
+
+
+def persp_frame(pts, direction, lens=50.0, fill=FILL, target=None):
+    """Distancia y punto de mira para que la proyección ocupe `fill`."""
+    d = np.asarray(direction, float)
+    d /= np.linalg.norm(d)
+    tgt = np.asarray(target if target is not None else pts.mean(0), float)
+    tan = 18.0 / lens
+    dist = 3.0
+    for _ in range(25):
+        C = tgt + d * dist
+        fwd = -d
+        right = np.cross(fwd, [0, 0, 1.0])
+        right /= np.linalg.norm(right)
+        upv = np.cross(right, fwd)
+        rel = pts - C
+        zc = rel @ fwd
+        x = (rel @ right) / zc / tan
+        y = (rel @ upv) / zc / tan
+        cx, cy = (x.min() + x.max()) / 2, (y.min() + y.max()) / 2
+        ext = max(x.max() - x.min(), y.max() - y.min()) / 2
+        tgt = tgt + (right * cx + upv * cy) * np.median(zc) * tan
+        dist *= ext / fill
+    C = tgt + d * dist
+    return Vector(C), Vector(tgt)
+
+
+def clipped_fraction(path):
+    a = load_rgba(path)[..., :3]
+    return float((a.max(axis=2) > 0.985).mean())
+
+
 # ------------------------------------------------------------------ main
-def render_all(version, samples=48, report=None, targets=None, preview=False):
+def render_all(version, samples=48, report=None, targets=None, preview=False, objs=None,
+               head_objs=None, out=None, label=None):
     scene = bpy.context.scene
     device = setup_device(scene)
     print("Cycles device:", device)
@@ -258,70 +317,66 @@ def render_all(version, samples=48, report=None, targets=None, preview=False):
         scene.view_settings.view_transform = 'AgX'
     except TypeError:
         scene.view_settings.view_transform = 'Filmic'
+    scene.view_settings.exposure = 0.0
 
     if targets is None:
         with open(os.path.join(SRC_DIR, "params.json"), encoding="utf-8") as f:
             targets = json.load(f)["targets"]
-    objs = [bpy.data.objects[n] for n in JAGUAR_OBJS if n in bpy.data.objects]
-    clay = clay_material("Clay", 0.50)
-    clay_eye = clay_material("ClayEye", 0.12, rough=0.25)
+    if objs is None:
+        objs = [bpy.data.objects[n] for n in JAGUAR_OBJS if n in bpy.data.objects]
+    if head_objs is None:
+        head_objs = [bpy.data.objects[n] for n in ("Jaguar_Head", "Jaguar_LowerJaw")
+                     if n in bpy.data.objects]
+    clay = clay_material("Clay", 0.46)
+    clay_eye = clay_material("ClayEye", 0.10, rough=0.25)
     for o in objs:
         o.data.materials.clear()
         o.data.materials.append(clay_eye if "Eye" in o.name else clay)
 
-    mn, mx = bbox(objs)
+    pts = sample_points(objs)
+    mn, mx = Vector(pts.min(0)), Vector(pts.max(0))
     ctr = (mn + mx) / 2
-    size = mx - mn
-    # suelo neutro
-    bpy.ops.mesh.primitive_plane_add(size=20.0, location=(0, 0, 0))
+    # suelo y fondo neutros, más oscuros que la arcilla para que no se quemen
+    bpy.ops.mesh.primitive_plane_add(size=30.0, location=(0, 0, 0))
     ground = bpy.context.active_object
     ground.name = "RenderGround"
-    ground.data.materials.append(clay_material("Ground", 0.22, rough=0.9))
-    set_world(scene, (0.16, 0.16, 0.17), 0.6)
-    add_light("Key", 'AREA', ctr + Vector((2.4, -2.6, 2.6)), ctr, 300, 1.6)
-    add_light("Fill", 'AREA', ctr + Vector((-3.0, -1.4, 1.2)), ctr, 90, 2.5)
-    add_light("Rim", 'AREA', ctr + Vector((-0.6, 3.2, 2.4)), ctr, 260, 1.2)
+    ground.data.materials.append(clay_material("Ground", 0.14, rough=0.95))
+    set_world(scene, (0.13, 0.13, 0.14), 0.55)
+    add_light("Key", 'AREA', ctr + Vector((2.4, -2.6, 2.6)), ctr, 210, 1.6)
+    add_light("Fill", 'AREA', ctr + Vector((-3.0, -1.4, 1.2)), ctr, 70, 2.5)
+    add_light("Rim", 'AREA', ctr + Vector((-0.6, 3.2, 2.4)), ctr, 220, 1.2)
 
-    out = os.path.join(ROOT_DIR, "renders", version)
+    out = out or os.path.join(ROOT_DIR, "renders", version)
     os.makedirs(out, exist_ok=True)
-    W, HS = 1024, 576
-    far = 6.0
-    pad = 1.10
-    side_scale = max(size.y * pad, size.z * pad * W / HS)
-    cams = {
-        "front": (make_camera("CamFront", (ctr.x, mn.y - far, ctr.z), rot=(math.pi / 2, 0, 0),
-                              ortho=max(size.x, size.z) * 1.25), W, W),
-        "side": (make_camera("CamSide", (mx.x + far, ctr.y, ctr.z), rot=(math.pi / 2, 0, math.pi / 2),
-                             ortho=side_scale), W, HS),
-        "top": (make_camera("CamTop", (ctr.x, ctr.y, mx.z + far), rot=(0, 0, math.pi / 2),
-                            ortho=max(size.y * pad, size.x * pad * W / HS)), W, HS),
-    }
-    d34 = Vector((0.85, -1.0, 0.55)).normalized()
-    rad = size.length / 2
-    dist = rad / math.tan(math.radians(39.6 / 2)) * 0.82
-    cams["three_quarter"] = (make_camera("Cam34", ctr + d34 * dist, target=ctr, lens=50.0), W, W)
-    head = bpy.data.objects["Jaguar_Head"]
-    hmn, hmx = bbox([head, bpy.data.objects["Jaguar_LowerJaw"]])
-    hc = (hmn + hmx) / 2
-    dh = Vector((0.75, -1.0, 0.30)).normalized()
-    hrad = (hmx - hmn).length / 2
-    hdist = hrad / math.tan(math.atan(18.0 / 85.0)) * 1.15
-    cams["head_closeup"] = (make_camera("CamHead", hc + dh * hdist, target=hc, lens=85.0), W, W)
+    W = 1024
+    cams = {}
+    loc, sc = ortho_frame(pts, (1, 0, 0), (0, 0, 1), (0, -1, 0))
+    loc.y = mn.y - 5.0
+    cams["front"] = (make_camera("CamFront", loc, rot=(math.pi / 2, 0, 0), ortho=sc), W, W)
+    loc, sc = ortho_frame(pts, (0, 1, 0), (0, 0, 1), (1, 0, 0))
+    loc.x = mx.x + 5.0
+    cams["side"] = (make_camera("CamSide", loc, rot=(math.pi / 2, 0, math.pi / 2), ortho=sc), W, W)
+    loc, sc = ortho_frame(pts, (0, 1, 0), (-1, 0, 0), (0, 0, 1))
+    loc.z = mx.z + 5.0
+    cams["top"] = (make_camera("CamTop", loc, rot=(0, 0, math.pi / 2), ortho=sc), W, W)
+    C, T = persp_frame(pts, (0.85, -1.0, 0.55), lens=50.0)
+    cams["three_quarter"] = (make_camera("Cam34", C, target=T, lens=50.0), W, W)
+    hp = sample_points(head_objs)
+    C, T = persp_frame(hp, (0.75, -1.0, 0.30), lens=85.0, fill=0.80)
+    cams["head_closeup"] = (make_camera("CamHead", C, target=T, lens=85.0), W, W)
 
     paths = {}
     names = ("side", "front", "top", "three_quarter", "head_closeup")
-    if preview:  # iteración rápida: media resolución, sin silueta ni hojas
-        for name in names:
-            cam, w, h = cams[name]
-            p = os.path.join(out, name + ".png")
-            f = 1 if name == "side" else 2
-            render(scene, cam, p, w // f, h // f)
-        return
+    f = 2 if preview else 1
     for name in names:
         cam, w, h = cams[name]
         p = os.path.join(out, name + ".png")
-        render(scene, cam, p, w, h)
+        render(scene, cam, p, w // f, h // f)
         paths[name] = p
+    clip = {k: round(clipped_fraction(v), 4) for k, v in paths.items()}
+    print("Fracción de píxeles quemados:", clip)
+    if preview:
+        return paths
 
     # silueta: negro puro sobre blanco
     blk = black_material()
@@ -342,10 +397,12 @@ def render_all(version, samples=48, report=None, targets=None, preview=False):
         for m in saved[o.name]:
             o.data.materials.append(m)
 
-    draw_side_guides(paths["side"], os.path.join(out, "side_guides.png"), cams["side"][0], W, HS,
+    draw_side_guides(paths["side"], os.path.join(out, "side_guides.png"), cams["side"][0], W, W,
                      targets, report)
     contact_sheet([paths[k] for k in ("side", "front", "top", "three_quarter", "head_closeup",
                                       "silhouette_side")], os.path.join(out, "contact_sheet.png"))
+    with open(os.path.join(out, "render_check.json"), "w") as fh:
+        json.dump({"clipped_fraction": clip, "fill": FILL}, fh, indent=1)
     print("Renders en", out)
     return paths
 

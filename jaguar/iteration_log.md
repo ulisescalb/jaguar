@@ -406,3 +406,59 @@ animal más compacto que el promedio publicado.
 - `export/landmarks.json`: posiciones, jerarquía propuesta (`parent`) para el
   rig, descripción y cadena de la cola. Se regenera en cada build con el mismo
   desplazamiento que la malla.
+
+## Paso 3 — escultura por volúmenes musculares (SDF)
+
+**Método elegido:** SDF propia en numpy (`src/sdf.py`), no metaballs. Motivos:
+- Funciona dentro de Blender y fuera.
+- Se evalúa en puntos arbitrarios, que es lo que necesita la transferencia del
+  paso 5.
+- Admite restas suaves: pliegue del ijar, filtrum, fosas nasales, cuencas de los
+  ojos, concavidad de la oreja.
+- Cada primitiva va unida a un hueso del esqueleto, así que la misma escultura se
+  evalúa en pose neutra o en las poses de foto.
+
+Detalles:
+- *Primitivas:* elipsoide (aproximación de iq) y cono redondeado exacto con
+  sección elíptica opcional. Unión con smooth-min polinómico, resta con
+  smooth-max.
+- *Componentes:* `body`, `head`, `jaw`, `ear_L`/`ear_R`; los ojos son esferas
+  aparte.
+- *Velocidad:* la rejilla se evalúa sólo dentro de la caja de cada primitiva.
+  Rejilla de 12 mm de todo el animal: 0.25 s.
+- *Superficie:* `src/sculpt.py`, marching cubes de scikit-image a 8 mm en el
+  cuerpo y 3 mm en cabeza, mandíbula y orejas (~0.2 M triángulos, muy por debajo
+  del límite de 1 M).
+- *Volumen:* el de la **unión** se integra por ocupación en una rejilla común de
+  5 mm, sin sumar solapes.
+- *Grupos musculares* (`params.json["sculpt"]["prims"]`, 78 definiciones,
+  128 con las copias derechas):
+  - Tronco: tórax (barril costal), dorsal torácico, cruz, lomo, abdomen, pliegue
+    ventral colgante, grupa, glúteos y prosterno/pectoral.
+  - Cuello: base, cono del cuello, nuca y garganta.
+  - Miembro delantero: escápula, deltoides, tríceps, bíceps, antebrazo y su masa
+    muscular, olécranon, carpo, almohadilla carpal, metacarpo, espolón, zarpa con
+    4 dedos y almohadilla central.
+  - Miembro trasero: muslo, cuádriceps, isquiotibiales, rodilla, gastrocnemio,
+    tibia, Aquiles, corvejón, calcáneo, metatarso, zarpa con 4 dedos y
+    almohadilla.
+  - Cola: raíz y 6 conos.
+  - Cabeza: cráneo, temporales, occipital, frente, arcos cigomáticos, maseteros,
+    carrillos, cejas, suelo de la órbita, hocico, puente nasal, almohadillas de
+    bigotes, labio superior, rinario y restas de filtrum, fosas nasales y cuencas.
+  - Mandíbula: cuerpo, ramas, barbilla y labio inferior.
+  - Orejas: concha, concavidad (resta) y raíz.
+- *Primera escultura* (`renders/v07_steps/sculpt_initial/`): masa de félido, pero
+  «bultosa» (músculos sueltos), ojos saltones y hocico de hipopótamo. Suavicé
+  las mezclas y hundí los ojos 11 mm; la forma global la ajusta el paso 4 y la
+  cara el paso 6.
+- *Masa inicial:* volumen del cuerpo ≈ 0.12 m³, ≈ 120 kg. Demasiado pesado.
+
+**Renders corregidos** (lo que pediste):
+- Todas las vistas son cuadradas de 1024 px, sin bandas negras en el contact
+  sheet.
+- Encuadre ajustado: el animal ocupa el 86 % de la dimensión mayor del cuadro, en
+  ortográfica y en perspectiva (la distancia de la cámara se calcula
+  proyectando los vértices).
+- Suelo y fondo más oscuros que la arcilla y luz key más baja.
+- Se mide la fracción de píxeles quemados por vista (`render_check.json`): 0.0 %.

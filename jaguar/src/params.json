@@ -1295,5 +1295,1813 @@
    "hip_L": -8,
    "hip_R": 6
   }
+ },
+ "sculpt": {
+  "_doc": "Volumenes musculares de la escultura SDF (src/sdf.py). Cada primitiva va unida a un hueso; 'c'/'a'/'b' se dan con landmarks ('lm', 'at' = punto sobre un segmento) o en coords locales de cabeza ('hl'); 'off' en metros; 'k' = radio de mezcla suave; 'g' = grupo de escala que ajusta el optimizador; 'mirror' crea la copia derecha.",
+  "groups": {},
+  "eye": {
+   "radius": 0.0185,
+   "gaze_yaw_deg": 22.0,
+   "gaze_pitch_deg": 2.0,
+   "inset": 0.011
+  },
+  "res": {
+   "body": 0.008,
+   "head": 0.003
+  },
+  "prims": [
+   {
+    "name": "ribcage",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "abs": [
+      0,
+      -0.15,
+      0.525
+     ]
+    },
+    "r": [
+     0.15,
+     0.27,
+     0.185
+    ],
+    "bone": "torso",
+    "k": 0.05,
+    "g": "chest",
+    "rot": [
+     -4,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "thorax_dorsal",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "abs": [
+      0,
+      -0.19,
+      0.655
+     ]
+    },
+    "r": [
+     0.1,
+     0.25,
+     0.07
+    ],
+    "bone": "torso",
+    "k": 0.05,
+    "g": "back"
+   },
+   {
+    "name": "withers",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "abs": [
+      0,
+      -0.345,
+      0.69
+     ]
+    },
+    "r": [
+     0.075,
+     0.09,
+     0.058
+    ],
+    "bone": "torso",
+    "k": 0.05,
+    "g": "back"
+   },
+   {
+    "name": "loin",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "abs": [
+      0,
+      0.2,
+      0.625
+     ]
+    },
+    "r": [
+     0.112,
+     0.2,
+     0.088
+    ],
+    "bone": "torso",
+    "k": 0.06,
+    "g": "loin"
+   },
+   {
+    "name": "abdomen",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "abs": [
+      0,
+      0.08,
+      0.5
+     ]
+    },
+    "r": [
+     0.132,
+     0.24,
+     0.15
+    ],
+    "bone": "torso",
+    "k": 0.06,
+    "g": "belly"
+   },
+   {
+    "name": "belly_fold",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "abs": [
+      0,
+      0.2,
+      0.43
+     ]
+    },
+    "r": [
+     0.095,
+     0.16,
+     0.065
+    ],
+    "bone": "torso",
+    "k": 0.06,
+    "g": "fold"
+   },
+   {
+    "name": "croup",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "abs": [
+      0,
+      0.45,
+      0.6
+     ]
+    },
+    "r": [
+     0.13,
+     0.15,
+     0.12
+    ],
+    "bone": "torso",
+    "k": 0.05,
+    "g": "croup"
+   },
+   {
+    "name": "glute",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "abs": [
+      0.075,
+      0.47,
+      0.64
+     ]
+    },
+    "r": [
+     0.07,
+     0.11,
+     0.075
+    ],
+    "bone": "torso",
+    "k": 0.05,
+    "g": "croup",
+    "mirror": true
+   },
+   {
+    "name": "prosternum",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "abs": [
+      0,
+      -0.46,
+      0.44
+     ]
+    },
+    "r": [
+     0.09,
+     0.08,
+     0.1
+    ],
+    "bone": "torso",
+    "k": 0.05,
+    "g": "chest"
+   },
+   {
+    "name": "neck_base",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "abs": [
+      0,
+      -0.45,
+      0.58
+     ]
+    },
+    "r": [
+     0.12,
+     0.1,
+     0.15
+    ],
+    "bone": "torso",
+    "k": 0.05,
+    "g": "neck"
+   },
+   {
+    "name": "neck",
+    "comp": "body",
+    "type": "cone",
+    "a": {
+     "abs": [
+      0,
+      -0.45,
+      0.6
+     ]
+    },
+    "b": {
+     "abs": [
+      0,
+      -0.625,
+      0.635
+     ]
+    },
+    "ra": 0.12,
+    "rb": 0.09,
+    "bone": "neck1",
+    "k": 0.05,
+    "g": "neck",
+    "flat": [
+     0.85,
+     1.0
+    ]
+   },
+   {
+    "name": "nape",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "abs": [
+      0,
+      -0.54,
+      0.68
+     ]
+    },
+    "r": [
+     0.07,
+     0.12,
+     0.05
+    ],
+    "bone": "neck1",
+    "k": 0.04,
+    "g": "neck"
+   },
+   {
+    "name": "throat",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "abs": [
+      0,
+      -0.6,
+      0.53
+     ]
+    },
+    "r": [
+     0.07,
+     0.09,
+     0.06
+    ],
+    "bone": "neck2",
+    "k": 0.04,
+    "g": "neck"
+   },
+   {
+    "name": "flank_tuck",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "abs": [
+      0.165,
+      0.19,
+      0.4
+     ]
+    },
+    "r": [
+     0.05,
+     0.1,
+     0.08
+    ],
+    "bone": "torso",
+    "k": 0.05,
+    "g": "tuck",
+    "op": "sub",
+    "mirror": true
+   },
+   {
+    "name": "scapula",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "scap_top_L",
+      "shoulder_L",
+      0.4
+     ],
+     "off": [
+      0.025,
+      0,
+      0
+     ]
+    },
+    "r": [
+     0.035,
+     0.12,
+     0.07
+    ],
+    "bone": "scapula_L",
+    "k": 0.05,
+    "g": "shoulder",
+    "mirror": true,
+    "axis": [
+     "scap_top_L",
+     "shoulder_L"
+    ]
+   },
+   {
+    "name": "deltoid",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "lm": "shoulder_L",
+     "off": [
+      0.015,
+      -0.01,
+      0.01
+     ]
+    },
+    "r": [
+     0.05,
+     0.055,
+     0.06
+    ],
+    "bone": "scapula_L",
+    "k": 0.05,
+    "g": "shoulder",
+    "mirror": true
+   },
+   {
+    "name": "triceps",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "shoulder_L",
+      "elbow_L",
+      0.5
+     ],
+     "off": [
+      0.0,
+      0.06,
+      0.01
+     ]
+    },
+    "r": [
+     0.05,
+     0.11,
+     0.065
+    ],
+    "bone": "humerus_L",
+    "k": 0.05,
+    "g": "arm",
+    "mirror": true,
+    "axis": [
+     "shoulder_L",
+     "olecranon_L"
+    ]
+   },
+   {
+    "name": "biceps",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "shoulder_L",
+      "elbow_L",
+      0.5
+     ],
+     "off": [
+      0.0,
+      -0.035,
+      0.0
+     ]
+    },
+    "r": [
+     0.04,
+     0.095,
+     0.04
+    ],
+    "bone": "humerus_L",
+    "k": 0.04,
+    "g": "arm",
+    "mirror": true,
+    "axis": [
+     "shoulder_L",
+     "elbow_L"
+    ]
+   },
+   {
+    "name": "forearm",
+    "comp": "body",
+    "type": "cone",
+    "a": {
+     "lm": "elbow_L",
+     "off": [
+      0,
+      0.005,
+      0
+     ]
+    },
+    "b": {
+     "lm": "carpus_L",
+     "off": [
+      0,
+      0,
+      0.01
+     ]
+    },
+    "ra": 0.058,
+    "rb": 0.037,
+    "bone": "radius_L",
+    "k": 0.03,
+    "g": "forearm",
+    "flat": [
+     0.82,
+     1.0
+    ],
+    "mirror": true
+   },
+   {
+    "name": "forearm_mass",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "elbow_L",
+      "carpus_L",
+      0.25
+     ],
+     "off": [
+      0.005,
+      -0.01,
+      0
+     ]
+    },
+    "r": [
+     0.045,
+     0.08,
+     0.055
+    ],
+    "bone": "radius_L",
+    "k": 0.04,
+    "g": "forearm",
+    "mirror": true,
+    "axis": [
+     "elbow_L",
+     "carpus_L"
+    ]
+   },
+   {
+    "name": "olecranon",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "lm": "olecranon_L"
+    },
+    "r": [
+     0.035,
+     0.04,
+     0.035
+    ],
+    "bone": "radius_L",
+    "k": 0.025,
+    "g": "forearm",
+    "mirror": true
+   },
+   {
+    "name": "carpus",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "lm": "carpus_L"
+    },
+    "r": [
+     0.04,
+     0.042,
+     0.035
+    ],
+    "bone": "radius_L",
+    "k": 0.02,
+    "g": "forearm",
+    "mirror": true
+   },
+   {
+    "name": "carpal_pad",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "lm": "carpus_L",
+     "off": [
+      0,
+      0.035,
+      -0.01
+     ]
+    },
+    "r": [
+     0.015,
+     0.012,
+     0.015
+    ],
+    "bone": "radius_L",
+    "k": 0.01,
+    "mirror": true
+   },
+   {
+    "name": "metacarpus",
+    "comp": "body",
+    "type": "cone",
+    "a": {
+     "lm": "carpus_L"
+    },
+    "b": {
+     "lm": "mcp_L",
+     "off": [
+      0,
+      0,
+      0.008
+     ]
+    },
+    "ra": 0.036,
+    "rb": 0.042,
+    "bone": "metacarpus_L",
+    "k": 0.02,
+    "g": "paw_f",
+    "flat": [
+     1.15,
+     0.9
+    ],
+    "mirror": true
+   },
+   {
+    "name": "dewclaw",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "carpus_L",
+      "mcp_L",
+      0.45
+     ],
+     "off": [
+      -0.033,
+      -0.005,
+      0
+     ]
+    },
+    "r": [
+     0.012,
+     0.014,
+     0.016
+    ],
+    "bone": "metacarpus_L",
+    "k": 0.008,
+    "mirror": true
+   },
+   {
+    "name": "paw_f",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "mcp_L",
+      "ftoe_L",
+      0.5
+     ],
+     "off": [
+      0,
+      0,
+      0.012
+     ]
+    },
+    "r": [
+     0.056,
+     0.052,
+     0.028
+    ],
+    "bone": "fdigits_L",
+    "k": 0.02,
+    "g": "paw_f",
+    "mirror": true
+   },
+   {
+    "name": "ftoe2",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "mcp_L",
+      "ftoe_L",
+      0.5
+     ],
+     "off": [
+      -0.032,
+      -0.035,
+      0.004
+     ]
+    },
+    "r": [
+     0.019,
+     0.022,
+     0.019
+    ],
+    "bone": "fdigits_L",
+    "k": 0.008,
+    "g": "paw_f",
+    "mirror": true
+   },
+   {
+    "name": "ftoe3",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "mcp_L",
+      "ftoe_L",
+      0.5
+     ],
+     "off": [
+      -0.011,
+      -0.048,
+      0.004
+     ]
+    },
+    "r": [
+     0.019,
+     0.022,
+     0.019
+    ],
+    "bone": "fdigits_L",
+    "k": 0.008,
+    "g": "paw_f",
+    "mirror": true
+   },
+   {
+    "name": "ftoe4",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "mcp_L",
+      "ftoe_L",
+      0.5
+     ],
+     "off": [
+      0.011,
+      -0.048,
+      0.004
+     ]
+    },
+    "r": [
+     0.019,
+     0.022,
+     0.019
+    ],
+    "bone": "fdigits_L",
+    "k": 0.008,
+    "g": "paw_f",
+    "mirror": true
+   },
+   {
+    "name": "ftoe5",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "mcp_L",
+      "ftoe_L",
+      0.5
+     ],
+     "off": [
+      0.032,
+      -0.035,
+      0.004
+     ]
+    },
+    "r": [
+     0.019,
+     0.022,
+     0.019
+    ],
+    "bone": "fdigits_L",
+    "k": 0.008,
+    "g": "paw_f",
+    "mirror": true
+   },
+   {
+    "name": "fpad",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "mcp_L",
+      "ftoe_L",
+      0.5
+     ],
+     "off": [
+      0,
+      0.014,
+      0.0
+     ]
+    },
+    "r": [
+     0.03,
+     0.022,
+     0.014
+    ],
+    "bone": "fdigits_L",
+    "k": 0.01,
+    "mirror": true
+   },
+   {
+    "name": "thigh",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "hip_L",
+      "knee_L",
+      0.45
+     ],
+     "off": [
+      0.01,
+      0.02,
+      0
+     ]
+    },
+    "r": [
+     0.075,
+     0.16,
+     0.105
+    ],
+    "bone": "femur_L",
+    "k": 0.06,
+    "g": "thigh",
+    "mirror": true,
+    "axis": [
+     "hip_L",
+     "knee_L"
+    ]
+   },
+   {
+    "name": "quadriceps",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "hip_L",
+      "knee_L",
+      0.6
+     ],
+     "off": [
+      0.005,
+      -0.05,
+      0
+     ]
+    },
+    "r": [
+     0.05,
+     0.115,
+     0.06
+    ],
+    "bone": "femur_L",
+    "k": 0.05,
+    "g": "thigh",
+    "mirror": true,
+    "axis": [
+     "hip_L",
+     "knee_L"
+    ]
+   },
+   {
+    "name": "hamstrings",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "ischium_L",
+      "knee_L",
+      0.5
+     ],
+     "off": [
+      0.03,
+      0.07,
+      -0.02
+     ]
+    },
+    "r": [
+     0.058,
+     0.15,
+     0.07
+    ],
+    "bone": "femur_L",
+    "k": 0.05,
+    "g": "thigh",
+    "mirror": true,
+    "axis": [
+     "ischium_L",
+     "knee_L"
+    ]
+   },
+   {
+    "name": "knee",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "lm": "knee_L",
+     "off": [
+      0,
+      -0.015,
+      0.005
+     ]
+    },
+    "r": [
+     0.05,
+     0.05,
+     0.055
+    ],
+    "bone": "femur_L",
+    "k": 0.04,
+    "g": "shank",
+    "mirror": true
+   },
+   {
+    "name": "gastrocnemius",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "knee_L",
+      "hock_L",
+      0.3
+     ],
+     "off": [
+      0,
+      0.045,
+      0
+     ]
+    },
+    "r": [
+     0.045,
+     0.085,
+     0.045
+    ],
+    "bone": "tibia_L",
+    "k": 0.04,
+    "g": "shank",
+    "mirror": true,
+    "axis": [
+     "knee_L",
+     "hock_L"
+    ]
+   },
+   {
+    "name": "shin",
+    "comp": "body",
+    "type": "cone",
+    "a": {
+     "lm": "knee_L"
+    },
+    "b": {
+     "lm": "hock_L"
+    },
+    "ra": 0.048,
+    "rb": 0.032,
+    "bone": "tibia_L",
+    "k": 0.03,
+    "g": "shank",
+    "flat": [
+     0.85,
+     1.0
+    ],
+    "mirror": true
+   },
+   {
+    "name": "achilles",
+    "comp": "body",
+    "type": "cone",
+    "a": {
+     "at": [
+      "knee_L",
+      "hock_L",
+      0.55
+     ],
+     "off": [
+      0,
+      0.05,
+      0
+     ]
+    },
+    "b": {
+     "lm": "calcaneus_L",
+     "off": [
+      0,
+      -0.005,
+      0.01
+     ]
+    },
+    "ra": 0.022,
+    "rb": 0.018,
+    "bone": "tibia_L",
+    "k": 0.02,
+    "mirror": true
+   },
+   {
+    "name": "hock",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "lm": "hock_L"
+    },
+    "r": [
+     0.034,
+     0.036,
+     0.034
+    ],
+    "bone": "metatarsus_L",
+    "k": 0.02,
+    "mirror": true
+   },
+   {
+    "name": "calcaneus",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "lm": "calcaneus_L"
+    },
+    "r": [
+     0.024,
+     0.025,
+     0.026
+    ],
+    "bone": "metatarsus_L",
+    "k": 0.015,
+    "mirror": true
+   },
+   {
+    "name": "metatarsus",
+    "comp": "body",
+    "type": "cone",
+    "a": {
+     "lm": "hock_L"
+    },
+    "b": {
+     "lm": "mtp_L",
+     "off": [
+      0,
+      0,
+      0.008
+     ]
+    },
+    "ra": 0.033,
+    "rb": 0.038,
+    "bone": "metatarsus_L",
+    "k": 0.02,
+    "g": "paw_h",
+    "flat": [
+     1.1,
+     0.9
+    ],
+    "mirror": true
+   },
+   {
+    "name": "paw_h",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "mtp_L",
+      "htoe_L",
+      0.5
+     ],
+     "off": [
+      0,
+      0,
+      0.012
+     ]
+    },
+    "r": [
+     0.05,
+     0.05,
+     0.027
+    ],
+    "bone": "hdigits_L",
+    "k": 0.02,
+    "g": "paw_h",
+    "mirror": true
+   },
+   {
+    "name": "htoe2",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "mtp_L",
+      "htoe_L",
+      0.5
+     ],
+     "off": [
+      -0.028,
+      -0.033,
+      0.004
+     ]
+    },
+    "r": [
+     0.017,
+     0.02,
+     0.018
+    ],
+    "bone": "hdigits_L",
+    "k": 0.008,
+    "g": "paw_h",
+    "mirror": true
+   },
+   {
+    "name": "htoe3",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "mtp_L",
+      "htoe_L",
+      0.5
+     ],
+     "off": [
+      -0.01,
+      -0.045,
+      0.004
+     ]
+    },
+    "r": [
+     0.017,
+     0.02,
+     0.018
+    ],
+    "bone": "hdigits_L",
+    "k": 0.008,
+    "g": "paw_h",
+    "mirror": true
+   },
+   {
+    "name": "htoe4",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "mtp_L",
+      "htoe_L",
+      0.5
+     ],
+     "off": [
+      0.01,
+      -0.045,
+      0.004
+     ]
+    },
+    "r": [
+     0.017,
+     0.02,
+     0.018
+    ],
+    "bone": "hdigits_L",
+    "k": 0.008,
+    "g": "paw_h",
+    "mirror": true
+   },
+   {
+    "name": "htoe5",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "mtp_L",
+      "htoe_L",
+      0.5
+     ],
+     "off": [
+      0.028,
+      -0.033,
+      0.004
+     ]
+    },
+    "r": [
+     0.017,
+     0.02,
+     0.018
+    ],
+    "bone": "hdigits_L",
+    "k": 0.008,
+    "g": "paw_h",
+    "mirror": true
+   },
+   {
+    "name": "hpad",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "at": [
+      "mtp_L",
+      "htoe_L",
+      0.5
+     ],
+     "off": [
+      0,
+      0.012,
+      0.0
+     ]
+    },
+    "r": [
+     0.027,
+     0.02,
+     0.013
+    ],
+    "bone": "hdigits_L",
+    "k": 0.01,
+    "mirror": true
+   },
+   {
+    "name": "tail_root",
+    "comp": "body",
+    "type": "ell",
+    "c": {
+     "tail": 0,
+     "off": [
+      0,
+      0.005,
+      0.0
+     ]
+    },
+    "r": [
+     0.048,
+     0.05,
+     0.048
+    ],
+    "bone": "torso",
+    "k": 0.04,
+    "g": "tail"
+   },
+   {
+    "name": "tail0",
+    "comp": "body",
+    "type": "cone",
+    "a": {
+     "tail": 0
+    },
+    "b": {
+     "tail": 1
+    },
+    "ra": 0.042,
+    "rb": 0.039,
+    "bone": "tail0",
+    "k": 0.015,
+    "g": "tail"
+   },
+   {
+    "name": "tail1",
+    "comp": "body",
+    "type": "cone",
+    "a": {
+     "tail": 1
+    },
+    "b": {
+     "tail": 2
+    },
+    "ra": 0.039,
+    "rb": 0.036,
+    "bone": "tail1",
+    "k": 0.015,
+    "g": "tail"
+   },
+   {
+    "name": "tail2",
+    "comp": "body",
+    "type": "cone",
+    "a": {
+     "tail": 2
+    },
+    "b": {
+     "tail": 3
+    },
+    "ra": 0.036,
+    "rb": 0.034,
+    "bone": "tail2",
+    "k": 0.015,
+    "g": "tail"
+   },
+   {
+    "name": "tail3",
+    "comp": "body",
+    "type": "cone",
+    "a": {
+     "tail": 3
+    },
+    "b": {
+     "tail": 4
+    },
+    "ra": 0.034,
+    "rb": 0.032,
+    "bone": "tail3",
+    "k": 0.015,
+    "g": "tail"
+   },
+   {
+    "name": "tail4",
+    "comp": "body",
+    "type": "cone",
+    "a": {
+     "tail": 4
+    },
+    "b": {
+     "tail": 5
+    },
+    "ra": 0.032,
+    "rb": 0.031,
+    "bone": "tail4",
+    "k": 0.015,
+    "g": "tail"
+   },
+   {
+    "name": "tail5",
+    "comp": "body",
+    "type": "cone",
+    "a": {
+     "tail": 5
+    },
+    "b": {
+     "tail": 6
+    },
+    "ra": 0.031,
+    "rb": 0.029,
+    "bone": "tail5",
+    "k": 0.015,
+    "g": "tail"
+   },
+   {
+    "name": "cranium",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0,
+      -0.055,
+      0.025
+     ]
+    },
+    "r": [
+     0.082,
+     0.095,
+     0.075
+    ],
+    "bone": "head",
+    "k": 0.03,
+    "g": "head"
+   },
+   {
+    "name": "temporal",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0.048,
+      -0.05,
+      0.045
+     ]
+    },
+    "r": [
+     0.045,
+     0.07,
+     0.048
+    ],
+    "bone": "head",
+    "k": 0.03,
+    "g": "head",
+    "mirror": true
+   },
+   {
+    "name": "occipital",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0,
+      0.01,
+      0.03
+     ]
+    },
+    "r": [
+     0.06,
+     0.04,
+     0.06
+    ],
+    "bone": "head",
+    "k": 0.03,
+    "g": "head"
+   },
+   {
+    "name": "forehead",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0,
+      -0.12,
+      0.05
+     ]
+    },
+    "r": [
+     0.065,
+     0.065,
+     0.042
+    ],
+    "bone": "head",
+    "k": 0.03,
+    "g": "head"
+   },
+   {
+    "name": "zygomatic",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0.088,
+      -0.115,
+      0.0
+     ]
+    },
+    "r": [
+     0.03,
+     0.065,
+     0.032
+    ],
+    "bone": "head",
+    "k": 0.025,
+    "g": "head",
+    "mirror": true,
+    "rot": [
+     0,
+     0,
+     -8
+    ]
+   },
+   {
+    "name": "masseter",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0.072,
+      -0.095,
+      -0.045
+     ]
+    },
+    "r": [
+     0.04,
+     0.055,
+     0.05
+    ],
+    "bone": "head",
+    "k": 0.03,
+    "g": "head",
+    "mirror": true
+   },
+   {
+    "name": "jowl",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0.085,
+      -0.07,
+      -0.03
+     ]
+    },
+    "r": [
+     0.035,
+     0.05,
+     0.05
+    ],
+    "bone": "head",
+    "k": 0.03,
+    "g": "head",
+    "mirror": true
+   },
+   {
+    "name": "brow",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0.042,
+      -0.165,
+      0.072
+     ]
+    },
+    "r": [
+     0.026,
+     0.016,
+     0.012
+    ],
+    "bone": "head",
+    "k": 0.015,
+    "mirror": true
+   },
+   {
+    "name": "orbit_floor",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0.05,
+      -0.17,
+      0.02
+     ]
+    },
+    "r": [
+     0.028,
+     0.02,
+     0.015
+    ],
+    "bone": "head",
+    "k": 0.015,
+    "mirror": true
+   },
+   {
+    "name": "muzzle",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0,
+      -0.222,
+      -0.012
+     ]
+    },
+    "r": [
+     0.052,
+     0.062,
+     0.04
+    ],
+    "bone": "head",
+    "k": 0.035,
+    "g": "muzzle"
+   },
+   {
+    "name": "nasal_bridge",
+    "comp": "head",
+    "type": "cone",
+    "a": {
+     "hl": [
+      0,
+      -0.135,
+      0.066
+     ]
+    },
+    "b": {
+     "hl": [
+      0,
+      -0.27,
+      0.03
+     ]
+    },
+    "ra": 0.04,
+    "rb": 0.026,
+    "bone": "head",
+    "k": 0.025,
+    "g": "muzzle"
+   },
+   {
+    "name": "whisker_pad",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0.028,
+      -0.255,
+      -0.026
+     ]
+    },
+    "r": [
+     0.028,
+     0.026,
+     0.026
+    ],
+    "bone": "head",
+    "k": 0.015,
+    "g": "muzzle",
+    "mirror": true
+   },
+   {
+    "name": "upper_lip",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0.042,
+      -0.21,
+      -0.046
+     ]
+    },
+    "r": [
+     0.03,
+     0.05,
+     0.02
+    ],
+    "bone": "head",
+    "k": 0.015,
+    "g": "muzzle",
+    "mirror": true
+   },
+   {
+    "name": "rhinarium",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0,
+      -0.282,
+      0.012
+     ]
+    },
+    "r": [
+     0.024,
+     0.014,
+     0.017
+    ],
+    "bone": "head",
+    "k": 0.01
+   },
+   {
+    "name": "philtrum",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0,
+      -0.292,
+      -0.022
+     ]
+    },
+    "r": [
+     0.0045,
+     0.03,
+     0.022
+    ],
+    "bone": "head",
+    "k": 0.006,
+    "op": "sub"
+   },
+   {
+    "name": "nostril",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0.01,
+      -0.297,
+      0.008
+     ]
+    },
+    "r": [
+     0.005,
+     0.01,
+     0.004
+    ],
+    "bone": "head",
+    "k": 0.003,
+    "op": "sub",
+    "mirror": true
+   },
+   {
+    "name": "eye_socket",
+    "comp": "head",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0.042374606593415916,
+      -0.16592718385456678,
+      0.045035
+     ]
+    },
+    "r": [
+     0.021,
+     0.02,
+     0.0145
+    ],
+    "bone": "head",
+    "k": 0.006,
+    "op": "sub",
+    "mirror": true,
+    "rot": [
+     0,
+     0,
+     22
+    ]
+   },
+   {
+    "name": "mandible",
+    "comp": "jaw",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0,
+      -0.175,
+      -0.078
+     ]
+    },
+    "r": [
+     0.05,
+     0.08,
+     0.026
+    ],
+    "bone": "jaw",
+    "k": 0.02,
+    "g": "jaw"
+   },
+   {
+    "name": "ramus",
+    "comp": "jaw",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0.055,
+      -0.105,
+      -0.07
+     ]
+    },
+    "r": [
+     0.022,
+     0.05,
+     0.03
+    ],
+    "bone": "jaw",
+    "k": 0.02,
+    "g": "jaw",
+    "mirror": true,
+    "rot": [
+     0,
+     0,
+     15
+    ]
+   },
+   {
+    "name": "chin",
+    "comp": "jaw",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0,
+      -0.238,
+      -0.078
+     ]
+    },
+    "r": [
+     0.03,
+     0.022,
+     0.028
+    ],
+    "bone": "jaw",
+    "k": 0.015,
+    "g": "jaw"
+   },
+   {
+    "name": "lower_lip",
+    "comp": "jaw",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0.03,
+      -0.2,
+      -0.058
+     ]
+    },
+    "r": [
+     0.025,
+     0.05,
+     0.012
+    ],
+    "bone": "jaw",
+    "k": 0.012,
+    "g": "jaw",
+    "mirror": true
+   },
+   {
+    "name": "ear_shell",
+    "comp": "ear_L",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0.078,
+      -0.055,
+      0.078
+     ],
+     "off": [
+      0.012,
+      0.0,
+      0.02
+     ]
+    },
+    "r": [
+     0.032,
+     0.01,
+     0.034
+    ],
+    "bone": "head",
+    "k": 0.01,
+    "mirror": true,
+    "rot": [
+     -10,
+     35,
+     30
+    ]
+   },
+   {
+    "name": "ear_cup",
+    "comp": "ear_L",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0.078,
+      -0.055,
+      0.078
+     ],
+     "off": [
+      0.0178,
+      -0.0061,
+      0.0233
+     ]
+    },
+    "r": [
+     0.025,
+     0.007,
+     0.027
+    ],
+    "bone": "head",
+    "k": 0.004,
+    "op": "sub",
+    "mirror": true,
+    "rot": [
+     -10,
+     35,
+     30
+    ]
+   },
+   {
+    "name": "ear_root",
+    "comp": "ear_L",
+    "type": "ell",
+    "c": {
+     "hl": [
+      0.078,
+      -0.055,
+      0.078
+     ],
+     "off": [
+      0.004,
+      0.0,
+      0.002
+     ]
+    },
+    "r": [
+     0.026,
+     0.016,
+     0.022
+    ],
+    "bone": "head",
+    "k": 0.012,
+    "mirror": true,
+    "rot": [
+     -10,
+     35,
+     30
+    ]
+   }
+  ]
  }
 }
